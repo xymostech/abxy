@@ -5,7 +5,7 @@
 #include <gamelib/Texture.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
 
-#include <gamelib/Primitive2d.inl>
+#include <gamelib/Primitive.inl>
 
 #include <memory>
 
@@ -14,7 +14,7 @@
 class MyPlayer : public Entity2d {
 	float direction;
 	int flip_cooldown;
-	Primitive2d prim;
+	Primitive prim;
 public:
 	MyPlayer(float y)
 	: Entity2d(Vector2(0, y), Vector2(1, 0), 0, 0)

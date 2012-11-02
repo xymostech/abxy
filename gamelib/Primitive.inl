@@ -1,9 +1,9 @@
-#ifndef PRIMITIVE2D_INL
-#define PRIMITIVE2D_INL
+#ifndef PRIMITIVE_INL
+#define PRIMITIVE_INL
 
-#include <gamelib/Primitive2d.hpp>
+#include <gamelib/Primitive.hpp>
 
-void Primitive2d::SetupArrays() {
+void Primitive::SetupArrays() {
 	vertex_buffer.Bind();
 	vertex_buffer.SetData(vertex_data.size() * sizeof(float), vertex_data.data(), GL_STATIC_DRAW);
 	vertex_buffer.Unbind();
@@ -15,7 +15,7 @@ void Primitive2d::SetupArrays() {
 	index_buffer.Unbind();
 }
 
-void Primitive2d::SetupVertexArray() {
+void Primitive::SetupVertexArray() {
 	vertex_array.Bind();
 
 	vertex_buffer.Bind();
@@ -56,13 +56,13 @@ void Primitive2d::SetupVertexArray() {
 	vertex_array.Unbind();
 }
 
-void Primitive2d::SetupTexture() {
+void Primitive::SetupTexture() {
 	program->Use();
 	texture->BindSampler(sampler_loc);
 	program->Unuse();
 }
 
-Primitive2d::Primitive2d(std::string program_name)
+Primitive::Primitive(std::string program_name)
 : program_name(program_name)
 , use_vertex(false)
 , use_color(false)
@@ -71,7 +71,7 @@ Primitive2d::Primitive2d(std::string program_name)
 	
 }
 
-Primitive2d &Primitive2d::AddVertices(const std::vector<float> &verts) {
+Primitive &Primitive::AddVertices(const std::vector<float> &verts) {
 	vertex_pos = vertex_data.size();
 	vertex_data.insert(
 		vertex_data.end(),
@@ -82,7 +82,7 @@ Primitive2d &Primitive2d::AddVertices(const std::vector<float> &verts) {
 	return *this;
 }
 
-Primitive2d &Primitive2d::AddColors(const std::vector<float> &colors) {
+Primitive &Primitive::AddColors(const std::vector<float> &colors) {
 	color_pos = vertex_data.size();
 	vertex_data.insert(
 		vertex_data.end(),
@@ -93,7 +93,7 @@ Primitive2d &Primitive2d::AddColors(const std::vector<float> &colors) {
 	return *this;
 }
 
-Primitive2d &Primitive2d::AddTexture(const std::vector<float> &texture) {
+Primitive &Primitive::AddTexture(const std::vector<float> &texture) {
 	texture_pos = vertex_data.size();
 	vertex_data.insert(
 		vertex_data.end(),
@@ -104,7 +104,7 @@ Primitive2d &Primitive2d::AddTexture(const std::vector<float> &texture) {
 	return *this;
 }
 
-Primitive2d &Primitive2d::AddIndices(const std::vector<unsigned int> &indices) {
+Primitive &Primitive::AddIndices(const std::vector<unsigned int> &indices) {
 	index_data.insert(
 		index_data.end(),
 		indices.begin(),
@@ -113,16 +113,16 @@ Primitive2d &Primitive2d::AddIndices(const std::vector<unsigned int> &indices) {
 	return *this;
 }
 
-Primitive2d &Primitive2d::UseTexture(std::string t_name) {
+Primitive &Primitive::UseTexture(std::string t_name) {
 	texture_name = t_name;
 	return *this;
 }
 
-void Primitive2d::Setup() {
+void Primitive::Setup() {
 	SetupArrays();
 }
 
-void Primitive2d::Register(World *world) {
+void Primitive::Register(World *world) {
 	program = world->GetParentStage()->GetProgramLoader()->Load("standard");
 	SetupVertexArray();
 
@@ -132,7 +132,7 @@ void Primitive2d::Register(World *world) {
 	}
 }
 
-void Primitive2d::Draw(Matrix4 &matrix) const {
+void Primitive::Draw(Matrix4 &matrix) const {
 	program->Use();
 	vertex_array.Bind();
 
@@ -144,5 +144,5 @@ void Primitive2d::Draw(Matrix4 &matrix) const {
 	program->Unuse();
 }
 
-#endif /* PRIMITIVE2D_INL */
+#endif /* PRIMITIVE_INL */
 

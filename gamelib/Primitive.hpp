@@ -1,5 +1,5 @@
-#ifndef PRIMITIVE2D_HPP
-#define PRIMITIVE2D_HPP
+#ifndef PRIMITIVE_HPP
+#define PRIMITIVE_HPP
 
 #include <vector>
 
@@ -13,7 +13,7 @@
 #include <gamelib/Matrix.inl>
 #include <gamelib/Texture.inl>
 
-class Primitive2d {
+class Primitive {
 	// Data to describe the primitive
 	std::string program_name;
 
@@ -43,14 +43,14 @@ class Primitive2d {
 	void SetupVertexArray();
 	void SetupTexture();
 public:
-	Primitive2d(std::string program_name);
+	Primitive(std::string program_name);
 
-	Primitive2d &AddVertices(const std::vector<float> &verts);
-	Primitive2d &AddColors(const std::vector<float> &colors);
-	Primitive2d &AddTexture(const std::vector<float> &texture);
-	Primitive2d &AddIndices(const std::vector<unsigned int> &indices);
+	Primitive &AddVertices(const std::vector<float> &verts);
+	Primitive &AddColors(const std::vector<float> &colors);
+	Primitive &AddTexture(const std::vector<float> &texture);
+	Primitive &AddIndices(const std::vector<unsigned int> &indices);
 
-	Primitive2d &UseTexture(std::string t_name);
+	Primitive &UseTexture(std::string t_name);
 
 	void Setup();
 	virtual void Register(World *world);
@@ -58,5 +58,5 @@ public:
 	virtual void Draw(Matrix4 &matrix) const;
 };
 
-#endif /* PRIMITIVE2D_HPP */
+#endif /* PRIMITIVE_HPP */
 
