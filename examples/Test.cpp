@@ -111,8 +111,8 @@ public:
 	}
 
 	virtual void Load() {
-		GetWorld().AddEntity(new MyPlayer(-20));
-		GetWorld().AddEntity(new MyPlayer(20));
+		GetWorld()->AddEntity(new MyPlayer(-20));
+		GetWorld()->AddEntity(new MyPlayer(20));
 
 		Stage2d::Load();
 	}

@@ -10,7 +10,7 @@
 
 class World2d : public World {
 public:
-	World2d(Stage &parent);
+	World2d(Stage2d &parent);
 	virtual ~World2d();
 };
 

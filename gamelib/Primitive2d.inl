@@ -123,11 +123,11 @@ void Primitive2d::Setup() {
 }
 
 void Primitive2d::Register(World *world) {
-	program = world->GetParentStage().GetResources().GetGLProgram("standard");
+	program = world->GetParentStage()->GetProgramLoader()->Load("standard");
 	SetupVertexArray();
 
 	if (use_texture) {
-		texture = world->GetParentStage().GetResources().GetTexture(texture_name);
+		texture = world->GetParentStage()->GetTextureLoader()->Load(texture_name);
 		SetupTexture();
 	}
 }

@@ -5,10 +5,14 @@
 #include <gamelib/World2d.inl>
 #include <gamelib/Perspective2d.inl>
 
+#include <gamelib/TextureLoader.inl>
+#include <gamelib/ProgramLoader.inl>
+
 class Stage2d : public Stage {
-	World2d world;
+	World world;
 	Perspective2d perspective;
-	ResourceLoader resources;
+	TextureLoader texture_loader;
+	ProgramLoader program_loader;
 public:
 	Stage2d();
 	virtual ~Stage2d();
@@ -18,9 +22,11 @@ public:
 	virtual void Draw() const;
 	virtual void Update();
 
-	virtual World2d &GetWorld();
+	virtual World *GetWorld();
 	virtual Perspective &GetPerspective();
-	virtual ResourceLoader &GetResources();
+
+	TextureLoader *GetTextureLoader();
+	ProgramLoader *GetProgramLoader();
 };
 
 #endif /* STAGE2D_HPP */

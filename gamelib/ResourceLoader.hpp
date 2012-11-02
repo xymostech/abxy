@@ -5,20 +5,16 @@
 #include <map>
 #include <memory>
 
-#include <gamelib/GL/GLProgram.inl>
-#include <gamelib/Texture.inl>
-#include <gamelib/Perspective.inl>
-
+template <class T>
 class ResourceLoader {
-	std::map<std::string, std::shared_ptr<GLProgram>> gl_programs;
-	std::map<std::string, std::shared_ptr<Texture>> textures;
-	Perspective &perspective;
+	std::map<std::string, std::shared_ptr<T>> resources;
+protected:
+	virtual T *GetResource(std::string name) = 0;
 public:
-	ResourceLoader(Perspective &perspective);
-
-	std::shared_ptr<GLProgram> GetGLProgram(std::string name);
-	std::shared_ptr<Texture> GetTexture(std::string name);
+	std::shared_ptr<T> Load(std::string name);
 };
+
+#include <gamelib/ResourceLoader.inl>
 
 #endif /* RESOURCELOADER_HPP */
 

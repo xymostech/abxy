@@ -6,6 +6,7 @@
 #include <gamelib/GL/GL.hpp>
 #include <gamelib/GL/GLSamplerRef.inl>
 #include <gamelib/GL/GLTextureRef.inl>
+#include <gamelib/GL/GLUniformRef.inl>
 #include <gamelib/PngLoader.inl>
 
 class Texture {

@@ -23,7 +23,7 @@ public:
 	void Use() const;
 	void Unuse() const;
 
-	void Setup(Perspective &perspective);
+	void Setup(Perspective *perspective);
 
 	void BindUniformBlock(GLuint binding_block);
 

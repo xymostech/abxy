@@ -5,15 +5,15 @@
 
 #include <gamelib/Entity.inl>
 
-class Stage;
+class Stage2d;
 
 class World {
 	std::vector<Entity*> entities;
 	long curr_id;
 
-	Stage &parent;
+	Stage2d &parent;
 public:
-	World(Stage &parent);
+	World(Stage2d &parent);
 	virtual ~World();
 
 	virtual void AddEntity(Entity *entity);
@@ -21,7 +21,7 @@ public:
 	virtual void Draw() const;
 	virtual void Update();
 
-	virtual Stage &GetParentStage();
+	Stage2d *GetParentStage();
 };
 
 #endif /* WORLD_HPP */

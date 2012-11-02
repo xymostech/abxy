@@ -3,7 +3,7 @@
 
 #include <gamelib/World.hpp>
 
-World::World(Stage &parent)
+World::World(Stage2d &parent)
 : parent(parent)
 {
 	curr_id = 0;
@@ -38,8 +38,8 @@ void World::Update() {
 	}
 }
 
-Stage &World::GetParentStage() {
-	return parent;
+Stage2d *World::GetParentStage() {
+	return &parent;
 }
 
 #endif /* WORLD_INL */

@@ -3,7 +3,7 @@
 
 #include <gamelib/World2d.hpp>
 
-World2d::World2d(Stage &parent)
+World2d::World2d(Stage2d &parent)
 : World(parent)
 {
 	

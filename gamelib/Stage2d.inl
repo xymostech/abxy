@@ -5,7 +5,7 @@
 
 Stage2d::Stage2d()
 : world(*this)
-, resources(perspective)
+, program_loader(&perspective)
 {
 	perspective.SetActivePerspective();
 }
@@ -28,17 +28,22 @@ void Stage2d::Update() {
 	world.Update();
 }
 
-World2d &Stage2d::GetWorld() {
-	return world;
+World *Stage2d::GetWorld() {
+	return &world;
 }
 
 Perspective &Stage2d::GetPerspective() {
 	return perspective;
 }
 
-ResourceLoader &Stage2d::GetResources() {
-	return resources;
+TextureLoader *Stage2d::GetTextureLoader() {
+	return &texture_loader;
 }
+
+ProgramLoader *Stage2d::GetProgramLoader() {
+	return &program_loader;
+}
+
 
 #endif /* STAGE2D_INL */
 
