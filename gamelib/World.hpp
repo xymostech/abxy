@@ -11,9 +11,9 @@ class World {
 	std::vector<Entity*> entities;
 	long curr_id;
 
-	WorldStage &parent;
+	WorldStage *parent;
 public:
-	World(WorldStage &parent);
+	World(WorldStage *parent);
 	virtual ~World();
 
 	virtual void AddEntity(Entity *entity);

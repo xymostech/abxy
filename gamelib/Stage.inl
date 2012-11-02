@@ -14,16 +14,21 @@ Stage::~Stage() {
 	}
 }
 
-void Stage::Load() {
+void Stage::Load(Game *p) {
 	loaded = true;
+	parent = p;
 }
 
 void Stage::Unload() {
 	loaded = false;
 }
 
-bool Stage::IsLoaded() {
+bool Stage::IsLoaded() const {
 	return loaded;
+}
+
+Game *Stage::GetParentGame() const {
+	return parent;
 }
 
 #endif /* STAGE_INL */

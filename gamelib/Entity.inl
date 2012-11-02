@@ -19,8 +19,8 @@ void Entity::Register(World *set_world) {
 	world = set_world;
 }
 
-World &Entity::GetWorld() {
-	return *world;
+World *Entity::GetParentWorld() {
+	return world;
 }
 
 #endif /* ENTITY_INL */

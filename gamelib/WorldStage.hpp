@@ -21,14 +21,11 @@ public:
 	WorldStage(std::shared_ptr<Projection> projection);
 	virtual ~WorldStage();
 
-	virtual void Load();
-
 	virtual void Draw() const;
 	virtual void Update();
 
-	virtual World *GetWorld();
-	virtual Projection &GetProjection();
-
+	std::shared_ptr<Projection> GetProjection();
+	World *GetWorld();
 	TextureLoader *GetTextureLoader();
 	ProgramLoader *GetProgramLoader();
 };

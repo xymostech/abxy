@@ -19,7 +19,7 @@ public:
 
 	virtual void Register(World *set_world);
 
-	virtual World &GetWorld();
+	virtual World *GetParentWorld();
 
 	virtual void Draw(Matrix4 model_matrix) const = 0;
 	virtual void Update() = 0;

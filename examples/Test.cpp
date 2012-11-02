@@ -115,11 +115,11 @@ public:
 		
 	}
 
-	virtual void Load() {
+	virtual void Load(Game *p) {
 		GetWorld()->AddEntity(new MyPlayer(-20));
 		GetWorld()->AddEntity(new MyPlayer(20));
 
-		WorldStage::Load();
+		WorldStage::Load(p);
 	}
 };
 

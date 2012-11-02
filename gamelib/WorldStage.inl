@@ -4,7 +4,7 @@
 #include <gamelib/WorldStage.hpp>
 
 WorldStage::WorldStage(std::shared_ptr<Projection> projection)
-: world(*this)
+: world(this)
 , program_loader(projection)
 , projection(projection)
 {
@@ -12,10 +12,6 @@ WorldStage::WorldStage(std::shared_ptr<Projection> projection)
 }
 
 WorldStage::~WorldStage() {
-	
-}
-
-void WorldStage::Load() {
 	
 }
 
@@ -32,8 +28,8 @@ World *WorldStage::GetWorld() {
 	return &world;
 }
 
-Projection &WorldStage::GetProjection() {
-	return *projection;
+std::shared_ptr<Projection> WorldStage::GetProjection() {
+	return projection;
 }
 
 TextureLoader *WorldStage::GetTextureLoader() {

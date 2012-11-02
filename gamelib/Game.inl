@@ -42,7 +42,7 @@ void Game::SetStage(Stage *new_stage) {
 	current_stage = new_stage;
 
 	try {
-		new_stage->Load();
+		new_stage->Load(this);
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		exit(1);

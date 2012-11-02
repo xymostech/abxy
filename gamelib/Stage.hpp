@@ -3,19 +3,24 @@
 
 #include <gamelib/Projection.inl>
 
+class Game;
+
 class Stage {
 	bool loaded;
+
+	Game *parent;
 public:
 	Stage();
 	virtual ~Stage();
 
-	virtual void Load();
+	virtual void Load(Game *p);
 	virtual void Unload();
-	virtual bool IsLoaded();
+	bool IsLoaded() const;
 
-	virtual Projection &GetProjection() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() const = 0;
+
+	Game *GetParentGame() const;
 };
 
 #endif /* STAGE_HPP */
