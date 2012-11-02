@@ -116,8 +116,12 @@ public:
 	}
 
 	virtual void Load(Game *p) {
-		GetWorld()->AddEntity(new MyPlayer(-20));
-		GetWorld()->AddEntity(new MyPlayer(20));
+		GetWorld()->AddEntity(
+			std::shared_ptr<Entity>(new MyPlayer(-20))
+		);
+		GetWorld()->AddEntity(
+			std::shared_ptr<Entity>(new MyPlayer(20))
+		);
 
 		WorldStage::Load(p);
 	}
