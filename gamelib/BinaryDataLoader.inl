@@ -4,12 +4,7 @@
 #include <gamelib/BinaryDataLoader.hpp>
 
 template <typename data_type>
-std::vector<data_type> &BinaryDataLoader<data_type>::GetData() {
-	return data;
-}
-
-template <typename data_type>
-const std::vector<data_type> &BinaryDataLoader<data_type>::GetConstData() const {
+const std::vector<data_type> &BinaryDataLoader<data_type>::GetData() const {
 	return data;
 }
 

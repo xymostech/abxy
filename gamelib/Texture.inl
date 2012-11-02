@@ -10,7 +10,7 @@ void Texture::GenerateTexture(std::string filename) {
 	int w, h;
 	loader.GetSize(&w, &h);
 
-	unsigned char const *data = loader.GetConstData().data();
+	unsigned char const *data = loader.GetData().data();
 
 	tex.Bind();
 

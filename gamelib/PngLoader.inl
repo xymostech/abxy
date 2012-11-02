@@ -71,9 +71,7 @@ void PngLoader::Load(std::istream &in) {
 	int h = png_get_image_height(png_ptr, info_ptr);
 	int rowbytes = (int)png_get_rowbytes(png_ptr, info_ptr);
 
-	GetData().resize(h * rowbytes * sizeof(png_bytep));
-
-	png_bytep data = GetData().data();
+	data.resize(h * rowbytes * sizeof(png_bytep));
 
 	png_bytep row_pointers[h];
 

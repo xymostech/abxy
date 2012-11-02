@@ -7,11 +7,10 @@
 
 template <typename data_type>
 class BinaryDataLoader {
-	std::vector<data_type> data;
 protected:
-	std::vector<data_type> &GetData();
+	std::vector<data_type> data;
 public:
-	const std::vector<data_type> &GetConstData() const;
+	const std::vector<data_type> &GetData() const;
 };
 
 #include <gamelib/BinaryDataLoader.inl>
