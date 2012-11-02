@@ -6,25 +6,13 @@
 class GLSamplerRef {
 	GLuint sampler;
 public:
-	GLSamplerRef() {
-		glGenSamplers(1, &sampler);
-	}
+	GLSamplerRef();
+	~GLSamplerRef();
 
-	~GLSamplerRef() {
-		glDeleteSamplers(1, &sampler);
-	}
+	void SetParameteri(GLenum pname, GLint param);
+	void SetParameterf(GLenum pname, GLfloat param);
 
-	void SetParameteri(GLenum pname, GLint param) {
-		glSamplerParameteri(sampler, pname, param);
-	}
-
-	void SetParameterf(GLenum pname, GLfloat param) {
-		glSamplerParameterf(sampler, pname, param);
-	}
-
-	void Bind(GLuint unit) const {
-		glBindSampler(unit, sampler);
-	}
+	void Bind(GLuint unit) const;
 };
 
 #endif /* GLSAMPLERREF_HPP */

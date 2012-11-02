@@ -7,31 +7,19 @@ template <GLenum type>
 class GLTextureRef {
 	GLuint texture;
 public:
-	GLTextureRef() {
-		glGenTextures(1, &texture);
-	}
+	GLTextureRef();
+	~GLTextureRef();
 
-	~GLTextureRef() {
-		glDeleteTextures(1, &texture);
-	}
-
-	void Bind() const {
-		glBindTexture(type, texture);
-	}
+	void Bind() const;
 
 	void SetData2D(GLint level, GLint internal_format, GLsizei width,
 	               GLsizei height, GLenum format, GLenum data_type,
-	               const GLvoid *data) {
-		glTexImage2D(
-			type, level, internal_format, width, height, 0, format,
-			data_type, data
-		);
-	}
+	               const GLvoid *data);
 
-	void GenerateMipmap() {
-		glGenerateMipmap(type);
-	}
+	void GenerateMipmap();
 };
+
+#include <gamelib/GL/GLTextureRef.inl>
 
 #endif /* GLTEXTUREREF_HPP */
 

@@ -1,0 +1,84 @@
+#ifndef ENTITY2D_INL
+#define ENTITY2D_INL
+
+#include <gamelib/Entity2d.hpp>
+
+Entity2d::Entity2d()
+: Entity2d(Vector2(), Vector2(), 0, 0)
+{
+	
+}
+
+Entity2d::Entity2d(const Vector2& position,
+                   const Vector2& velocity,
+                   const float &angle,
+                   const float &angvelocity)
+: position(position)
+, velocity(velocity)
+, angle(angle)
+, angvelocity(angvelocity)
+{
+	
+}
+
+Entity2d::~Entity2d() {
+	
+}
+
+const Vector2 &Entity2d::Position() const {
+	return position;
+}
+
+const Vector2 &Entity2d::Velocity() const {
+	return velocity;
+}
+
+const float &Entity2d::Angle() const {
+	return angle;
+}
+
+const float &Entity2d::AngVelocity() const {
+	return angvelocity;
+}
+
+Entity2d &Entity2d::SetPosition(const Vector2 &new_position) {
+	position = new_position;
+	return *this;
+}
+
+Entity2d &Entity2d::Shift(const Vector2 &offset) {
+	position += offset;
+	return *this;
+}
+
+Entity2d &Entity2d::SetVelocity(const Vector2 &new_velocity) {
+	velocity = new_velocity;
+	return *this;
+}
+
+Entity2d &Entity2d::SetAngle(const float &new_angle) {
+	angle = new_angle;
+	return *this;
+}
+
+Entity2d &Entity2d::turn(const float &tilt) {
+	angle += tilt;
+	return *this;
+}
+
+Entity2d &Entity2d::SetAngVelocity(const float &new_angvelocity) {
+	angvelocity = new_angvelocity;
+	return *this;
+}
+
+void Entity2d::Update() {
+	position += velocity;
+	angle += angvelocity;
+}
+
+void Entity2d::Draw(Matrix4 model_matrix) const {
+	
+}
+
+#endif /* ENTITY2D_INL */
+

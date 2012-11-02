@@ -6,46 +6,18 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <gamelib/GL/GLShaderRef.hpp>
-#include <gamelib/File.hpp>
+#include <gamelib/GL/GLShaderRef.inl>
+#include <gamelib/File.inl>
 
 class GLShader {
 	GLShaderRef shader;
 public:
-	GLShader(std::string file, GLenum shader_type)
-	: shader(shader_type)
-	{
-		std::string file_data = File::Read(file);
+	GLShader(std::string file, GLenum shader_type);
 
-		shader.SetSource(file_data);
-		shader.Compile();
+	void AttachTo(GLuint program);
+	void DetachFrom(GLuint program);
 
-		if (shader.GetParam(GL_COMPILE_STATUS) == GL_FALSE) {
-			std::string log = shader.GetInfoLog();
-
-			std::string shader_name;
-
-			if (shader.GetType() == GL_VERTEX_SHADER) {
-				shader_name = "vertex";
-			} else {
-				shader_name = "fragment";
-			}
-
-			throw std::runtime_error("Error compiling " + shader_name + " shader: " + log);
-		}
-	}
-
-	void AttachTo(GLuint program) {
-		shader.AttachTo(program);
-	}
-
-	void DetachFrom(GLuint program) {
-		shader.DetachFrom(program);
-	}
-
-	GLShaderRef &GetRef() {
-		return shader;
-	}
+	GLShaderRef &GetRef();
 };
 
 #endif /* GLSHADER_HPP */

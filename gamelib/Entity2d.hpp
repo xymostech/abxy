@@ -1,7 +1,7 @@
 #ifndef ENTITY2D_HPP
 #define ENTITY2D_HPP
 
-#include <gamelib/Vector.hpp>
+#include <gamelib/Vector.inl>
 
 class Entity2d : public Entity {
 	Vector2 position;
@@ -9,76 +9,37 @@ class Entity2d : public Entity {
 	float angle;
 	float angvelocity;
 public:
-	Entity2d(const Vector2& position = Vector2(),
-	         const Vector2& velocity = Vector2(),
-	         const float &angle = 0,
-	         const float &angvelocity = 0)
-	: position(position)
-	, velocity(velocity)
-	, angle(angle)
-	, angvelocity(angvelocity)
-	{
-		
-	}
+	Entity2d();
+	Entity2d(const Vector2& position,
+	         const Vector2& velocity,
+	         const float &angle,
+	         const float &angvelocity);
 
-	virtual ~Entity2d() {
-		
-	}
+	virtual ~Entity2d();
 
-	virtual const Vector2 &Position() const {
-		return position;
-	}
+	virtual const Vector2 &Position() const;
 
-	virtual const Vector2 &Velocity() const {
-		return velocity;
-	}
+	virtual const Vector2 &Velocity() const;
 
-	virtual const float &Angle() const {
-		return angle;
-	}
+	virtual const float &Angle() const;
 
-	virtual const float &AngVelocity() const {
-		return angvelocity;
-	}
+	virtual const float &AngVelocity() const;
 
-	virtual Entity2d &SetPosition(const Vector2 &new_position) {
-		position = new_position;
-		return *this;
-	}
+	virtual Entity2d &SetPosition(const Vector2 &new_position);
 
-	virtual Entity2d &Shift(const Vector2 &offset) {
-		position += offset;
-		return *this;
-	}
+	virtual Entity2d &Shift(const Vector2 &offset);
 
-	virtual Entity2d &SetVelocity(const Vector2 &new_velocity) {
-		velocity = new_velocity;
-		return *this;
-	}
+	virtual Entity2d &SetVelocity(const Vector2 &new_velocity);
 
-	virtual Entity2d &SetAngle(const float &new_angle) {
-		angle = new_angle;
-		return *this;
-	}
+	virtual Entity2d &SetAngle(const float &new_angle);
 
-	virtual Entity2d &turn(const float &tilt) {
-		angle += tilt;
-		return *this;
-	}
+	virtual Entity2d &turn(const float &tilt);
 
-	virtual Entity2d &SetAngVelocity(const float &new_angvelocity) {
-		angvelocity = new_angvelocity;
-		return *this;
-	}
+	virtual Entity2d &SetAngVelocity(const float &new_angvelocity);
 
-	virtual void Update() {
-		position += velocity;
-		angle += angvelocity;
-	}
+	virtual void Update();
 
-	virtual void Draw(Matrix4 model_matrix) const {
-		
-	}
+	virtual void Draw(Matrix4 model_matrix) const;
 };
 
 #endif /* ENTITY2D_HPP */

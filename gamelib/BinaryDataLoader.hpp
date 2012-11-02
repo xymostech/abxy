@@ -8,28 +8,15 @@ template <typename data_type>
 class BinaryDataLoader {
 	data_type *data;
 protected:
-	void SetData(data_type *newdata) {
-		if (data == NULL) {
-			data = newdata;
-		}
-	}
+	void SetData(data_type *newdata);
 public:
-	BinaryDataLoader()
-	: data(NULL)
-	{
-		
-	}
+	BinaryDataLoader();
+	virtual ~BinaryDataLoader();
 
-	virtual ~BinaryDataLoader() {
-		if (data) {
-			delete[] data;
-		}
-	}
-
-	data_type const *GetData() {
-		return data;
-	}
+	data_type const *GetData();
 };
+
+#include <gamelib/BinaryDataLoader.inl>
 
 #endif /* BINARYDATALOADER_HPP */
 

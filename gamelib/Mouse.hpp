@@ -2,22 +2,13 @@
 #define MOUSE_HPP
 
 #include <gamelib/GL/GL.hpp>
-#include <gamelib/Vector.hpp>
+#include <gamelib/Vector.inl>
 
 namespace Mouse {
-	Vector2 Position() {
-		int x, y;
-		glfwGetMousePos(&x, &y);
-		return Vector2(x, y);
-	}
+	Vector2 Position();
 
-	bool IsLeftPressed() {
-		return glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
-	}
-
-	bool IsRightPressed() {
-		return glfwGetMouseButton(GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
-	}
+	bool IsLeftPressed();
+	bool IsRightPressed();
 }
 
 #endif /* MOUSE_HPP */

@@ -4,9 +4,7 @@
 #include <gamelib/GL/GL.hpp>
 
 namespace Key {
-	bool IsKeyPressed(char key) {
-		return glfwGetKey(key) == GLFW_PRESS;
-	}
+	bool IsKeyPressed(char key);
 }
 
 #endif /* KEY_HPP */

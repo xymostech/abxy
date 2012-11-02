@@ -4,65 +4,29 @@
 #include <string>
 
 #include <gamelib/GL/GL.hpp>
-#include <gamelib/GL/GLSamplerRef.hpp>
-#include <gamelib/GL/GLTextureRef.hpp>
-#include <gamelib/PngLoader.hpp>
+#include <gamelib/GL/GLSamplerRef.inl>
+#include <gamelib/GL/GLTextureRef.inl>
+#include <gamelib/PngLoader.inl>
 
 class Texture {
 	GLTextureRef<GL_TEXTURE_2D> tex;
 	GLSamplerRef sampler;
 
 	template <typename data_loader>
-	void GenerateTexture(std::string filename) {
-		data_loader loader;
+	void GenerateTexture(std::string filename);
 
-		loader.Load(filename);
-
-		int w, h;
-		loader.GetSize(&w, &h);
-
-		unsigned char const *data = loader.GetData();
-
-		tex.Bind();
-
-		tex.SetData2D(0, GL_RGBA, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		tex.GenerateMipmap();
-	}
-
-	void SetupSampler() {
-		sampler.SetParameteri(GL_TEXTURE_WRAP_S, GL_REPEAT);
-		sampler.SetParameteri(GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		sampler.SetParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		sampler.SetParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	}
+	void SetupSampler();
 public:
-	Texture(std::string texture) {
-		Load(texture);
-	}
+	Texture(std::string texture);
 
-	void Load(std::string texture) {
-		GenerateTexture<PngLoader>(texture);
-		SetupSampler();
-	}
+	void Load(std::string texture);
 
-	void Parameterf(GLenum parameter, GLfloat value) {
-		sampler.SetParameterf(parameter, value);
-	}
+	void Parameterf(GLenum parameter, GLfloat value);
+	void Parameteri(GLenum parameter, GLint value);
 
-	void Parameteri(GLenum parameter, GLint value) {
-		sampler.SetParameteri(parameter, value);
-	}
+	void BindSampler(GLUniformRef loc);
 
-	void BindSampler(GLUniformRef loc) {
-		loc.Set1i(0);
-	}
-
-	void Use() const {
-		glActiveTexture(GL_TEXTURE0);
-		tex.Bind();
-		sampler.Bind(0);
-	}
+	void Use() const;
 };
 
 #endif /* TEXTURE_HPP */

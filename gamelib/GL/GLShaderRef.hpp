@@ -7,53 +7,23 @@ class GLShaderRef {
 	GLuint shader;
 	GLenum type;
 public:
-	GLShaderRef(GLenum type)
-	: type(type)
-	{
-		shader = glCreateShader(type);
-	}
+	GLShaderRef(GLenum type);
 
-	virtual ~GLShaderRef() {
-		glDeleteShader(shader);
-	}
+	virtual ~GLShaderRef();
 
-	GLenum GetType() {
-		return type;
-	}
+	GLenum GetType();
 
-	void AttachTo(GLuint program) {
-		glAttachShader(program, shader);
-	}
+	void AttachTo(GLuint program);
 
-	void DetachFrom(GLuint program) {
-		glDetachShader(program, shader);
-	}
+	void DetachFrom(GLuint program);
 
-	void SetSource(std::string source) {
-		const GLchar *source_data = source.c_str();
-		glShaderSource(shader, 1, (const GLchar **)&source_data, NULL);
-	}
+	void SetSource(std::string source);
 
-	void Compile() {
-		glCompileShader(shader);
-	}
+	void Compile();
 
-	GLint GetParam(GLenum pname) const {
-		GLint param;
-		glGetShaderiv(shader, pname, &param);
-		return param;
-	}
+	GLint GetParam(GLenum pname) const;
 
-	std::string GetInfoLog() const {
-		std::string info_log;
-
-		size_t log_length = GetParam(GL_INFO_LOG_LENGTH);
-		GLchar log[log_length];
-
-		glGetShaderInfoLog(shader, log_length, NULL, log);
-
-		return std::string(log, log_length);
-	}
+	std::string GetInfoLog() const;
 };
 
 #endif /* GLSHADERREF_HPP */

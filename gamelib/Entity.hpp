@@ -3,34 +3,23 @@
 
 class World;
 
-#include <gamelib/World.hpp>
-#include <gamelib/Matrix.hpp>
+#include <gamelib/World.inl>
+#include <gamelib/Matrix.inl>
 
 class Entity {
 	long id;
 
 	World *world;
 public:
-	Entity()
-	{
-		
-	}
+	Entity();
 
-	virtual ~Entity() {
-		
-	}
+	virtual ~Entity();
 
-	virtual void SetId(long new_id) {
-		id = new_id;
-	}
+	virtual void SetId(long new_id);
 
-	virtual void Register(World *set_world) {
-		world = set_world;
-	}
+	virtual void Register(World *set_world);
 
-	virtual World &GetWorld() {
-		return *world;
-	}
+	virtual World &GetWorld();
 
 	virtual void Draw(Matrix4 model_matrix) const = 0;
 	virtual void Update() = 0;

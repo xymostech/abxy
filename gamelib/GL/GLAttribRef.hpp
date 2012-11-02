@@ -6,32 +6,15 @@
 class GLAttribRef {
 	GLint attrib;
 public:
-	GLAttribRef()
-	: attrib(0)
-	{
-		
-	}
+	GLAttribRef();
+	GLAttribRef(GLint attrib);
 
-	GLAttribRef(GLint attrib)
-	: attrib(attrib)
-	{
-		
-	}
-
-	void Enable() const {
-		glEnableVertexAttribArray(attrib);
-	}
+	void Enable() const;
 
 	void SetPointer(GLint size, GLenum type, GLboolean normalized,
-	                GLsizei stride, const GLvoid *pointer) {
-		glVertexAttribPointer(attrib, size, type, normalized, stride,
-		                      pointer);
-	}
-
+	                GLsizei stride, const GLvoid *pointer);
 	void SetIPointer(GLint size, GLenum type, GLsizei stride,
-	                 const GLvoid *pointer) {
-		glVertexAttribIPointer(attrib, size, type, stride, pointer);
-	}
+	                 const GLvoid *pointer);
 };
 
 #endif /* GLATTRIBREF_HPP */

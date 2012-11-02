@@ -6,11 +6,7 @@
 
 class FileLoadError : public std::runtime_error {
 public:
-	FileLoadError(std::string file)
-	: std::runtime_error("Cannot load file: " + file)
-	{
-		
-	}
+	FileLoadError(std::string file);
 };
 
 #endif /* EXCEPTIONS_HPP */

@@ -1,12 +1,10 @@
-#include <gamelib/Game.hpp>
-#include <gamelib/Stage2d.hpp>
-#include <gamelib/Entity2d.hpp>
-#include <gamelib/Key.hpp>
-#include <gamelib/Texture.hpp>
+#include <gamelib/Game.inl>
+#include <gamelib/Stage2d.inl>
+#include <gamelib/Entity2d.inl>
+#include <gamelib/Key.inl>
+#include <gamelib/Texture.inl>
 
-#include <gamelib/Primitive2d.hpp>
-
-#include <gamelib/Matrix.hpp>
+#include <gamelib/Primitive2d.inl>
 
 #include <iostream>
 
@@ -16,7 +14,7 @@ class MyPlayer : public Entity2d {
 	Primitive2d prim;
 public:
 	MyPlayer(float y)
-	: Entity2d(Vector2(0, y), Vector2(1, 0))
+	: Entity2d(Vector2(0, y), Vector2(1, 0), 0, 0)
 	, direction(1)
 	, flip_cooldown(10)
 	, prim("standard")
@@ -94,7 +92,8 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const {
-		model_matrix.Rotate(Vector3(0, 0, 1), M_PI / 4);
+		model_matrix.Scale(Vector3(3, 3, 3));
+		model_matrix.Rotate(Vector3(0, 0, 1), Position().x / 40.0 * M_PI);
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
 
 		prim.Draw(model_matrix);
@@ -120,7 +119,7 @@ public:
 };
 
 int main(int argc, char *argv[]) {
-	class Game myGame;
+	class Game myGame(120);
 	myGame.Startup();
 
 	class Stage2d *stage = new MyStage();

@@ -4,73 +4,30 @@
 #include <string>
 #include <stdexcept>
 
-#include <gamelib/GL/GLProgramRef.hpp>
-#include <gamelib/GL/GLShader.hpp>
-#include <gamelib/GL/GLUniformBlockRef.hpp>
-#include <gamelib/Perspective.hpp>
+#include <gamelib/GL/GLProgramRef.inl>
+#include <gamelib/GL/GLShader.inl>
+#include <gamelib/GL/GLUniformBlockRef.inl>
+#include <gamelib/Perspective.inl>
 
 class GLProgram {
 	GLProgramRef program;
 
 	GLUniformBlockRef global_matrix_uniform;
 public:
-	GLProgram(std::string vertex_shader, std::string fragment_shader) {
-		GLShader vertex(vertex_shader, GL_VERTEX_SHADER);
-		GLShader fragment(fragment_shader, GL_FRAGMENT_SHADER);
+	GLProgram(std::string vertex_shader, std::string fragment_shader);
 
-		program.Attach(vertex.GetRef());
-		program.Attach(fragment.GetRef());
+	GLAttribRef GetAttribLocation(std::string name) const;
+	GLUniformRef GetUniformLocation(std::string name) const;
+	GLUniformBlockRef GetUniformBlockIndex(std::string name) const;
 
-		program.Link();
+	void Use() const;
+	void Unuse() const;
 
-		if (program.GetParam(GL_LINK_STATUS) == GL_FALSE) {
-			std::string log = program.GetInfoLog();
+	void Setup(Perspective &perspective);
 
-			throw std::runtime_error(
-				std::string("Error linking program: ") + log
-			);
-		}
+	void BindUniformBlock(GLuint binding_block);
 
-		global_matrix_uniform = GetUniformBlockIndex("matrices");
-
-		program.Detach(vertex.GetRef());
-		program.Detach(fragment.GetRef());
-	}
-
-	GLAttribRef GetAttribLocation(std::string name) const {
-		return program.GetAttribLocation(name);
-	}
-
-	GLUniformRef GetUniformLocation(std::string name) const {
-		return program.GetUniformLocation(name);
-	}
-
-	GLUniformBlockRef GetUniformBlockIndex(std::string name) const {
-		return program.GetUniformBlockIndex(name);
-	}
-
-	void Use() const {
-		program.Use();
-	}
-
-	void Unuse() const {
-		program.Unuse();
-	}
-
-	void Setup(Perspective &perspective) {
-		BindUniformBlock(perspective.GetUniformBindingIndex());
-	}
-
-	void BindUniformBlock(GLuint binding_block) {
-		program.BindUniformBlock(
-			global_matrix_uniform,
-			binding_block
-		);
-	}
-
-	GLProgramRef &GetRef() {
-		return program;
-	}
+	GLProgramRef &GetRef();
 };
 
 #endif /* GLPROGRAM_HPP */
