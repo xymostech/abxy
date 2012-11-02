@@ -131,9 +131,9 @@ int main(int argc, char *argv[]) {
 	class Game myGame(120);
 	myGame.Startup();
 
-	class Stage *stage = new MyStage();
+	MyStage stage;
 
-	myGame.SetStage(stage);
+	myGame.SetStage(&stage);
 
 	while(myGame.IsOpen()) {
 		myGame.Update();
