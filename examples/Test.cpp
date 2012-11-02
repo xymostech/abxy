@@ -1,5 +1,5 @@
 #include <gamelib/Game.inl>
-#include <gamelib/Stage2d.inl>
+#include <gamelib/WorldStage.inl>
 #include <gamelib/Entity2d.inl>
 #include <gamelib/Key.inl>
 #include <gamelib/Texture.inl>
@@ -103,10 +103,10 @@ public:
 	}
 };
 
-class MyStage : public Stage2d {
+class MyStage : public WorldStage {
 public:
 	MyStage() :
-	Stage2d(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
+	WorldStage(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
 	{
 		
 	}
@@ -119,7 +119,7 @@ public:
 		GetWorld()->AddEntity(new MyPlayer(-20));
 		GetWorld()->AddEntity(new MyPlayer(20));
 
-		Stage2d::Load();
+		WorldStage::Load();
 	}
 };
 
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
 	class Game myGame(120);
 	myGame.Startup();
 
-	class Stage2d *stage = new MyStage();
+	class Stage *stage = new MyStage();
 
 	myGame.SetStage(stage);
 

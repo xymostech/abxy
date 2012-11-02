@@ -1,8 +1,8 @@
-#ifndef STAGE2D_HPP
-#define STAGE2D_HPP
+#ifndef WORLDSTAGE_HPP
+#define WORLDSTAGE_HPP
 
 #include <gamelib/Stage.inl>
-#include <gamelib/World2d.inl>
+#include <gamelib/World.inl>
 #include <gamelib/Projection.inl>
 
 #include <memory>
@@ -10,7 +10,7 @@
 #include <gamelib/TextureLoader.inl>
 #include <gamelib/ProgramLoader.inl>
 
-class Stage2d : public Stage {
+class WorldStage : public Stage {
 	World world;
 
 	TextureLoader texture_loader;
@@ -18,8 +18,8 @@ class Stage2d : public Stage {
 
 	std::shared_ptr<Projection> projection;
 public:
-	Stage2d(std::shared_ptr<Projection> projection);
-	virtual ~Stage2d();
+	WorldStage(std::shared_ptr<Projection> projection);
+	virtual ~WorldStage();
 
 	virtual void Load();
 
@@ -33,5 +33,5 @@ public:
 	ProgramLoader *GetProgramLoader();
 };
 
-#endif /* STAGE2D_HPP */
+#endif /* WORLDSTAGE_HPP */
 
