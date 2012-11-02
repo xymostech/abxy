@@ -3,8 +3,11 @@
 #include <gamelib/Entity2d.inl>
 #include <gamelib/Key.inl>
 #include <gamelib/Texture.inl>
+#include <gamelib/ProjectionOrtho2d.inl>
 
 #include <gamelib/Primitive2d.inl>
+
+#include <memory>
 
 #include <iostream>
 
@@ -102,7 +105,9 @@ public:
 
 class MyStage : public Stage2d {
 public:
-	MyStage() {
+	MyStage() :
+	Stage2d(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
+	{
 		
 	}
 

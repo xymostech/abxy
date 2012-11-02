@@ -3,11 +3,12 @@
 
 #include <string>
 #include <stdexcept>
+#include <memory>
 
 #include <gamelib/GL/GLProgramRef.inl>
 #include <gamelib/GL/GLShader.inl>
 #include <gamelib/GL/GLUniformBlockRef.inl>
-#include <gamelib/Perspective.inl>
+#include <gamelib/Projection.inl>
 
 class GLProgram {
 	GLProgramRef program;
@@ -23,7 +24,7 @@ public:
 	void Use() const;
 	void Unuse() const;
 
-	void Setup(Perspective *perspective);
+	void Setup(std::shared_ptr<Projection> projection);
 
 	void BindUniformBlock(GLuint binding_block);
 

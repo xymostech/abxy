@@ -3,11 +3,12 @@
 
 #include <gamelib/Stage2d.hpp>
 
-Stage2d::Stage2d()
+Stage2d::Stage2d(std::shared_ptr<Projection> projection)
 : world(*this)
-, program_loader(&perspective)
+, program_loader(projection)
+, projection(projection)
 {
-	perspective.SetActivePerspective();
+	projection->Resize();
 }
 
 Stage2d::~Stage2d() {
@@ -20,7 +21,6 @@ void Stage2d::Load() {
 
 void Stage2d::Draw() const {
 	glClear(GL_COLOR_BUFFER_BIT);
-	perspective.Setup();
 	world.Draw();
 }
 
@@ -32,8 +32,8 @@ World *Stage2d::GetWorld() {
 	return &world;
 }
 
-Perspective &Stage2d::GetPerspective() {
-	return perspective;
+Projection &Stage2d::GetProjection() {
+	return *projection;
 }
 
 TextureLoader *Stage2d::GetTextureLoader() {

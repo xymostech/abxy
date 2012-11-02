@@ -8,12 +8,12 @@ GLProgram *ProgramLoader::GetResource(std::string name) {
 		name + ".vertex.shader",
 		name + ".fragment.shader"
 	);
-	p->Setup(perspective);
+	p->Setup(projection);
 	return p;
 }
 
-ProgramLoader::ProgramLoader(Perspective *perspective)
-: perspective(perspective)
+ProgramLoader::ProgramLoader(std::shared_ptr<Projection> projection)
+: projection(projection)
 {
 	
 }

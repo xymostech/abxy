@@ -46,8 +46,8 @@ void GLProgram::Unuse() const {
 	program.Unuse();
 }
 
-void GLProgram::Setup(Perspective *perspective) {
-	BindUniformBlock(perspective->GetUniformBindingIndex());
+void GLProgram::Setup(std::shared_ptr<Projection> projection) {
+	BindUniformBlock(projection->GetUniformBindingIndex());
 }
 
 void GLProgram::BindUniformBlock(GLuint binding_block) {

@@ -3,18 +3,22 @@
 
 #include <gamelib/Stage.inl>
 #include <gamelib/World2d.inl>
-#include <gamelib/Perspective2d.inl>
+#include <gamelib/Projection.inl>
+
+#include <memory>
 
 #include <gamelib/TextureLoader.inl>
 #include <gamelib/ProgramLoader.inl>
 
 class Stage2d : public Stage {
 	World world;
-	Perspective2d perspective;
+
 	TextureLoader texture_loader;
 	ProgramLoader program_loader;
+
+	std::shared_ptr<Projection> projection;
 public:
-	Stage2d();
+	Stage2d(std::shared_ptr<Projection> projection);
 	virtual ~Stage2d();
 
 	virtual void Load();
@@ -23,7 +27,7 @@ public:
 	virtual void Update();
 
 	virtual World *GetWorld();
-	virtual Perspective &GetPerspective();
+	virtual Projection &GetProjection();
 
 	TextureLoader *GetTextureLoader();
 	ProgramLoader *GetProgramLoader();
