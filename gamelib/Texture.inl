@@ -5,14 +5,12 @@
 
 template <typename data_loader>
 void Texture::GenerateTexture(std::string filename) {
-	data_loader loader;
-
-	loader.Load(filename);
+	data_loader loader(filename);
 
 	int w, h;
 	loader.GetSize(&w, &h);
 
-	unsigned char const *data = loader.GetData();
+	unsigned char const *data = loader.GetConstData().data();
 
 	tex.Bind();
 

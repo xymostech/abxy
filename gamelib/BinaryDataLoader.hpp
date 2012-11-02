@@ -3,17 +3,15 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
 
 template <typename data_type>
 class BinaryDataLoader {
-	data_type *data;
+	std::vector<data_type> data;
 protected:
-	void SetData(data_type *newdata);
+	std::vector<data_type> &GetData();
 public:
-	BinaryDataLoader();
-	virtual ~BinaryDataLoader();
-
-	data_type const *GetData();
+	const std::vector<data_type> &GetConstData() const;
 };
 
 #include <gamelib/BinaryDataLoader.inl>

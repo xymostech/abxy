@@ -71,7 +71,9 @@ void PngLoader::Load(std::istream &in) {
 	int h = png_get_image_height(png_ptr, info_ptr);
 	int rowbytes = (int)png_get_rowbytes(png_ptr, info_ptr);
 
-	png_bytep data = new unsigned char[h * rowbytes * sizeof(*data)];
+	GetData().resize(h * rowbytes * sizeof(png_bytep));
+
+	png_bytep data = GetData().data();
 
 	png_bytep row_pointers[h];
 
@@ -83,20 +85,11 @@ void PngLoader::Load(std::istream &in) {
 
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_ptr);
 
-	SetData(data);
 	SetSize(w, h);
-}
-
-PngLoader::PngLoader() {
-	
 }
 
 PngLoader::PngLoader(std::string filename) {
 	Load(filename);
-}
-
-PngLoader::~PngLoader() {
-	
 }
 
 void PngLoader::Load(std::string filename) {

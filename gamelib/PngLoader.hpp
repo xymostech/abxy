@@ -14,9 +14,7 @@ class PngLoader : public ImageDataLoader {
 	static void ReadData(png_structp pngPtr, png_bytep data, png_size_t length);
 	void Load(std::istream &in);
 public:
-	PngLoader();
 	PngLoader(std::string filename);
-	virtual ~PngLoader();
 
 	void Load(std::string filename);
 };
