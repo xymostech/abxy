@@ -1,8 +1,6 @@
 #ifndef BINARYDATALOADER_HPP
 #define BINARYDATALOADER_HPP
 
-#include <string>
-#include <fstream>
 #include <vector>
 
 template <typename data_type>
