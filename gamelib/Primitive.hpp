@@ -44,6 +44,7 @@ class Primitive {
 	void SetupTexture();
 public:
 	Primitive(std::string program_name);
+	virtual ~Primitive();
 
 	Primitive &AddVertices(const std::vector<float> &verts);
 	Primitive &AddColors(const std::vector<float> &colors);

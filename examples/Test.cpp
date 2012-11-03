@@ -6,6 +6,7 @@
 #include <gamelib/ProjectionOrtho2d.inl>
 
 #include <gamelib/Primitive.inl>
+#include <gamelib/Sprite.inl>
 
 #include <memory>
 
@@ -14,58 +15,18 @@
 class MyPlayer : public Entity2d {
 	float direction;
 	int flip_cooldown;
-	Primitive prim;
+	Sprite sprite;
 public:
 	MyPlayer(float y)
 	: Entity2d(0, Vector2(0, y), Vector2(1, 0), 0, 0)
 	, direction(1)
 	, flip_cooldown(10)
-	, prim("standard")
+	, sprite("test.png")
 	{
-		float varray[] = {
-			0.0, 0.0, 0.0, 1.0,
-			1.0, 0.0, 0.0, 1.0,
-			0.0, 1.0, 0.0, 1.0,
-			1.0, 1.0, 0.0, 1.0
-		};
-
-		std::vector<float> verts(std::begin(varray), std::end(varray));
-
-		float carray[] = {
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0
-		};
-
-		std::vector<float> colors(std::begin(carray), std::end(carray));
-
-		float tcoordarray[] = {
-			0.0, 0.0,
-			1.0, 0.0,
-			0.0, 1.0,
-			1.0, 1.0
-		};
-
-		std::vector<float> tcoords(std::begin(tcoordarray), std::end(tcoordarray));
-
-		unsigned int iarray[] = {
-			0, 1, 2,
-			2, 1, 3
-		};
-
-		std::vector<unsigned int> indices(std::begin(iarray), std::end(iarray));
-
-		prim.AddVertices(verts)
-		    .AddColors(colors)
-		    .AddTexture(tcoords)
-		    .AddIndices(indices)
-		    .UseTexture("test.png")
-		    .Setup();
 	}
 
 	virtual void Register(World *world) {
-		prim.Register(world);
+		sprite.Register(world);
 		Entity2d::Register(world);
 	}
 
@@ -99,7 +60,7 @@ public:
 		model_matrix.Rotate(Vector3(0, 0, 1), Position().x / 40.0 * M_PI);
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
 
-		prim.Draw(model_matrix);
+		sprite.Draw(model_matrix);
 	}
 };
 

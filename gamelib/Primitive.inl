@@ -73,6 +73,10 @@ Primitive::Primitive(std::string program_name)
 	
 }
 
+Primitive::~Primitive() {
+	
+}
+
 Primitive &Primitive::AddVertices(const std::vector<float> &verts) {
 	vertex_pos = vertex_data.size();
 	vertex_data.insert(

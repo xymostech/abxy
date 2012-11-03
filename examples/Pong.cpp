@@ -2,69 +2,27 @@
 #include <gamelib/WorldStage.inl>
 #include <gamelib/Entity2d.inl>
 #include <gamelib/Key.inl>
-#include <gamelib/Texture.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
-
-#include <gamelib/FileLoader.inl>
-
-#include <gamelib/Primitive.inl>
+#include <gamelib/Sprite.inl>
 
 #include <memory>
-
 #include <iostream>
 
 class Paddle : public Entity2d {
-	Primitive prim;
+	Sprite sprite;
 
 	bool left;
 public:
 	Paddle(bool left)
 	: Entity2d(2, Vector2(left ? -39 : 39, 0), Vector2(), 0, 0)
-	, prim("standard")
+	, sprite("white.png")
 	, left(left)
 	{
-		float varray[] = {
-			-1.0, -1.0, 0.0, 1.0,
-			 1.0, -1.0, 0.0, 1.0,
-			-1.0,  1.0, 0.0, 1.0,
-			 1.0,  1.0, 0.0, 1.0
-		};
-
-		std::vector<float> verts(std::begin(varray), std::end(varray));
-
-		float carray[] = {
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0
-		};
-
-		std::vector<float> colors(std::begin(carray), std::end(carray));
-
-		float tcoordarray[] = {
-			0.0, 0.0,
-			1.0, 0.0,
-			0.0, 1.0,
-			1.0, 1.0
-		};
-
-		std::vector<float> tcoords(std::begin(tcoordarray), std::end(tcoordarray));
-
-		unsigned int iarray[] = {
-			0, 1, 2,
-			2, 1, 3
-		};
-
-		std::vector<unsigned int> indices(std::begin(iarray), std::end(iarray));
-
-		prim.AddVertices(verts)
-		    .AddColors(colors)
-		    .AddIndices(indices)
-		    .Setup();
+		
 	}
 
 	virtual void Register(World *world) {
-		prim.Register(world);
+		sprite.Register(world);
 		Entity2d::Register(world);
 	}
 
@@ -86,10 +44,10 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const {
-		model_matrix.Scale(Vector3(1, 5, 1));
+		model_matrix.Scale(Vector3(2, 10, 1));
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
 
-		prim.Draw(model_matrix);
+		sprite.Draw(model_matrix);
 	}
 
 	bool IsLeft() const {
@@ -98,55 +56,17 @@ public:
 };
 
 class Ball : public Entity2d {
-	Primitive prim;
+	Sprite sprite;
 public:
 	Ball()
 	: Entity2d(1, Vector2(0, 0), Vector2(1, 1), 0, 0)
-	, prim("standard")
+	, sprite("white.png")
 	{
-		float varray[] = {
-			-1.0, -1.0, 0.0, 1.0,
-			 1.0, -1.0, 0.0, 1.0,
-			-1.0,  1.0, 0.0, 1.0,
-			 1.0,  1.0, 0.0, 1.0
-		};
-
-		std::vector<float> verts(std::begin(varray), std::end(varray));
-
-		float carray[] = {
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0,
-			1.0, 1.0, 1.0, 1.0
-		};
-
-		std::vector<float> colors(std::begin(carray), std::end(carray));
-
-		float tcoordarray[] = {
-			0.0, 0.0,
-			1.0, 0.0,
-			0.0, 1.0,
-			1.0, 1.0
-		};
-
-		std::vector<float> tcoords(std::begin(tcoordarray), std::end(tcoordarray));
-
-		unsigned int iarray[] = {
-			0, 1, 2,
-			2, 1, 3
-		};
-
-		std::vector<unsigned int> indices(std::begin(iarray), std::end(iarray));
-
-		prim.AddVertices(verts)
-		    .AddColors(colors)
-		    .AddIndices(indices)
-		    .UseTexture("test.png")
-		    .Setup();
+		
 	}
 
 	virtual void Register(World *world) {
-		prim.Register(world);
+		sprite.Register(world);
 		Entity2d::Register(world);
 	}
 
@@ -212,9 +132,10 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const {
+		model_matrix.Scale(Vector3(2, 2, 1));
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
 
-		prim.Draw(model_matrix);
+		sprite.Draw(model_matrix);
 	}
 };
 
@@ -248,10 +169,7 @@ int main(int argc, char *argv[]) {
 	class Game myGame(120);
 	myGame.Startup();
 
-	FileLoader f("standard.vertex.shader");
-
 	MyStage stage;
-
 	myGame.SetStage(&stage);
 
 	while(myGame.IsOpen()) {
