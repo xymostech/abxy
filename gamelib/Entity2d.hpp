@@ -10,10 +10,11 @@ class Entity2d : public Entity {
 	float angvelocity;
 public:
 	Entity2d();
-	Entity2d(const Vector2& position,
+	Entity2d(long type,
+	         const Vector2& position,
 	         const Vector2& velocity,
-	         const float &angle,
-	         const float &angvelocity);
+	         float angle,
+	         float angvelocity);
 
 	virtual ~Entity2d();
 

@@ -40,5 +40,9 @@ WorldStage *World::GetParentStage() {
 	return parent;
 }
 
+std::vector<std::shared_ptr<Entity>> &World::GetEntities() {
+	return entities;
+}
+
 #endif /* WORLD_INL */
 

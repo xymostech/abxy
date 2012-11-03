@@ -17,7 +17,7 @@ class MyPlayer : public Entity2d {
 	Primitive prim;
 public:
 	MyPlayer(float y)
-	: Entity2d(Vector2(0, y), Vector2(1, 0), 0, 0)
+	: Entity2d(0, Vector2(0, y), Vector2(1, 0), 0, 0)
 	, direction(1)
 	, flip_cooldown(10)
 	, prim("standard")

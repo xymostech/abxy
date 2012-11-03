@@ -6,7 +6,7 @@ LIBS=-lglfw -framework OpenGL -framework Cocoa -lpng
 headers=$(shell find gamelib -type f -name '*.hpp')\
 	$(shell find gamelib -type f -name '*.inl')
 
-examples=Test
+examples=Test Pong
 examplefiles=$(addprefix build/, $(examples))
 
 all: $(examplefiles)

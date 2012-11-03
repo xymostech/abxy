@@ -8,14 +8,18 @@ class World;
 
 class Entity {
 	long id;
+	long type;
 
 	World *world;
 public:
 	Entity();
-
+	Entity(long type);
 	virtual ~Entity();
 
-	virtual void SetId(long new_id);
+	void SetId(long new_id);
+	long GetId() const;
+
+	long GetType() const;
 
 	virtual void Register(World *set_world);
 

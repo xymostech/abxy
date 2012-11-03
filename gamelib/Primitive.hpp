@@ -34,7 +34,7 @@ class Primitive {
 
 	GLAttribRef position_loc, color_loc, texture_loc;
 
-	GLUniformRef model_matrix_loc, sampler_loc;
+	GLUniformRef model_matrix_loc, sampler_loc, use_texture_loc;
 
 	std::shared_ptr<GLProgram> program;
 	std::shared_ptr<Texture> texture;

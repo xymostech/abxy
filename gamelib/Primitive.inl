@@ -49,6 +49,8 @@ void Primitive::SetupVertexArray() {
 		sampler_loc = program->GetUniformLocation("textureSampler");
 	}
 
+	use_texture_loc = program->GetUniformLocation("useTexture");
+
 	model_matrix_loc = program->GetUniformLocation("model_to_world_matrix");
 
 	index_buffer.Bind();
@@ -137,6 +139,8 @@ void Primitive::Draw(Matrix4 &matrix) const {
 	vertex_array.Bind();
 
 	model_matrix_loc.SetMatrix4fv(1, GL_FALSE, matrix.GetData());
+
+	use_texture_loc.Set1i(use_texture ? 1 : 0);
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, 0);
 
