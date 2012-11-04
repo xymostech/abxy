@@ -5,15 +5,17 @@ smooth in vec2 theTexCoord;
 
 uniform sampler2D textureSampler;
 
-uniform int useTexture;
+uniform int blend_style;
 
 out vec4 outputColor;
 
 void main()
 {
-	if (useTexture == 0) {
+	if (blend_style == 0) {
 		outputColor = theColor;
-	} else {
+	} else if (blend_style == 1) {
 		outputColor = texture(textureSampler, theTexCoord);
+	} else {
+		outputColor = texture(textureSampler, theTexCoord) * theColor;
 	}
 }

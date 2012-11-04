@@ -5,8 +5,8 @@
 #include <gamelib/Texture.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
 
-#include <gamelib/Primitive.inl>
 #include <gamelib/Sprite.inl>
+#include <gamelib/Primitive.inl>
 
 #include <memory>
 

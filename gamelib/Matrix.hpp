@@ -48,7 +48,7 @@ public:
 	void Scale(const Vector3 &scale);
 	void Rotate(const Vector3 &axis, float angle);
 
-	const T *GetData();
+	const T *GetData() const;
 };
 
 typedef Matrix<float, 4, 4> Matrix4;

@@ -1,9 +1,9 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
-#include <gamelib/Primitive.inl>
+#include <gamelib/TexturePrimitive.inl>
 
-class Sprite : protected Primitive {
+class Sprite : protected TexturePrimitive {
 public:
 	Sprite(std::string texture_name);
 

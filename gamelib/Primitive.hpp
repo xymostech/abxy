@@ -7,23 +7,19 @@
 #include <gamelib/GL/GLProgram.inl>
 #include <gamelib/GL/GLBufferRef.inl>
 #include <gamelib/GL/GLVertexArrayRef.inl>
-#include <gamelib/GL/GLAttribRef.inl>
-#include <gamelib/Vector.inl>
-#include <gamelib/ResourceLoader.inl>
-#include <gamelib/Matrix.inl>
-#include <gamelib/Texture.inl>
+#include <gamelib/World.inl>
+
+struct AttribData {
+	std::string name;
+	size_t size;
+	size_t pos;
+};
 
 class Primitive {
 	// Data to describe the primitive
 	std::string program_name;
 
-	int num_indices;
-
-	int vertex_pos, color_pos, texture_pos;
-	bool use_vertex, use_color, use_texture;
-
-	std::string texture_name;
-
+	std::vector<AttribData> attribs;
 	std::vector<float> vertex_data;
 	std::vector<unsigned int> index_data;
 
@@ -32,31 +28,30 @@ class Primitive {
 	GLBufferRef<GL_ELEMENT_ARRAY_BUFFER> index_buffer;
 	GLVertexArrayRef vertex_array;
 
-	GLAttribRef position_loc, color_loc, texture_loc;
+	GLUniformRef model_matrix_loc;
 
-	GLUniformRef model_matrix_loc, sampler_loc, use_texture_loc;
+	int num_indices;
 
-	std::shared_ptr<GLProgram> program;
-	std::shared_ptr<Texture> texture;
-
-	void SetupArrays();
 	void SetupVertexArray();
-	void SetupTexture();
+	void SetupArrays();
+protected:
+	std::shared_ptr<GLProgram> program;
+
+	virtual void InnerDraw() const;
 public:
 	Primitive(std::string program_name);
 	virtual ~Primitive();
 
-	Primitive &AddVertices(const std::vector<float> &verts);
-	Primitive &AddColors(const std::vector<float> &colors);
-	Primitive &AddTexture(const std::vector<float> &texture);
-	Primitive &AddIndices(const std::vector<unsigned int> &indices);
+	void AddAttrib(const std::string &name,
+	               int size,
+	               const std::vector<float> &data);
+	void AddIndices(const std::vector<unsigned int> &indices);
 
-	Primitive &UseTexture(std::string t_name);
-
-	void Setup();
 	virtual void Register(World *world);
 
-	virtual void Draw(Matrix4 &matrix) const;
+	virtual void DrawAll(const Matrix4 &model_matrix) const;
+	virtual void DrawIndices(const Matrix4 &model_matrix,
+	                         GLsizei start, GLsizei count) const;
 };
 
 #endif /* PRIMITIVE_HPP */

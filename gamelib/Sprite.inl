@@ -5,6 +5,7 @@
 
 Sprite::Sprite(std::string texture_name)
 : Primitive("standard")
+, TexturePrimitive("standard", texture_name)
 {
 	float varray[] = {
 		-0.5, -0.5, 0.0, 1.0,
@@ -28,20 +29,17 @@ Sprite::Sprite(std::string texture_name)
 	};
 	std::vector<unsigned int> indices(std::begin(iarray), std::end(iarray));
 
-	UseTexture(texture_name);
-
 	AddVertices(verts);
-	AddIndices(indices);
 	AddTexture(tcoords);
-	Setup();
+	AddIndices(indices);
 }
 
 void Sprite::Register(World *world) {
-	Primitive::Register(world);
+	TexturePrimitive::Register(world);
 }
 
 void Sprite::Draw(Matrix4 &matrix) const {
-	Primitive::Draw(matrix);
+	TexturePrimitive::DrawAll(matrix);
 }
 
 #endif /* SPRITE_INL */

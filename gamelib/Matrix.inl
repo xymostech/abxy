@@ -128,8 +128,8 @@ Matrix<T, m, n> &Matrix<T, m, n>::operator*(const T &mult) {
 }
 
 template <typename T, unsigned m, unsigned n>
-const T *Matrix<T, m, n>::GetData() {
-	return reinterpret_cast<T*>(mat);
+const T *Matrix<T, m, n>::GetData() const {
+	return reinterpret_cast<const T*>(mat);
 }
 
 template <>
