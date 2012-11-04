@@ -2,8 +2,9 @@
 #define SPRITE_HPP
 
 #include <gamelib/TexturePrimitive.inl>
+#include <gamelib/SquarePrimitive.inl>
 
-class Sprite : protected TexturePrimitive {
+class Sprite : public TexturePrimitive, public SquarePrimitive {
 public:
 	Sprite(std::string texture_name);
 
