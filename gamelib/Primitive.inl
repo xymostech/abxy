@@ -146,6 +146,8 @@ void Primitive::Draw(Matrix4 &matrix) const {
 
 	use_texture_loc.Set1i(use_texture ? 1 : 0);
 
+	texture->Use();
+
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, 0);
 
 	vertex_array.Unbind();
