@@ -31,7 +31,7 @@ void TexturePrimitive::AddVertices(const std::vector<float> &verts) {
 	AddAttrib("position", 4, verts);
 }
 
-void TexturePrimitive::AddTexture(const std::vector<float> &texture) {
+void TexturePrimitive::AddTextureCoords(const std::vector<float> &texture) {
 	AddAttrib("texcoord", 2, texture);
 }
 

@@ -21,7 +21,7 @@ public:
 	virtual ~TexturePrimitive();
 
 	void AddVertices(const std::vector<float> &verts);
-	void AddTexture(const std::vector<float> &texture);
+	void AddTextureCoords(const std::vector<float> &texture);
 
 	virtual void Register(World *world);
 };
