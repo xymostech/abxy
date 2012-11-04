@@ -76,7 +76,7 @@ public:
 
 	void HFlip(float pos) {
 		Vector2 newvel;
-		newvel.x = -6 * Velocity().x;
+		newvel.x = -6 * (Velocity().x < 0 ? -1 : 1);
 		newvel.y = -1 * pos;
 		newvel.Normalize();
 		SetVelocity(newvel * sqrt(2));
@@ -101,10 +101,9 @@ public:
 			SetVelocity(newvel * sqrt(2));
 		}
 
-		auto end = GetParentWorld()->GetEntities().end();
-		for (auto it = GetParentWorld()->GetEntities().begin(); it != end; ++it) {
-			if ((*it)->GetType() == 2) {
-				std::shared_ptr<Paddle> paddle(std::dynamic_pointer_cast<Paddle>(*it));
+		for (std::shared_ptr<Entity> entity : GetParentWorld()->GetEntities()) {
+			if (entity->GetType() == 2) {
+				std::shared_ptr<Paddle> paddle(std::dynamic_pointer_cast<Paddle>(entity));
 
 				if (abs(paddle->Position().y - Position().y) < 6) {
 					if (paddle->IsLeft() &&
