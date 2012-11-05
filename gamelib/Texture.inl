@@ -4,7 +4,7 @@
 #include <gamelib/Texture.hpp>
 
 template <typename data_loader>
-void Texture::GenerateTexture(std::string filename) {
+void Texture::LoadFromFile(std::string filename) {
 	data_loader loader(filename);
 
 	int w, h;
@@ -12,9 +12,13 @@ void Texture::GenerateTexture(std::string filename) {
 
 	unsigned char const *data = loader.GetData().data();
 
+	LoadFromData(data, w, h, GL_RGBA);
+}
+
+void Texture::LoadFromData(const unsigned char const *data, int w, int h, GLenum format) {
 	tex.Bind();
 
-	tex.SetData2D(0, GL_RGBA, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	tex.SetData2D(0, GL_RGBA, w, h, format, GL_UNSIGNED_BYTE, data);
 	tex.GenerateMipmap();
 }
 
@@ -26,12 +30,25 @@ void Texture::SetupSampler() {
 	sampler.SetParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
-Texture::Texture(std::string texture) {
-	Load(texture);
+Texture::Texture() {
+	
 }
 
-void Texture::Load(std::string texture) {
-	GenerateTexture<PngLoader>(texture);
+Texture::Texture(std::string filename) {
+	Load(filename);
+}
+
+Texture::Texture(const unsigned char const *data, int w, int h, GLenum format) {
+	Load(data, w, h, format);
+}
+
+void Texture::Load(std::string filename) {
+	LoadFromFile<PngLoader>(filename);
+	SetupSampler();
+}
+
+void Texture::Load(const unsigned char const *data, int w, int h, GLenum format) {
+	LoadFromData(data, w, h, format);
 	SetupSampler();
 }
 

@@ -14,13 +14,17 @@ class Texture {
 	GLSamplerRef sampler;
 
 	template <typename data_loader>
-	void GenerateTexture(std::string filename);
+	void LoadFromFile(std::string filename);
+	void LoadFromData(const unsigned char const *data, int w, int h, GLenum format);
 
 	void SetupSampler();
 public:
-	Texture(std::string texture);
+	Texture();
+	Texture(std::string filename);
+	Texture(const unsigned char const *data, int w, int h, GLenum format);
 
-	void Load(std::string texture);
+	void Load(std::string filename);
+	void Load(const unsigned char const *data, int w, int h, GLenum format);
 
 	void Parameterf(GLenum parameter, GLfloat value);
 	void Parameteri(GLenum parameter, GLint value);
