@@ -98,11 +98,21 @@ void Primitive::Register(World *world) {
 }
 
 void Primitive::DrawAll(const Matrix4 &model_matrix) const {
-	DrawIndices(model_matrix, 0, num_indices);
+	DrawAllBase(model_matrix, 0);
 }
 
 void Primitive::DrawIndices(const Matrix4 &model_matrix,
                             GLsizei start, GLsizei count) const {
+	DrawIndicesBase(model_matrix, start, count, 0);
+}
+
+void Primitive::DrawAllBase(const Matrix4 &model_matrix, int base) const {
+	DrawIndicesBase(model_matrix, 0, num_indices, base);
+}
+
+void Primitive::DrawIndicesBase(const Matrix4 &model_matrix,
+                             GLsizei start, GLsizei count,
+                             GLint base) const {
 	program->Use();
 	vertex_array.Bind();
 
@@ -110,7 +120,10 @@ void Primitive::DrawIndices(const Matrix4 &model_matrix,
 
 	model_matrix_loc.SetMatrix4fv(1, GL_FALSE, model_matrix.GetData());
 
-	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, (void *)start);
+	glDrawElementsBaseVertex(
+		GL_TRIANGLES, count, GL_UNSIGNED_INT,
+		(void *)start, base
+	);
 
 	vertex_array.Unbind();
 	program->Unuse();

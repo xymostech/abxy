@@ -52,6 +52,10 @@ public:
 	virtual void DrawAll(const Matrix4 &model_matrix) const;
 	virtual void DrawIndices(const Matrix4 &model_matrix,
 	                         GLsizei start, GLsizei count) const;
+	virtual void DrawAllBase(const Matrix4 &model_matrix, int base) const;
+	virtual void DrawIndicesBase(const Matrix4 &model_matrix,
+	                             GLsizei start, GLsizei count,
+	                             GLint base) const;
 };
 
 #endif /* PRIMITIVE_HPP */
