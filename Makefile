@@ -1,7 +1,9 @@
 CC=clang++
 
-CFLAGS=-g -I./ -Igl3w/include -std=c++11 -stdlib=libc++ -Wall
-LIBS=-lglfw -framework OpenGL -framework Cocoa -lpng
+CFLAGS=-g -I./ -Igl3w/include -std=c++11 -stdlib=libc++ \
+       -Wall `freetype-config --cflags`
+LIBS=-lglfw -framework OpenGL -framework Cocoa -lpng \
+     `freetype-config --libs`
 
 headers=$(shell find gamelib -type f -name '*.hpp')\
 	$(shell find gamelib -type f -name '*.inl')

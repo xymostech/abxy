@@ -8,6 +8,8 @@
 #include <gamelib/Sprite.inl>
 #include <gamelib/Primitive.inl>
 
+#include <gamelib/Font.inl>
+
 #include <memory>
 
 #include <iostream>
@@ -64,10 +66,33 @@ public:
 	}
 };
 
+class TextEntity : public Entity {
+	Font f;
+public:
+	TextEntity()
+	: f("LiberationMono-Regular.ttf")
+	{
+
+	}
+
+	virtual void Register(World *world) {
+		f.Register(world);
+	}
+
+	virtual void Draw(Matrix4 world_matrix) const {
+		world_matrix.Translate(Vector3(-20, 0, 0));
+		f.DrawString("Hello, world!", 6, world_matrix);
+	}
+
+	virtual void Update() {
+		
+	}
+};
+
 class MyStage : public WorldStage {
 public:
-	MyStage() :
-	WorldStage(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
+	MyStage()
+	: WorldStage(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
 	{
 		
 	}
@@ -82,6 +107,9 @@ public:
 		);
 		GetWorld()->AddEntity(
 			std::shared_ptr<Entity>(new MyPlayer(20))
+		);
+		GetWorld()->AddEntity(
+			std::shared_ptr<Entity>(new TextEntity())
 		);
 
 		WorldStage::Load(p);
