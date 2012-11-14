@@ -3,12 +3,6 @@
 
 #include <gamelib/Entity2d.hpp>
 
-Entity2d::Entity2d()
-: Entity2d(0, Vector2(), Vector2(), 0, 0)
-{
-	
-}
-
 Entity2d::Entity2d(long type,
                    const Vector2& position,
                    const Vector2& velocity,
