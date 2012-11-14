@@ -3,11 +3,16 @@
 
 #include <gamelib/Vector.inl>
 
-class Entity2d : public Entity {
+class Entity2d : virtual public Entity {
 	Vector2 position;
 	Vector2 velocity;
 	float angle;
 	float angvelocity;
+protected:
+	Entity2d(const Vector2& position = Vector2(),
+	         const Vector2& velocity = Vector2(),
+	         float angle = 0,
+	         float angvelocity = 0);
 public:
 	Entity2d(long type,
 	         const Vector2& position = Vector2(),

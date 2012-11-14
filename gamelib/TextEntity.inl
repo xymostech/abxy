@@ -3,6 +3,12 @@
 
 #include <gamelib/TextEntity.hpp>
 
+TextEntity::TextEntity(std::string font_file)
+: TextEntity(0, font_file)
+{
+	
+}
+
 TextEntity::TextEntity(long type, std::string font_file)
 : Entity(type)
 , font_file(font_file)

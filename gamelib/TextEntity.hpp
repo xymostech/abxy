@@ -5,11 +5,13 @@
 
 #include <gamelib/Formatter.inl>
 
-class TextEntity : public Entity {
+class TextEntity : virtual public Entity {
 	Formatter format;
 	std::shared_ptr<Font> font;
 
 	std::string font_file;
+protected:
+	TextEntity(std::string font_file);
 public:
 	TextEntity(long type, std::string font_file);
 	virtual ~TextEntity();
