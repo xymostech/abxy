@@ -70,6 +70,10 @@ std::shared_ptr<IFormat> Formatter::StoreStatic(const T& data) {
 	);
 }
 
+void Formatter::Clear() {
+	formatters.clear();
+}
+
 std::string Formatter::Format() const {
 	std::string store;
 

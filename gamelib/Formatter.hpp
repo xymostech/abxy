@@ -23,6 +23,8 @@ public:
 	template <typename T>
 	static std::shared_ptr<IFormat> StoreStatic(const T& data);
 
+	void Clear();
+
 	virtual std::string Format() const override;
 };
 
