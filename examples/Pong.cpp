@@ -78,7 +78,7 @@ public:
 
 		score = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
 
-		score.Format() << Formatter::Store(left_score) << "  "
+		score->Format() << Formatter::Store(left_score) << "  "
 		               << Formatter::Store(right_score);
 
 		world->AddEntity(
