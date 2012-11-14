@@ -9,12 +9,14 @@
 
 #include <gamelib/TextureLoader.inl>
 #include <gamelib/ProgramLoader.inl>
+#include <gamelib/FontLoader.hpp>
 
 class WorldStage : public Stage {
 	World world;
 
 	TextureLoader texture_loader;
 	ProgramLoader program_loader;
+	FontLoader font_loader;
 
 	std::shared_ptr<Projection> projection;
 public:
@@ -28,6 +30,7 @@ public:
 	World *GetWorld();
 	TextureLoader *GetTextureLoader();
 	ProgramLoader *GetProgramLoader();
+	FontLoader *GetFontLoader();
 };
 
 #endif /* WORLDSTAGE_HPP */

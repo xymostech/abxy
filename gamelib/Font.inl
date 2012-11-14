@@ -3,6 +3,8 @@
 
 #include <gamelib/Font.hpp>
 
+#include <gamelib/Primitive.inl>
+
 #include <gamelib/Exceptions.hpp>
 
 void Font::Load(std::string file) {

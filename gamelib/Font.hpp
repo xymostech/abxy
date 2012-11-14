@@ -2,7 +2,7 @@
 #define FONT_HPP
 
 #include <gamelib/GL/GLTextureRef.inl>
-#include <gamelib/Primitive.inl>
+#include <gamelib/Primitive.hpp>
 
 #include <map>
 

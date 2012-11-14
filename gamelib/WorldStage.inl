@@ -3,6 +3,8 @@
 
 #include <gamelib/WorldStage.hpp>
 
+#include <gamelib/FontLoader.inl>
+
 WorldStage::WorldStage(std::shared_ptr<Projection> projection)
 : world(this)
 , program_loader(projection)
@@ -40,6 +42,9 @@ ProgramLoader *WorldStage::GetProgramLoader() {
 	return &program_loader;
 }
 
+FontLoader *WorldStage::GetFontLoader() {
+	return &font_loader;
+}
 
 #endif /* WORLDSTAGE_INL */
 
