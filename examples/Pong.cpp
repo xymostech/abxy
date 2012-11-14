@@ -15,7 +15,8 @@ class Paddle : public Entity2d {
 	bool left;
 public:
 	Paddle(bool left)
-	: Entity2d(2, Vector2(left ? -39 : 39, 0), Vector2(), 0, 0)
+	: Entity(2)
+	, Entity2d(Vector2(left ? -39 : 39, 0), Vector2(), 0, 0)
 	, sprite("white.png")
 	, left(left)
 	{
@@ -64,7 +65,8 @@ class Ball : public Entity2d {
 	std::shared_ptr<TextEntity> score;
 public:
 	Ball()
-	: Entity2d(1, Vector2(0, 0), Vector2(1, 1), 0, 0)
+	: Entity(1)
+	, Entity2d(Vector2(0, 0), Vector2(1, 1))
 	, sprite("white.png")
 	, left_score(0)
 	, right_score(0)
