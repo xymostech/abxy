@@ -4,6 +4,7 @@
 #include <gamelib/Key.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
 #include <gamelib/Sprite.inl>
+#include <gamelib/TextEntity.inl>
 
 #include <memory>
 #include <iostream>
@@ -57,10 +58,16 @@ public:
 
 class Ball : public Entity2d {
 	Sprite sprite;
+
+	int left_score, right_score;
+
+	std::shared_ptr<TextEntity> score;
 public:
 	Ball()
 	: Entity2d(1, Vector2(0, 0), Vector2(1, 1), 0, 0)
 	, sprite("white.png")
+	, left_score(0)
+	, right_score(0)
 	{
 		
 	}
@@ -68,6 +75,15 @@ public:
 	virtual void Register(World *world) {
 		sprite.Register(world);
 		Entity2d::Register(world);
+
+		score = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
+
+		score.Format() << Formatter::Store(left_score) << "  "
+		               << Formatter::Store(right_score);
+
+		world->AddEntity(
+			std::dynamic_pointer_cast<Entity>(score)
+		);
 	}
 
 	void VFlip() {
@@ -90,6 +106,7 @@ public:
 			newvel.y = Velocity().y * -1;
 			newvel.Normalize();
 			SetVelocity(newvel * sqrt(2));
+			right_score++;
 		}
 
 		if (Position().x >= 50) {
@@ -99,6 +116,7 @@ public:
 			newvel.y = Velocity().y * -1;
 			newvel.Normalize();
 			SetVelocity(newvel * sqrt(2));
+			left_score++;
 		}
 
 		for (std::shared_ptr<Entity> entity : GetParentWorld()->GetEntities()) {

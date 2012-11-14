@@ -9,6 +9,7 @@
 #include <gamelib/Primitive.inl>
 
 #include <gamelib/Font.inl>
+#include <gamelib/TextEntity.inl>
 
 #include <memory>
 
@@ -66,29 +67,6 @@ public:
 	}
 };
 
-class TextEntity : public Entity {
-	Font f;
-public:
-	TextEntity()
-	: f("LiberationMono-Regular.ttf")
-	{
-
-	}
-
-	virtual void Register(World *world) {
-		f.Register(world);
-	}
-
-	virtual void Draw(Matrix4 world_matrix) const {
-		world_matrix.Translate(Vector3(-20, 0, 0));
-		f.DrawString("Hello, world!", 6, world_matrix);
-	}
-
-	virtual void Update() {
-		
-	}
-};
-
 class MyStage : public WorldStage {
 public:
 	MyStage()
@@ -108,8 +86,13 @@ public:
 		GetWorld()->AddEntity(
 			std::shared_ptr<Entity>(new MyPlayer(20))
 		);
+
+		auto text = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
+
+		text->Format() << "Hello, World!";
+
 		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new TextEntity())
+			std::dynamic_pointer_cast<Entity>(text)
 		);
 
 		WorldStage::Load(p);
