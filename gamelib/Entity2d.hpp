@@ -34,6 +34,8 @@ public:
 	virtual Entity2d &turn(const float &tilt);
 	virtual Entity2d &SetAngVelocity(const float &new_angvelocity);
 
+	void Transform(Matrix4 &model_matrix) const;
+
 	virtual void Update();
 	virtual void Draw(Matrix4 model_matrix) const;
 };

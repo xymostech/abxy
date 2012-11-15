@@ -76,6 +76,11 @@ Entity2d &Entity2d::SetAngVelocity(const float &new_angvelocity) {
 	return *this;
 }
 
+void Entity2d::Transform(Matrix4 &model_matrix) const {
+	model_matrix.Rotate(Vector3(0, 0, 1), Angle());
+	model_matrix.Translate(Vector3(Position().x, Position().y, 0));
+}
+
 void Entity2d::Update() {
 	position += velocity;
 	angle += angvelocity;

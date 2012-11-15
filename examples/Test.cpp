@@ -61,7 +61,8 @@ public:
 	virtual void Draw(Matrix4 model_matrix) const {
 		model_matrix.Scale(Vector3(3, 3, 3));
 		model_matrix.Rotate(Vector3(0, 0, 1), Position().x / 40.0 * M_PI);
-		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
+
+		Transform(model_matrix);
 
 		sprite.Draw(model_matrix);
 	}
