@@ -4,7 +4,7 @@
 #include <gamelib/Key.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
 #include <gamelib/Sprite.inl>
-#include <gamelib/TextEntity.inl>
+#include <gamelib/TextEntity2d.inl>
 
 #include <memory>
 #include <iostream>
@@ -62,7 +62,7 @@ class Ball : public Entity2d {
 
 	int left_score, right_score;
 
-	std::shared_ptr<TextEntity> score;
+	std::shared_ptr<TextEntity2d> score;
 public:
 	Ball()
 	: Entity(1)
@@ -78,7 +78,10 @@ public:
 		sprite.Register(world);
 		Entity2d::Register(world);
 
-		score = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
+		score = std::make_shared<TextEntity2d>(
+			3, "LiberationMono-Regular.ttf",
+			Vector2(-5, 20)
+		);
 
 		score->Format() << Formatter::Store(left_score) << "  "
 		               << Formatter::Store(right_score);
