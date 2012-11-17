@@ -56,14 +56,11 @@ void MessageReceiver::Find(std::vector<std::string>::const_iterator it,
                            std::vector<std::string>::const_iterator end,
                            std::set<MessageReceiver*> &found) {
 	if (it == end) {
-		std::cout << "I'm it!" << std::endl;
 		found.insert(this);
 		return;
 	}
 
 	const std::string &s = *it;
-
-	std::cout << "Looking for " << s << std::endl;
 
 	if (s == "..") {
 		parent->Find(it + 1, end, found);
@@ -74,7 +71,6 @@ void MessageReceiver::Find(std::vector<std::string>::const_iterator it,
 		auto cend = std::get<1>(range);
 
 		for (; cit != cend; ++cit) {
-			std::cout << "Found child" << std::endl;
 			std::get<1>(*cit)->Find(it + 1, end, found);
 		}
 	}
