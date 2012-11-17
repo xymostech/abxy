@@ -2,9 +2,10 @@
 #define MESSAGE_HPP
 
 #include <memory>
-#include <map>
 #include <queue>
 #include <tuple>
+#include <unordered_map>
+#include <set>
 
 class StorageBase {
 	virtual void A() {}
@@ -24,7 +25,7 @@ class Message {
 	std::shared_ptr<StorageBase> store;
 public:
 	template <typename T>
-	Message(T *d);
+	Message(std::shared_ptr<T> d);
 
 	template <typename T>
 	std::shared_ptr<T> Get();
@@ -32,29 +33,46 @@ public:
 
 class MessageReceiver {
 	std::string name;
+	std::unordered_multimap<std::string, MessageReceiver*> children;
+	MessageReceiver *parent;
+
+	void SetParent(MessageReceiver *p);
+
+	void Find(std::vector<std::string>::const_iterator it,
+	          std::vector<std::string>::const_iterator end,
+	          std::set<MessageReceiver*> &found);
 public:
 	MessageReceiver(std::string name);
 	virtual ~MessageReceiver();
 
+	const std::string &GetName();
+
+	void AddChild(MessageReceiver *child);
+
 	virtual void ReceiveMessage(std::string id, Message m) = 0;
+
+	template <typename T>
+	void SendMessage(std::string name, std::string id, std::shared_ptr<T> t);
 };
 
 class MessageRouter {
-	std::map<std::string, MessageReceiver*> receivers;
+	std::unordered_map<std::string, MessageReceiver*> receivers;
 
-	std::queue<std::tuple<std::string, std::string, Message>> message_queue;
+	std::queue<std::tuple<MessageReceiver*, std::string, Message>> message_queue;
 
 	MessageRouter() {}
 
 	static MessageRouter &GetInstance();
 public:
 	template <typename T>
-	static void SendMessage(std::string to, std::string id, T *t);
+	static void SendMessage(MessageReceiver*, std::string id, std::shared_ptr<T> t);
 	static void FlushMessages();
 
 	static void RegisterReceiver(std::string name, MessageReceiver *m);
 	static void UnregisterReceiver(std::string name);
 };
+
+#include <gamelib/messages/Message.hpp>
 
 #endif /* MESSAGE_HPP */
 
