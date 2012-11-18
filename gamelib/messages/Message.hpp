@@ -55,12 +55,12 @@ public:
 	virtual void ReceiveMessage(std::string id, Message m);
 };
 
-class MessageRouter {
+class MessageQueue {
 	std::queue<std::tuple<MessageReceiver*, std::string, Message>> message_queue;
 
-	MessageRouter() {}
+	MessageQueue() {}
 
-	static MessageRouter &GetInstance();
+	static MessageQueue &GetInstance();
 public:
 	static void AddMessageToQueue(MessageReceiver*, std::string id, Message m);
 	static void FlushMessageQueue();

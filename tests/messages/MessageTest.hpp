@@ -98,7 +98,7 @@ SUITE(MessageSuite) {
 		}
 
 		~MessageFixture() {
-			MessageRouter::FlushMessageQueue();
+			MessageQueue::FlushMessageQueue();
 		}
 
 		int gpr, p1r, p2r, c11r, c12r, c13r, c21r, c22r, c23r;
@@ -112,7 +112,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, p1r);
 
 		gp.Send("p1");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, p1r);
 	}
@@ -121,7 +121,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, c13r);
 
 		gp.Send("p1/c2");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, c13r);
 	}
@@ -131,7 +131,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, c12r);
 
 		p1.Send("c1");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, c11r);
 		CHECK_EQUAL(1, c12r);
@@ -142,7 +142,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, c12r);
 
 		gp.Send("p1/c1");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, c11r);
 		CHECK_EQUAL(1, c12r);
@@ -152,7 +152,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, gpr);
 
 		p1.Send("..");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, gpr);
 	}
@@ -161,7 +161,7 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(0, gpr);
 
 		c11.Send("../..");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, gpr);
 	}
@@ -172,7 +172,7 @@ SUITE(MessageSuite) {
 
 		p1.Send("../p1");
 		p2.Send("c1/..");
-		MessageRouter::FlushMessageQueue();
+		MessageQueue::FlushMessageQueue();
 
 		CHECK_EQUAL(1, p1r);
 		CHECK_EQUAL(1, p2r);

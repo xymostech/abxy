@@ -86,7 +86,7 @@ void MessageReceiver::SendMessage(std::string name, std::string id, std::shared_
 	Find(locs.begin(), locs.end(), receivers);
 
 	for (MessageReceiver *m : receivers) {
-		MessageRouter::AddMessageToQueue(m, id, Message(t));
+		MessageQueue::AddMessageToQueue(m, id, Message(t));
 	}
 }
 
@@ -94,7 +94,7 @@ void MessageReceiver::ReceiveMessage(std::string id, Message m) {
 
 }
 
-void MessageRouter::AddMessageToQueue(MessageReceiver *to, std::string id, Message m) {
+void MessageQueue::AddMessageToQueue(MessageReceiver *to, std::string id, Message m) {
 	GetInstance().message_queue.push(
 		std::make_tuple(
 			to, id, m
@@ -102,7 +102,7 @@ void MessageRouter::AddMessageToQueue(MessageReceiver *to, std::string id, Messa
 	);
 }
 
-void MessageRouter::FlushMessageQueue() {
+void MessageQueue::FlushMessageQueue() {
 	while (!GetInstance().message_queue.empty()) {
 		auto m = GetInstance().message_queue.front();
 		MessageReceiver *to = std::get<0>(m);
@@ -116,8 +116,8 @@ void MessageRouter::FlushMessageQueue() {
 	}
 }
 
-MessageRouter &MessageRouter::GetInstance() {
-	static MessageRouter m;
+MessageQueue &MessageQueue::GetInstance() {
+	static MessageQueue m;
 	return m;
 }
 
