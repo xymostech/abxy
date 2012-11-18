@@ -4,7 +4,7 @@
 #include <gamelib/Stage.hpp>
 
 Stage::Stage()
-: MessageReceiver("")
+: MessageReceiver("stage")
 {
 	
 }

@@ -4,7 +4,7 @@
 #include <gamelib/World.hpp>
 
 World::World(WorldStage *parent)
-: MessageReceiver("")
+: MessageReceiver("world")
 , curr_id(0)
 , parent(parent)
 {

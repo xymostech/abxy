@@ -4,7 +4,7 @@
 #include <gamelib/Game.hpp>
 
 Game::Game(float fps)
-: MessageReceiver("")
+: MessageReceiver("game")
 , App()
 , sleep_time(1 / fps)
 , current_stage(NULL)
