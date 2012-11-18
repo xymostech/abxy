@@ -4,11 +4,13 @@
 #include <vector>
 #include <memory>
 
+#include <gamelib/messages/Message.inl>
+
 #include <gamelib/Entity.inl>
 
 class WorldStage;
 
-class World {
+class World : virtual public MessageReceiver {
 	std::vector<std::shared_ptr<Entity>> entities;
 	long curr_id;
 
