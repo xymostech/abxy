@@ -41,18 +41,18 @@ class MessageReceiver {
 	void Find(std::vector<std::string>::const_iterator it,
 	          std::vector<std::string>::const_iterator end,
 	          std::set<MessageReceiver*> &found);
+protected:
+	void AddChild(MessageReceiver *child);
+
+	template <typename T>
+	void SendMessage(std::string name, std::string id, std::shared_ptr<T> t);
 public:
 	MessageReceiver(std::string name);
 	virtual ~MessageReceiver();
 
 	const std::string &GetName();
 
-	void AddChild(MessageReceiver *child);
-
 	virtual void ReceiveMessage(std::string id, Message m) = 0;
-
-	template <typename T>
-	void SendMessage(std::string name, std::string id, std::shared_ptr<T> t);
 };
 
 class MessageRouter {
