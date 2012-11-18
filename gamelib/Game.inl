@@ -42,6 +42,8 @@ void Game::SetStage(Stage *new_stage) {
 
 	current_stage = new_stage;
 
+	MessageReceiver::AddChild(new_stage);
+
 	try {
 		new_stage->Load(this);
 	} catch (std::exception &e) {

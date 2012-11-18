@@ -5,7 +5,8 @@
 #include <iostream>
 
 #include <gamelib/App.inl>
-#include <gamelib/Stage.inl>
+#include <gamelib/Stage.hpp>
+
 #include <gamelib/messages/Message.inl>
 
 class Game : public App, virtual public MessageReceiver {

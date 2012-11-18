@@ -3,15 +3,17 @@
 
 #include <gamelib/Projection.inl>
 
+#include <gamelib/messages/Message.hpp>
+
 class Game;
 
-class Stage {
+class Stage : virtual public MessageReceiver {
 	bool loaded;
 
 	Game *parent;
 public:
 	Stage();
-	virtual ~Stage();
+	virtual ~Stage() = 0;
 
 	virtual void Load(Game *p);
 	virtual void Unload();

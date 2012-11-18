@@ -6,7 +6,8 @@
 #include <gamelib/FontLoader.inl>
 
 WorldStage::WorldStage(std::shared_ptr<Projection> projection)
-: world(this)
+: MessageReceiver("")
+, world(this)
 , program_loader(projection)
 , projection(projection)
 {

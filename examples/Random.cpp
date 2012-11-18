@@ -71,7 +71,8 @@ public:
 class MyStage : public WorldStage {
 public:
 	MyStage()
-	: WorldStage(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
+	: MessageReceiver("stage")
+	, WorldStage(std::shared_ptr<Projection>(new ProjectionOrtho2d()))
 	{
 		
 	}
@@ -97,6 +98,10 @@ public:
 		);
 
 		WorldStage::Load(p);
+	}
+
+	virtual void ReceiveMessage(std::string id, Message m) {
+		
 	}
 };
 
