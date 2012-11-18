@@ -100,8 +100,22 @@ public:
 	}
 };
 
+class RandomGame : public Game {
+public:
+	RandomGame()
+	: MessageReceiver("random")
+	, Game(120)
+	{
+		
+	}
+
+	virtual void ReceiveMessage(std::string id, Message m) {
+		
+	}
+};
+
 int main(int argc, char *argv[]) {
-	class Game myGame(120);
+	RandomGame myGame;
 	myGame.Startup();
 
 	MyStage stage;

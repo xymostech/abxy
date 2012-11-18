@@ -187,8 +187,22 @@ public:
 	}
 };
 
+class PongGame : public Game {
+public:
+	PongGame()
+	: MessageReceiver("pong")
+	, Game(120)
+	{
+		
+	}
+
+	virtual void ReceiveMessage(std::string id, Message m) {
+		
+	}
+};
+
 int main(int argc, char *argv[]) {
-	class Game myGame(120);
+	PongGame myGame;
 	myGame.Startup();
 
 	MyStage stage;

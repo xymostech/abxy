@@ -6,13 +6,14 @@
 
 #include <gamelib/App.inl>
 #include <gamelib/Stage.inl>
+#include <gamelib/messages/Message.inl>
 
-class Game : public App {
+class Game : public App, virtual public MessageReceiver {
 	float sleep_time;
 	Stage *current_stage;
 public:
 	Game(float fps);
-	virtual ~Game();
+	virtual ~Game() = 0;
 
 	virtual void Update();
 	virtual void Draw();
