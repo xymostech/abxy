@@ -177,30 +177,6 @@ SUITE(MessageSuite) {
 		CHECK_EQUAL(1, p1r);
 		CHECK_EQUAL(1, p2r);
 	}
-
-	TEST_FIXTURE(MessageFixture, FindSelf) {
-		CHECK_EQUAL(0, p1r);
-		CHECK_EQUAL(0, p2r);
-
-		p1.Send("../p1");
-		p2.Send("c1/..");
-		MessageRouter::FlushMessages();
-
-		CHECK_EQUAL(1, p1r);
-		CHECK_EQUAL(1, p2r);
-	}
-
-	TEST_FIXTURE(MessageFixture, FindSelf) {
-		CHECK_EQUAL(0, p1r);
-		CHECK_EQUAL(0, p2r);
-
-		p1.Send("../p1");
-		p2.Send("c1/..");
-		MessageRouter::FlushMessages();
-
-		CHECK_EQUAL(1, p1r);
-		CHECK_EQUAL(1, p2r);
-	}
 }
 
 #endif /* MESSAGETEST_HPP */
