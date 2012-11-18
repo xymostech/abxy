@@ -12,6 +12,7 @@ WorldStage::WorldStage(std::shared_ptr<Projection> projection)
 , projection(projection)
 {
 	projection->Resize();
+	MessageReceiver::AddChild(&world);
 }
 
 WorldStage::~WorldStage() {
