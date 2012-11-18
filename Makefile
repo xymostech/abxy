@@ -37,7 +37,7 @@ test: tests/build/test
 
 testheaders=$(shell find tests -type f -name '*.hpp')
 
-tests/build/test: tests/main.cpp $(testheaders) $(UNITTESTLIB)
+tests/build/test: tests/main.cpp $(testheaders) $(UNITTESTLIB) $(headers)
 	@echo "Compiling tests"
 	@$(CC) -o $@ $< $(TESTCFLAGS) $(TESTLIBS)
 
