@@ -52,7 +52,7 @@ public:
 
 	const std::string &GetName();
 
-	virtual void ReceiveMessage(std::string id, Message m) = 0;
+	virtual void ReceiveMessage(std::string id, Message m);
 };
 
 class MessageRouter {

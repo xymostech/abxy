@@ -90,6 +90,10 @@ void MessageReceiver::SendMessage(std::string name, std::string id, std::shared_
 	}
 }
 
+void MessageReceiver::ReceiveMessage(std::string id, Message m) {
+
+}
+
 template <typename T>
 void MessageRouter::SendMessage(MessageReceiver *to, std::string id, std::shared_ptr<T> t) {
 	Message m(t);
