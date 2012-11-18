@@ -56,17 +56,14 @@ public:
 };
 
 class MessageRouter {
-	std::unordered_map<std::string, MessageReceiver*> receivers;
-
 	std::queue<std::tuple<MessageReceiver*, std::string, Message>> message_queue;
 
 	MessageRouter() {}
 
 	static MessageRouter &GetInstance();
 public:
-	template <typename T>
-	static void SendMessage(MessageReceiver*, std::string id, std::shared_ptr<T> t);
-	static void FlushMessages();
+	static void AddMessageToQueue(MessageReceiver*, std::string id, Message m);
+	static void FlushMessageQueue();
 
 	static void RegisterReceiver(std::string name, MessageReceiver *m);
 	static void UnregisterReceiver(std::string name);
