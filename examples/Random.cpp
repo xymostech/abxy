@@ -99,10 +99,6 @@ public:
 
 		WorldStage::Load(p);
 	}
-
-	virtual void ReceiveMessage(std::string id, Message m) {
-		
-	}
 };
 
 class RandomGame : public Game {
@@ -111,10 +107,6 @@ public:
 	: MessageReceiver("random")
 	, Game(120)
 	{
-		
-	}
-
-	virtual void ReceiveMessage(std::string id, Message m) {
 		
 	}
 };
