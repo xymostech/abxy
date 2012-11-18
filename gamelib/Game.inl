@@ -20,6 +20,8 @@ void Game::Update() {
 	if (current_stage) {
 		current_stage->Update();
 	}
+
+	MessageQueue::FlushMessageQueue();
 	glfwSleep(sleep_time);
 }
 
