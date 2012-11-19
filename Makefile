@@ -11,7 +11,7 @@ headers=$(shell find gamelib -type f -name '*.hpp')\
 examples=Random Pong
 examplefiles=$(addprefix build/, $(examples))
 
-.PHONY: all res clean test
+.PHONY: all res clean test docs
 
 all: $(examplefiles) res test
 
@@ -44,3 +44,6 @@ tests/build/test: tests/main.cpp $(testheaders) $(UNITTESTLIB) $(headers)
 $(UNITTESTLIB):
 	@echo "Compiling UnitTest++ library"
 	@$(MAKE) -C dependencies/UnitTest++/
+
+docs:
+	doxygen Doxyfile
