@@ -10,7 +10,8 @@ TextEntity::TextEntity(std::string font_file)
 }
 
 TextEntity::TextEntity(long type, std::string font_file)
-: Entity(type)
+: MessageReceiver("entity")
+, Entity(type)
 , font_file(font_file)
 {
 	

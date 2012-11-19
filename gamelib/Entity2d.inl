@@ -17,7 +17,8 @@ Entity2d::Entity2d(long type,
                    const Vector2& velocity,
                    float angle,
                    float angvelocity)
-: Entity(type)
+: MessageReceiver("entity")
+, Entity(type)
 , position(position)
 , velocity(velocity)
 , angle(angle)

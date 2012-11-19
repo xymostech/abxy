@@ -10,7 +10,8 @@ Entity::Entity()
 }
 
 Entity::Entity(long type)
-: type(type)
+: MessageReceiver("entity")
+, type(type)
 {
 	
 }

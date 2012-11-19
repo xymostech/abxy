@@ -5,8 +5,9 @@ class World;
 
 #include <gamelib/World.inl>
 #include <gamelib/Matrix.inl>
+#include <gamelib/messages/Message.inl>
 
-class Entity {
+class Entity : virtual public MessageReceiver {
 	long id;
 	long type;
 

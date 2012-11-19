@@ -9,7 +9,8 @@ TextEntity2d::TextEntity2d(long type,
                            const Vector2& velocity,
                            float angle,
                            float angvelocity)
-: Entity(type)
+: MessageReceiver("entity")
+, Entity(type)
 , TextEntity(font_name)
 , Entity2d(position, velocity, angle, angvelocity)
 {

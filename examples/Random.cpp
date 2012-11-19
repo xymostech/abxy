@@ -21,7 +21,8 @@ class MyPlayer : public Entity2d {
 	Sprite sprite;
 public:
 	MyPlayer(float y)
-	: Entity2d(0, Vector2(0, y), Vector2(1, 0), 0, 0)
+	: MessageReceiver("player")
+	, Entity2d(0, Vector2(0, y), Vector2(1, 0), 0, 0)
 	, direction(1)
 	, flip_cooldown(10)
 	, sprite("test.png")
