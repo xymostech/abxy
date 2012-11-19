@@ -45,8 +45,8 @@ protected:
 	void AddChild(MessageReceiver *child);
 
 	template <typename T>
-	void SendMessage(std::string name, std::string id, std::shared_ptr<T> t);
-	void SendMessage(std::string name, std::string id, Message m);
+	void SendMessage(std::string path, std::string id, std::shared_ptr<T> t);
+	void SendMessage(std::string path, std::string id, Message m);
 public:
 	MessageReceiver(std::string name);
 	virtual ~MessageReceiver();
