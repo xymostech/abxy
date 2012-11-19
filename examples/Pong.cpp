@@ -60,18 +60,12 @@ public:
 
 class Ball : public Entity2d {
 	Sprite sprite;
-
-	int left_score, right_score;
-
-	std::shared_ptr<TextEntity2d> score;
 public:
 	Ball()
 	: MessageReceiver("ball")
 	, Entity(1)
 	, Entity2d(Vector2(0, 0), Vector2(1, 1))
 	, sprite("white.png")
-	, left_score(0)
-	, right_score(0)
 	{
 		
 	}
@@ -79,18 +73,6 @@ public:
 	virtual void Register(World *world) {
 		sprite.Register(world);
 		Entity2d::Register(world);
-
-		score = std::make_shared<TextEntity2d>(
-			3, "LiberationMono-Regular.ttf",
-			Vector2(-5, 20)
-		);
-
-		score->Format() << Formatter::Store(left_score) << "  "
-		               << Formatter::Store(right_score);
-
-		world->AddEntity(
-			std::dynamic_pointer_cast<Entity>(score)
-		);
 	}
 
 	void VFlip() {
@@ -113,7 +95,7 @@ public:
 			newvel.y = Velocity().y * -1;
 			newvel.Normalize();
 			SetVelocity(newvel * sqrt(2));
-			right_score++;
+			SendMessage("../score", "addright", std::shared_ptr<int>());
 		}
 
 		if (Position().x >= 50) {
@@ -123,7 +105,7 @@ public:
 			newvel.y = Velocity().y * -1;
 			newvel.Normalize();
 			SetVelocity(newvel * sqrt(2));
-			left_score++;
+			SendMessage("../score", "addleft", std::shared_ptr<int>());
 		}
 
 		for (std::shared_ptr<Entity> entity : GetParentWorld()->GetEntities()) {
@@ -163,6 +145,29 @@ public:
 	}
 };
 
+class Score : public TextEntity2d {
+	int left_score, right_score;
+public:
+	Score()
+	: MessageReceiver("score")
+	, Entity(3)
+	, TextEntity2d("LiberationMono-Regular.ttf", Vector2(-5, 20))
+	, left_score(0)
+	, right_score(0)
+	{
+		Format() << Formatter::Store(left_score) << "  "
+		         << Formatter::Store(right_score);
+	}
+
+	virtual void ReceiveMessage(std::string id, Message m) {
+		if (id == "addleft") {
+			left_score++;
+		} else if (id == "addright") {
+			right_score++;
+		}
+	}
+};
+
 class MyStage : public WorldStage {
 public:
 	MyStage()
@@ -185,6 +190,9 @@ public:
 		);
 		GetWorld()->AddEntity(
 			std::shared_ptr<Entity>(new Paddle(false))
+		);
+		GetWorld()->AddEntity(
+			std::shared_ptr<Entity>(new Score())
 		);
 		WorldStage::Load(p);
 	}
