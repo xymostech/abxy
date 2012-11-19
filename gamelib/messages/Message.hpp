@@ -63,11 +63,8 @@ class MessageQueue {
 
 	static MessageQueue &GetInstance();
 public:
-	static void AddMessageToQueue(MessageReceiver*, std::string id, Message m);
+	static void AddMessageToQueue(MessageReceiver *to, std::string id, Message m);
 	static void FlushMessageQueue();
-
-	static void RegisterReceiver(std::string name, MessageReceiver *m);
-	static void UnregisterReceiver(std::string name);
 };
 
 #include <gamelib/messages/Message.hpp>
