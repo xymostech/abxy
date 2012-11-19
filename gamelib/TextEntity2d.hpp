@@ -4,7 +4,12 @@
 #include <gamelib/TextEntity.inl>
 
 class TextEntity2d : public TextEntity, public Entity2d {
-	
+protected:
+	TextEntity2d(std::string font_name,
+	             const Vector2& position = Vector2(),
+	             const Vector2& velocity = Vector2(),
+	             float angle = 0,
+	             float angvelocity = 0);
 public:
 	TextEntity2d(long type,
 	             std::string font_name,

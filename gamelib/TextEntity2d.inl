@@ -3,6 +3,16 @@
 
 #include <gamelib/TextEntity2d.hpp>
 
+TextEntity2d::TextEntity2d(std::string font_name,
+                           const Vector2& position,
+                           const Vector2& velocity,
+                           float angle,
+                           float angvelocity)
+: TextEntity2d(0, font_name, position, velocity, angle, angvelocity)
+{
+	
+}
+
 TextEntity2d::TextEntity2d(long type,
                            std::string font_name,
                            const Vector2& position,
