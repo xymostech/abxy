@@ -19,6 +19,7 @@ void World::AddEntity(std::shared_ptr<Entity> entity) {
 	entity->SetId(curr_id++);
 	entity->Register(this);
 	entities.push_back(entity);
+	MessageReceiver::AddChild(entity.get());
 }
 
 void World::Draw() const {
