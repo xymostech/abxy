@@ -78,6 +78,10 @@ void MessageReceiver::Find(std::vector<std::string>::const_iterator it,
 
 template <typename T>
 void MessageReceiver::SendMessage(std::string name, std::string id, std::shared_ptr<T> t) {
+	SendMessage(name, id, Message(t));
+}
+
+void MessageReceiver::SendMessage(std::string name, std::string id, Message m) {
 	std::vector<std::string> locs;
 	Utils::Split(name, locs, '/');
 
@@ -85,8 +89,8 @@ void MessageReceiver::SendMessage(std::string name, std::string id, std::shared_
 
 	Find(locs.begin(), locs.end(), receivers);
 
-	for (MessageReceiver *m : receivers) {
-		MessageQueue::AddMessageToQueue(m, id, Message(t));
+	for (MessageReceiver *receiver : receivers) {
+		MessageQueue::AddMessageToQueue(receiver, id, m);
 	}
 }
 
