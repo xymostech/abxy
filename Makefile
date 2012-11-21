@@ -1,11 +1,14 @@
 CC=clang++
 
-CFLAGS=-g -I./ -Igl3w/include -std=c++11 -stdlib=libc++ \
+CFLAGS=-g \
+       -I./ \
+       -std=c++11 -stdlib=libc++ \
        -Wall `freetype-config --cflags`
-LIBS=-lglfw -framework OpenGL -framework Cocoa -lpng \
+LIBS=-lglfw -framework OpenGL -framework Cocoa \
+     -lpng \
      `freetype-config --libs`
 
-headers=$(shell find gamelib -type f -name '*.hpp')\
+headers=$(shell find gamelib -type f -name '*.hpp') \
 	$(shell find gamelib -type f -name '*.inl')
 
 examples=Random Pong
@@ -24,7 +27,10 @@ build/%: examples/%.cpp $(headers)
 	@$(CC) -o $@ $< $(CFLAGS) $(LIBS)
 
 clean:
-	rm -rf build/*
+	@echo "Cleaning build"
+	@rm -rf build/*
+	@echo "Cleaning tests/build"
+	@rm -rf tests/build/*
 
 UNITTESTLIB=dependencies/UnitTest++/libUnitTest++.a
 
@@ -46,4 +52,5 @@ $(UNITTESTLIB):
 	@$(MAKE) -C dependencies/UnitTest++/
 
 docs:
-	doxygen Doxyfile
+	@echo "Building docs"
+	@doxygen Doxyfile
