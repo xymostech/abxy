@@ -19,6 +19,12 @@ public:
 	World(WorldStage *parent);
 	virtual ~World();
 
+	template <class T, class... Args>
+	void Add(Args&&... args) {
+		AddEntity(std::dynamic_pointer_cast<Entity>(
+			std::make_shared<T>(std::forward<Args>(args)...)
+		));
+	}
 	virtual void AddEntity(std::shared_ptr<Entity> entity);
 
 	virtual void Draw() const;

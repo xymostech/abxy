@@ -83,12 +83,8 @@ public:
 	}
 
 	virtual void Load(Game *p) {
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new MyPlayer(-20))
-		);
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new MyPlayer(20))
-		);
+		GetWorld()->Add<MyPlayer>(-20);
+		GetWorld()->Add<MyPlayer>(20);
 
 		auto text = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
 

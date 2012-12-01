@@ -182,18 +182,10 @@ public:
 	}
 
 	virtual void Load(Game *p) {
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new Ball())
-		);
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new Paddle(true))
-		);
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new Paddle(false))
-		);
-		GetWorld()->AddEntity(
-			std::shared_ptr<Entity>(new Score())
-		);
+		GetWorld()->Add<Ball>();
+		GetWorld()->Add<Paddle>(true);
+		GetWorld()->Add<Paddle>(false);
+		GetWorld()->Add<Score>();
 		WorldStage::Load(p);
 	}
 };
