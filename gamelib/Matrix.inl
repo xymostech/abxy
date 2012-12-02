@@ -136,22 +136,22 @@ template <>
 void Matrix4::Translate(const Vector3 &trans) {
 	Matrix4 mult(1.0);
 
-	mult[3].x() = trans.x;
-	mult[3].y() = trans.y;
-	mult[3].z() = trans.z;
+	mult[3][0] = trans.x;
+	mult[3][1] = trans.y;
+	mult[3][2] = trans.z;
 
-	*this = mult * *this;
+	*this = *this * mult;
 }
 
 template <>
 void Matrix4::Scale(const Vector3 &scale) {
 	Matrix4 mult(1.0);
 
-	mat[0][0] = scale.x;
-	mat[1][1] = scale.y;
-	mat[2][2] = scale.z;
+	mult[0][0] = scale.x;
+	mult[1][1] = scale.y;
+	mult[2][2] = scale.z;
 
-	*this = mult * *this;
+	*this = *this * mult;
 }
 
 template <>
@@ -178,7 +178,7 @@ void Matrix4::Rotate(const Vector3 &axis, float angle) {
 	mult[2][1] = ic*y*z - x*s;
 	mult[2][2] = z*z + (1 - z*z) * c;
 
-	*this = mult * *this;
+	*this = *this * mult;
 }
 
 #endif /* MATRIX_INL */
