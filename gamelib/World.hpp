@@ -14,6 +14,7 @@ class World : virtual public MessageReceiver {
 	std::deque<std::shared_ptr<Entity>> entities;
 
 	std::deque<std::shared_ptr<Entity>> to_add;
+	std::deque<Entity*> to_remove;
 
 	long curr_id;
 
@@ -31,6 +32,8 @@ public:
 		));
 	}
 	virtual void AddEntity(std::shared_ptr<Entity> entity);
+
+	virtual void RemoveEntity(Entity *entity);
 
 	virtual void Draw() const;
 	virtual void Update();

@@ -27,6 +27,20 @@ void World::AddEntity(std::shared_ptr<Entity> entity) {
 	}
 }
 
+void World::RemoveEntity(Entity *entity) {
+	if (in_update) {
+		to_remove.push_back(entity);
+	} else {
+		auto it = entities.begin(), end = entities.end();
+		for (; it != end; ++it) {
+			if ((*it).get() == entity) {
+				entities.erase(it);
+				break;
+			}
+		}
+	}
+}
+
 void World::Draw() const {
 	Matrix4 base_matrix(1.0);
 
@@ -47,8 +61,12 @@ void World::Update() {
 	for (std::shared_ptr<Entity> &e : to_add) {
 		AddEntity(e);
 	}
+	for (Entity *e : to_remove) {
+		RemoveEntity(e);
+	}
 
 	to_add.clear();
+	to_remove.clear();
 }
 
 WorldStage *World::GetParentStage() {
