@@ -6,6 +6,7 @@
 World::World(WorldStage *parent)
 : MessageReceiver("world")
 , curr_id(0)
+, in_update(false)
 , parent(parent)
 {
 	
@@ -16,33 +17,45 @@ World::~World() {
 }
 
 void World::AddEntity(std::shared_ptr<Entity> entity) {
-	entity->SetId(curr_id++);
-	entity->Register(this);
-	entities.push_back(entity);
-	MessageReceiver::AddChild(entity.get());
+	if (in_update) {
+		to_add.push_back(entity);
+	} else {
+		entity->SetId(curr_id++);
+		entity->Register(this);
+		entities.push_back(entity);
+		MessageReceiver::AddChild(entity.get());
+	}
 }
 
 void World::Draw() const {
 	Matrix4 base_matrix(1.0);
 
-	std::vector<std::shared_ptr<Entity>>::const_iterator it, end = entities.end();
-	for (it = entities.begin(); it != end; ++it) {
-		(*it)->Draw(base_matrix);
+	for (const std::shared_ptr<Entity> &e : entities) {
+		e->Draw(base_matrix);
 	}
 }
 
 void World::Update() {
-	std::vector<std::shared_ptr<Entity>>::iterator it, end = entities.end();
-	for (it = entities.begin(); it != end; ++it) {
-		(*it)->Update();
+	in_update = true;
+
+	for (std::shared_ptr<Entity> &e : entities) {
+		e->Update();
 	}
+
+	in_update = false;
+
+	for (std::shared_ptr<Entity> &e : to_add) {
+		AddEntity(e);
+	}
+
+	to_add.clear();
 }
 
 WorldStage *World::GetParentStage() {
 	return parent;
 }
 
-std::vector<std::shared_ptr<Entity>> &World::GetEntities() {
+std::deque<std::shared_ptr<Entity>> &World::GetEntities() {
 	return entities;
 }
 

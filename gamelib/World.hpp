@@ -1,7 +1,7 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
-#include <vector>
+#include <deque>
 #include <memory>
 
 #include <gamelib/messages/Message.inl>
@@ -11,8 +11,13 @@
 class WorldStage;
 
 class World : virtual public MessageReceiver {
-	std::vector<std::shared_ptr<Entity>> entities;
+	std::deque<std::shared_ptr<Entity>> entities;
+
+	std::deque<std::shared_ptr<Entity>> to_add;
+
 	long curr_id;
+
+	bool in_update;
 
 	WorldStage *parent;
 public:
@@ -32,7 +37,7 @@ public:
 
 	WorldStage *GetParentStage();
 
-	std::vector<std::shared_ptr<Entity>> &GetEntities();
+	std::deque<std::shared_ptr<Entity>> &GetEntities();
 };
 
 #endif /* WORLD_HPP */
