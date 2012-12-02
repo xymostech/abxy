@@ -5,6 +5,7 @@
 #include <gamelib/ProjectionOrtho2d.inl>
 #include <gamelib/Sprite.inl>
 #include <gamelib/TextEntity2d.inl>
+#include <gamelib/audio/Sound.inl>
 
 #include <memory>
 #include <iostream>
@@ -60,6 +61,8 @@ public:
 
 class Ball : public Entity2d {
 	Sprite sprite;
+
+	std::shared_ptr<Sound> sound;
 public:
 	Ball()
 	: MessageReceiver("ball")
@@ -71,12 +74,17 @@ public:
 	}
 
 	virtual void Register(World *world) {
+		sound = world->GetParentStage()->GetSoundLoader()->Load("hit.ogg");
+
 		sprite.Register(world);
 		Entity2d::Register(world);
 	}
 
 	void VFlip() {
 		SetVelocity(Vector2(Velocity().x, -1 * Velocity().y));
+		if (Position().x < 40 && Position().x > -40) {
+			sound->Play();
+		}
 	}
 
 	void HFlip(float pos) {
@@ -85,6 +93,7 @@ public:
 		newvel.y = -1 * pos;
 		newvel.Normalize();
 		SetVelocity(newvel * sqrt(2));
+		sound->Play();
 	}
 
 	virtual void Update() {

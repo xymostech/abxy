@@ -48,5 +48,9 @@ FontLoader *WorldStage::GetFontLoader() {
 	return &font_loader;
 }
 
+SoundLoader *WorldStage::GetSoundLoader() {
+	return &sound_loader;
+}
+
 #endif /* WORLDSTAGE_INL */
 

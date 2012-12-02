@@ -10,6 +10,7 @@
 #include <gamelib/TextureLoader.inl>
 #include <gamelib/ProgramLoader.inl>
 #include <gamelib/FontLoader.hpp>
+#include <gamelib/SoundLoader.inl>
 
 class WorldStage : public Stage {
 	World world;
@@ -17,6 +18,7 @@ class WorldStage : public Stage {
 	TextureLoader texture_loader;
 	ProgramLoader program_loader;
 	FontLoader font_loader;
+	SoundLoader sound_loader;
 
 	std::shared_ptr<Projection> projection;
 public:
@@ -31,6 +33,7 @@ public:
 	TextureLoader *GetTextureLoader();
 	ProgramLoader *GetProgramLoader();
 	FontLoader *GetFontLoader();
+	SoundLoader *GetSoundLoader();
 };
 
 #endif /* WORLDSTAGE_HPP */
