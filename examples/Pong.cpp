@@ -47,8 +47,8 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const {
-		model_matrix.Scale(Vector3(2, 10, 1));
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
+		model_matrix.Scale(Vector3(2, 10, 1));
 
 		sprite.Draw(model_matrix);
 	}
@@ -138,8 +138,8 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const {
-		model_matrix.Scale(Vector3(2, 2, 1));
 		model_matrix.Translate(Vector3(Position().x, Position().y, 0));
+		model_matrix.Scale(Vector3(2, 2, 1));
 
 		sprite.Draw(model_matrix);
 	}
