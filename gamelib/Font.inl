@@ -158,13 +158,13 @@ Font::Font(std::string file)
 void Font::DrawChar(char c, int size, Matrix4 model_matrix) const {
 	const CharData &data = char_data.at(c);
 
-	model_matrix.Scale(Vector3(
-		size / (float)char_height,
-		size / (float)char_height, 1
-	));
 	model_matrix.Translate(Vector3(
 		size * data.bearing_x / (float)char_height,
 		size * data.bearing_y / (float)char_height, 0
+	));
+	model_matrix.Scale(Vector3(
+		size / (float)char_height,
+		size / (float)char_height, 1
 	));
 
 	program->Use();
