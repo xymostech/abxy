@@ -6,7 +6,8 @@ CFLAGS=-g \
        -Wall `freetype-config --cflags`
 LIBS=-lglfw -framework OpenGL -framework Cocoa \
      -lpng \
-     `freetype-config --libs`
+     `freetype-config --libs` \
+      -lao -lvorbis -lvorbisfile
 
 headers=$(shell find gamelib -type f -name '*.hpp') \
 	$(shell find gamelib -type f -name '*.inl')

@@ -2,6 +2,7 @@
 #define APP_INL
 
 #include <gamelib/App.hpp>
+#include <ao/ao.h>
 
 App::~App() {
 	Shutdown();
@@ -18,11 +19,15 @@ void App::Startup() {
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	ao_initialize();
 }
 
 void App::Shutdown() {
 	glfwCloseWindow();
 	glfwTerminate();
+
+	ao_shutdown();
 }
 
 bool App::IsOpen() {
