@@ -9,10 +9,10 @@ Sprite::Sprite(std::string texture_name)
 , SquarePrimitive("standard")
 {
 	float varray[] = {
-		0.0, 0.0, 0.0, 1.0,
-		1.0, 0.0, 0.0, 1.0,
-		0.0, 1.0, 0.0, 1.0,
-		1.0, 1.0, 0.0, 1.0
+		0.0, 1.0,
+		1.0, 1.0,
+		0.0, 0.0,
+		1.0, 0.0,
 	};
 	std::vector<float> verts(std::begin(varray), std::end(varray));
 
