@@ -7,7 +7,7 @@ CFLAGS=-g \
 LIBS=-lglfw -framework OpenGL -framework Cocoa \
      -lpng \
      `freetype-config --libs` \
-      -lao -lvorbis -lvorbisfile
+      -lao -Ldependencies/libvorbis/lib/.libs -lvorbis -lvorbisfile
 
 headers=$(shell find gamelib -type f -name '*.hpp') \
 	$(shell find gamelib -type f -name '*.inl')
@@ -15,9 +15,23 @@ headers=$(shell find gamelib -type f -name '*.hpp') \
 examples=Random Pong
 examplefiles=$(addprefix build/, $(examples))
 
-.PHONY: all res clean test docs
+.PHONY: all libs res clean test docs
 
-all: $(examplefiles) res test
+all: libs $(examplefiles) res test
+
+.PHONY: libvorbis
+
+libs: libvorbis
+
+VORBISLIB=dependencies/libvorbis/lib/.libs/libvorbis.a
+
+libvorbis: $(VORBISLIB)
+
+$(VORBISLIB):
+	@echo "Configuring libvorbis"
+	@cd dependencies/libvorbis && ./configure > /dev/null
+	@echo "Compiling libvorbis"
+	@$(MAKE) -C dependencies/libvorbis > /dev/null 2>&1
 
 res:
 	@echo "Copying resources"
