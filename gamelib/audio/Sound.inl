@@ -98,6 +98,8 @@ namespace {
 		}
 
 		ov_clear(&vf);
+
+		ao_close(device);
 	}
 
 	void PlaySoundFile(std::string file, bool &stop) {
