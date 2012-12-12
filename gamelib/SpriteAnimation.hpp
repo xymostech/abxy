@@ -13,6 +13,8 @@ public:
 
 	virtual void Register(World *world);
 	virtual void Draw(int sprite, Matrix4 &matrix) const;
+
+	int Size() const;
 };
 
 #endif /* SPRITEANIMATION_HPP */

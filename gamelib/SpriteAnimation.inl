@@ -25,5 +25,9 @@ void SpriteAnimation::Draw(int sprite, Matrix4 &matrix) const {
 	sprites.at(sprite)->Draw(matrix);
 }
 
+int SpriteAnimation::Size() const {
+	return sprites.size();
+}
+
 #endif /* SPRITEANIMATION_INL */
 
