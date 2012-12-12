@@ -11,16 +11,17 @@
 #include <vorbis/vorbisfile.h>
 #include <ao/ao.h>
 
-struct StreamData {
-	std::string file_name;
-	std::ifstream *f;
-
-	std::vector<char>::const_iterator it, end;
-
-	bool stored;
-};
-
 namespace {
+
+	struct StreamData {
+		std::string file_name;
+		std::ifstream *f;
+
+		std::vector<char>::const_iterator begin, it, end;
+
+		bool stored;
+	};
+
 	size_t StreamRead(void *ptr, size_t size, size_t nmemb, void *datasource) {
 		StreamData *data = reinterpret_cast<StreamData*>(datasource);
 
@@ -50,7 +51,7 @@ namespace {
 		}
 	}
 
-	void PlaySound(StreamData *data, bool &stop) {
+	void PlaySound(StreamData *data, bool &stop, int volume, bool repeat) {
 		OggVorbis_File vf;
 		vorbis_info *info;
 		int current_section;
@@ -59,50 +60,59 @@ namespace {
 			StreamRead, nullptr, nullptr, nullptr
 		};
 
-		if(ov_open_callbacks(data, &vf, nullptr, 0, callbacks) < 0) {
-			throw std::runtime_error("Could not open file " + data->file_name);
-			return;
-		}
-
-		int driver = ao_default_driver_id();
-
-		info = ov_info(&vf, -1);
-
-		ao_sample_format sample_format;
-		sample_format.bits = 16;
-		sample_format.channels = info->channels;
-		sample_format.rate = 44100;
-		sample_format.byte_format = AO_FMT_NATIVE;
-		sample_format.matrix = 0;
-
-		ao_device* device = ao_open_live(driver, &sample_format, nullptr);
+		ao_device* device = NULL;
+		bool started;
 
 		char buffer[4096];
 
-		int volume = 256;
+		do {
+			data->it = data->begin;
 
-		while (!stop) {
-			long ret = ov_read(&vf, buffer, sizeof(buffer), 0, 2, 1, &current_section);
-
-			if (ret == 0) {
-				break;
+			if(ov_open_callbacks(data, &vf, nullptr, 0, callbacks) < 0) {
+				throw std::runtime_error("Could not open file " + data->file_name);
+				return;
 			}
 
-			int16_t *samples = reinterpret_cast<int16_t*>(&buffer[0]);
+			if (!started) {
+				int driver = ao_default_driver_id();
 
-			for (int i = 0; i < ret / sizeof(*samples); ++i) {
-				*samples++ = (((*samples) * volume + 128) >> 8);
+				info = ov_info(&vf, -1);
+
+				ao_sample_format sample_format;
+				sample_format.bits = 16;
+				sample_format.channels = info->channels;
+				sample_format.rate = 44100;
+				sample_format.byte_format = AO_FMT_NATIVE;
+				sample_format.matrix = 0;
+
+				device = ao_open_live(driver, &sample_format, nullptr);
+
+				started = true;
 			}
 
-			ao_play(device, buffer, ret);
-		}
+			while (!stop) {
+				long ret = ov_read(&vf, buffer, sizeof(buffer), 0, 2, 1, &current_section);
 
-		ov_clear(&vf);
+				if (ret == 0) {
+					break;
+				}
+
+				int16_t *samples = reinterpret_cast<int16_t*>(&buffer[0]);
+
+				for (int i = 0; i < ret / sizeof(*samples); ++i) {
+					*samples++ = (((*samples) * volume + 128) >> 8);
+				}
+
+				ao_play(device, buffer, ret);
+			}
+
+			ov_clear(&vf);
+		} while (repeat && !stop);
 
 		ao_close(device);
 	}
 
-	void PlaySoundFile(std::string file, bool &stop) {
+	void PlaySoundFile(std::string file, bool &stop, int volume, bool repeat) {
 		std::ifstream f(file.c_str());
 
 		StreamData data;
@@ -111,18 +121,18 @@ namespace {
 		data.f = &f;
 		data.stored = false;
 
-		PlaySound(&data, stop);
+		PlaySound(&data, stop, volume, repeat);
 	}
 
-	void PlaySoundCache(std::string file, std::vector<char>& cache, bool &stop) {
+	void PlaySoundCache(std::string file, std::vector<char>& cache, bool &stop, int volume, bool repeat) {
 		StreamData data;
 
 		data.file_name = file;
-		data.it = cache.cbegin();
+		data.begin = cache.cbegin();
 		data.end = cache.cend();
 		data.stored = true;
 
-		PlaySound(&data, stop);
+		PlaySound(&data, stop, volume, repeat);
 	}
 
 	void ReadFile(std::string file, std::vector<char> &store) {
@@ -151,12 +161,12 @@ Sound::~Sound() {
 	Stop();
 }
 
-void Sound::Play() {
+void Sound::Play(float volume, bool repeat) {
 	if (is_cached) {
-		std::thread t(PlaySoundCache, file_name, std::ref(data), std::ref(stop));
+		std::thread t(PlaySoundCache, file_name, std::ref(data), std::ref(stop), volume * 256, repeat);
 		t.detach();
 	} else {
-		std::thread t(PlaySoundFile, file_name, std::ref(stop));
+		std::thread t(PlaySoundFile, file_name, std::ref(stop), volume * 256, repeat);
 		t.detach();
 	}
 }

@@ -83,7 +83,7 @@ public:
 	void VFlip() {
 		SetVelocity(Vector2(Velocity().x, -1 * Velocity().y));
 		if (Position().x < 40 && Position().x > -40) {
-			sound->Play();
+			sound->Play(0.5);
 		}
 	}
 
@@ -93,7 +93,7 @@ public:
 		newvel.y = -1 * pos;
 		newvel.Normalize();
 		SetVelocity(newvel * sqrt(2));
-		sound->Play();
+		sound->Play(0.5);
 	}
 
 	virtual void Update() {

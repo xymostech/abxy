@@ -12,7 +12,7 @@ public:
 	Sound(std::string file_name, bool should_cache);
 	virtual ~Sound();
 
-	void Play();
+	void Play(float volume = 1.0, bool repeat = false);
 	void Stop();
 };
 
