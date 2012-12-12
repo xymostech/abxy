@@ -4,7 +4,7 @@
 #include <gamelib/Key.inl>
 #include <gamelib/ProjectionOrtho2d.inl>
 #include <gamelib/Sprite.inl>
-#include <gamelib/TextEntity2d.inl>
+#include <gamelib/FormattedTextEntity2d.inl>
 #include <gamelib/audio/Sound.inl>
 
 #include <memory>
@@ -154,13 +154,13 @@ public:
 	}
 };
 
-class Score : public TextEntity2d {
+class Score : public FormattedTextEntity2d {
 	int left_score, right_score;
 public:
 	Score()
 	: MessageReceiver("score")
 	, Entity(3)
-	, TextEntity2d("LiberationMono-Regular.ttf", Vector2(-5, 20))
+	, FormattedTextEntity2d("LiberationMono-Regular.ttf", Vector2(-5, 20))
 	, left_score(0)
 	, right_score(0)
 	{

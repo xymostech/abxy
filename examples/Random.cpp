@@ -9,7 +9,7 @@
 #include <gamelib/Primitive.inl>
 
 #include <gamelib/Font.inl>
-#include <gamelib/TextEntity.inl>
+#include <gamelib/FormattedTextEntity.inl>
 
 #include <memory>
 
@@ -86,7 +86,7 @@ public:
 		GetWorld()->Add<MyPlayer>(-20);
 		GetWorld()->Add<MyPlayer>(20);
 
-		auto text = std::make_shared<TextEntity>(3, "LiberationMono-Regular.ttf");
+		auto text = std::make_shared<FormattedTextEntity>(3, "LiberationMono-Regular.ttf");
 
 		text->Format() << "Hello, World!";
 
