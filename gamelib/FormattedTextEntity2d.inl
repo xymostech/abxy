@@ -33,6 +33,7 @@ FormattedTextEntity2d::~FormattedTextEntity2d()
 }
 
 void FormattedTextEntity2d::Update() {
+	FormattedTextEntity::Update();
 	Entity2d::Update();
 }
 

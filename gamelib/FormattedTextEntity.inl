@@ -3,16 +3,16 @@
 
 #include <gamelib/FormattedTextEntity.hpp>
 
-FormattedTextEntity::FormattedTextEntity(std::string font_file)
-: FormattedTextEntity(0, font_file)
+FormattedTextEntity::FormattedTextEntity(std::string font_file, int size)
+: FormattedTextEntity(0, font_file, size)
 {
 	
 }
 
-FormattedTextEntity::FormattedTextEntity(long type, std::string font_file)
+FormattedTextEntity::FormattedTextEntity(long type, std::string font_file, int size)
 : MessageReceiver("entity")
 , Entity(type)
-, font_file(font_file)
+, TextEntity(font_file, "", size)
 {
 	
 }
@@ -21,21 +21,12 @@ FormattedTextEntity::~FormattedTextEntity() {
 	
 }
 
-void FormattedTextEntity::Register(World *world) {
-	font = world->GetParentStage()->GetFontLoader()->Load(font_file);
-	font->Register(world);
-}
-
 Formatter &FormattedTextEntity::Format() {
 	return format;
 }
 
 void FormattedTextEntity::Update() {
-	
-}
-
-void FormattedTextEntity::Draw(Matrix4 model_matrix) const {
-	font->DrawString(format.Format(), 6, model_matrix);
+	SetText(format.Format());
 }
 
 #endif /* FORMATTEDTEXTENTITY_INL */
