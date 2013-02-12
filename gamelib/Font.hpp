@@ -32,8 +32,8 @@ protected:
 public:
 	Font(std::string file);
 
-	void DrawChar(char c, int size, Matrix4 model_matrix) const;
-	void DrawString(const std::string &s, int size, Matrix4 model_matrix) const;
+	void DrawChar(char c, float size, Matrix4 model_matrix) const;
+	void DrawString(const std::string &s, float size, Matrix4 model_matrix) const;
 
 	void Register(World *world);
 };

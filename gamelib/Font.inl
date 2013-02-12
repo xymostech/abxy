@@ -155,7 +155,7 @@ Font::Font(std::string file)
 	Load(file);
 }
 
-void Font::DrawChar(char c, int size, Matrix4 model_matrix) const {
+void Font::DrawChar(char c, float size, Matrix4 model_matrix) const {
 	const CharData &data = char_data.at(c);
 
 	model_matrix.Translate(Vector3(
@@ -176,7 +176,7 @@ void Font::DrawChar(char c, int size, Matrix4 model_matrix) const {
 	DrawAllBase(model_matrix, 4 * data.char_offset);
 }
 
-void Font::DrawString(const std::string &s, int size, Matrix4 model_matrix) const {
+void Font::DrawString(const std::string &s, float size, Matrix4 model_matrix) const {
 	for (char c : s) {
 		if (char_data.count(c) > 0) {
 			DrawChar(c, size, model_matrix);
