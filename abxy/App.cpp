@@ -1,6 +1,14 @@
 #include <abxy/App.hpp>
 #include <ao/ao.h>
 
+#ifdef __APPLE__
+#define MIN_GL_MAJOR 3
+#define MIN_GL_MINOR 2
+#else
+#define MIN_GL_MAJOR 3
+#define MIN_GL_MINOR 1
+#endif
+
 App::~App() {
 	Shutdown();
 }
@@ -8,8 +16,8 @@ App::~App() {
 void App::Startup() {
 	glfwInit();
 
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 1);
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, MIN_GL_MAJOR);
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, MIN_GL_MINOR);
 	glfwOpenWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	glfwOpenWindow(800, 600, 8, 8, 8, 8, 16, 0, GLFW_WINDOW);
