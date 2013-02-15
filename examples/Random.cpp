@@ -1,18 +1,17 @@
-#include <gamelib/Game.inl>
-#include <gamelib/WorldStage.inl>
-#include <gamelib/Entity2d.inl>
-#include <gamelib/Key.inl>
-#include <gamelib/Texture.inl>
-#include <gamelib/ProjectionOrtho2d.inl>
+#include <abxy/Game.hpp>
+#include <abxy/WorldStage.hpp>
+#include <abxy/Entity2d.hpp>
+#include <abxy/Key.hpp>
+#include <abxy/Texture.hpp>
+#include <abxy/ProjectionOrtho2d.hpp>
 
-#include <gamelib/Sprite.inl>
-#include <gamelib/Primitive.inl>
+#include <abxy/Sprite.hpp>
+#include <abxy/Primitive.hpp>
 
-#include <gamelib/Font.inl>
-#include <gamelib/FormattedTextEntity.inl>
+#include <abxy/Font.hpp>
+#include <abxy/FormattedTextEntity.hpp>
 
 #include <memory>
-
 #include <iostream>
 
 class MyPlayer : public Entity2d {

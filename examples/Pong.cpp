@@ -1,11 +1,16 @@
-#include <gamelib/Game.inl>
-#include <gamelib/WorldStage.inl>
-#include <gamelib/Entity2d.inl>
-#include <gamelib/Key.inl>
-#include <gamelib/ProjectionOrtho2d.inl>
-#include <gamelib/Sprite.inl>
-#include <gamelib/FormattedTextEntity2d.inl>
-#include <gamelib/audio/Sound.inl>
+#include <abxy/Game.hpp>
+#include <abxy/WorldStage.hpp>
+#include <abxy/Entity2d.hpp>
+#include <abxy/Key.hpp>
+#include <abxy/Texture.hpp>
+#include <abxy/ProjectionOrtho2d.hpp>
+
+#include <abxy/Sprite.hpp>
+#include <abxy/Primitive.hpp>
+
+#include <abxy/Font.hpp>
+#include <abxy/FormattedTextEntity2d.hpp>
+#include <abxy/audio/Sound.hpp>
 
 #include <memory>
 #include <iostream>

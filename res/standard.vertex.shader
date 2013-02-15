@@ -1,8 +1,8 @@
-#version 330
+#version 140
 
-layout(location = 0) in vec4 position;
-layout(location = 1) in vec4 color;
-layout(location = 2) in vec2 texcoord;
+in vec4 position;
+in vec4 color;
+in vec2 texcoord;
 
 uniform mat4 model_to_world_matrix;
 

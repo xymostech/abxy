@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/glewinfo.dir/src/glewinfo.c.o  -o bin/glewinfo  -L/home/xymostech/Random/testcompile/glew/cmakebuild/lib -rdynamic lib/libGLEW.so.1.9.0 -lGLU -lGL -lSM -lICE -lX11 -lXext -Wl,-rpath,/home/xymostech/Random/testcompile/glew/cmakebuild/lib 

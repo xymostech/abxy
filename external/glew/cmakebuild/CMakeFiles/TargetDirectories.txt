@@ -1,0 +1,4 @@
+/home/xymostech/Random/testcompile/glew/cmakebuild/CMakeFiles/GLEW.dir
+/home/xymostech/Random/testcompile/glew/cmakebuild/CMakeFiles/GLEW_static.dir
+/home/xymostech/Random/testcompile/glew/cmakebuild/CMakeFiles/glewinfo.dir
+/home/xymostech/Random/testcompile/glew/cmakebuild/CMakeFiles/test.dir

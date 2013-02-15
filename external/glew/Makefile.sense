@@ -1,0 +1,35 @@
+Set version flags
+
+Figure out system
+
+Include system specific stuff
+
+Make the lib directory
+
+build the static and dynamic libraries
+
+Build glewinfo?
+
+
+all ->
+        glew.lib ->
+                lib ->
+                        make lib/ directory
+                lib/LIB.SHARED ->
+                        LIB.SOBJS ->
+                                shared/glew.o ->
+                                        cc -c CFLAGS PICFLAGS CFLAGS.SO glew.c
+                        link LIB.SOBJS to lib/LIB.SHARED
+                lib/LIB.STATIC ->
+                        LIB.OBJS ->
+                                static/glew.o ->
+                                        cc -c -DGLEW_STATIC CFLAGS CFLAGS.SO glew.c
+                        ar LIB.OBJS to lib/LIB.STATIC
+                glew.pc ->
+                        Make glew.pc from glew.pc.in
+        glew.lib.mx ->
+                same as glew.lib, but add -DGLEW_MX to all the compilation
+        glew.bin ->
+                bin/GLEWINFO.BIN ->
+                        cc CFLAGS 
+                bin/VISUALINFO.BIN

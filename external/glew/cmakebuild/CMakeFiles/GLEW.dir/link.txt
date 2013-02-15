@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC    -shared -Wl,-soname,libGLEW.so.1.9 -o lib/libGLEW.so.1.9.0 CMakeFiles/GLEW.dir/src/glew.c.o  -L/home/xymostech/Random/testcompile/glew/cmakebuild/lib -lGLU -lGL -lSM -lICE -lX11 -lXext -Wl,-rpath,/home/xymostech/Random/testcompile/glew/cmakebuild/lib 
