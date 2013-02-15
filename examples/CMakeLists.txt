@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.10)
 project(examples)
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../")
+include_directories(${EXTERNAL_INCLUDE_DIRS})
 
 add_definitions(-g -std=c++11 -Wall -stdlib=libc++)
 
