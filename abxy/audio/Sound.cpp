@@ -1,6 +1,3 @@
-#ifndef SOUND_INL
-#define SOUND_INL
-
 #include <abxy/audio/Sound.hpp>
 
 #include <fstream>
@@ -10,7 +7,6 @@
 #include <vorbis/codec.h>
 #include <vorbis/vorbisfile.h>
 #include <ao/ao.h>
-#include <stdexcept>
 
 namespace {
 
@@ -126,15 +122,14 @@ namespace {
 	}
 
 	void PlaySoundCache(std::string file, std::vector<char>& cache, bool &stop, int volume, bool repeat) {
-		return;
-		//StreamData data;
+		StreamData data;
 
-		//data.file_name = file;
-		//data.begin = cache.cbegin();
-		//data.end = cache.cend();
-		//data.stored = true;
+		data.file_name = file;
+		data.begin = cache.cbegin();
+		data.end = cache.cend();
+		data.stored = true;
 
-		//PlaySound(&data, stop, volume, repeat);
+		PlaySound(&data, stop, volume, repeat);
 	}
 
 	void ReadFile(std::string file, std::vector<char> &store) {
@@ -147,8 +142,6 @@ namespace {
 		store.reserve(size);
 		store.assign(std::istreambuf_iterator<char>(f), std::istreambuf_iterator<char>());
 	}
-
-	void Test() {}
 }
 
 Sound::Sound(std::string file_name, bool should_cache)
@@ -167,8 +160,7 @@ Sound::~Sound() {
 
 void Sound::Play(float volume, bool repeat) {
 	if (is_cached) {
-		std::vector<char> d;
-		std::thread t(PlaySoundCache, file_name, std::ref(d), std::ref(stop), volume * 256, repeat);
+		std::thread t(PlaySoundCache, file_name, std::ref(data), std::ref(stop), volume * 256, repeat);
 		t.detach();
 	} else {
 		std::thread t(PlaySoundFile, file_name, std::ref(stop), volume * 256, repeat);
@@ -179,6 +171,4 @@ void Sound::Play(float volume, bool repeat) {
 void Sound::Stop() {
 	stop = true;
 }
-
-#endif /* SOUND_INL */
 
