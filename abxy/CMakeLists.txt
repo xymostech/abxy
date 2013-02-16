@@ -35,7 +35,7 @@ set(ABXY_SOURCES
     "Font.cpp"                "FileLoader.cpp"
     "App.cpp"                 "File.cpp"
     "ImageDataLoader.cpp"     "Entity2d.cpp"
-    "World.cpp"
+    "World.cpp"               "util/Path.cpp"
 )
 
 include("AddPrefix")
