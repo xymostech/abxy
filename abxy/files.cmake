@@ -43,11 +43,21 @@ set(ABXY_SOURCES
     "GL/GLProgramRef.cpp"
     "GL/GLSamplerRef.cpp"
 
-    "util/Path.cpp"
     "util/Split.cpp"
     "util/Logger.cpp"
 
     "messages/Message.cpp"
 
     "audio/Sound.cpp"
+)
+
+set(ABXY_LINUX_SOURCES
+    "util/Path_linux.cpp"
+)
+
+set(ABXY_MAC_SOURCES
+    "util/Path_mac.cpp"
+)
+
+set(ABXY_WINDOWS_SOURCES
 )

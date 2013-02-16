@@ -14,6 +14,14 @@ add_definitions(-g -std=c++11 -Wall -stdlib=libc++)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/files.cmake")
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set(ABXY_SOURCES ${ABXY_SOURCES} ${ABXY_LINUX_SOURCES})
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(ABXY_SOURCES ${ABXY_SOURCES} ${ABXY_MAC_SOURCES})
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(ABXY_SOURCES ${ABXY_SOURCES} ${ABXY_WINDOWS_SOURCES})
+endif()
+
 include("AddPrefix")
 ADD_PREFIX(ABXY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}" ${ABXY_SOURCES})
 
