@@ -7,6 +7,8 @@ project(abxy)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+add_subdirectory(res)
+
 add_subdirectory(external)
 
 add_subdirectory(examples)
