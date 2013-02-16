@@ -7,8 +7,13 @@
 #define PATH_HPP
 
 #include <string>
+#include <fstream>
 
 namespace Util {
+
+	/* Opens a new file, with filename starting with prefix, into f, and
+	 * returns the final path name. On error, returns the empty string */
+	std::string OpenTempFile(const std::string &prefix, std::ofstream &f);
 
 	/* Gets the path of the currently running executable */
 	std::string GetExecutablePath();

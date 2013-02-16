@@ -1,5 +1,8 @@
 #include <abxy/App.hpp>
 #include <abxy/util/Path.hpp>
+#include <abxy/util/Logger.hpp>
+
+#include <iostream>
 
 #include <ao/ao.h>
 
@@ -38,6 +41,13 @@ void App::Startup() {
 	ao_initialize();
 
 	Util::SetCWD(Util::GetExecutablePath());
+
+	std::cout
+		<< "Logging to: "
+		<< Util::Logger::Setup("/tmp/logger.log")
+		<< std::endl;
+	
+	Util::Logger::Debug("Started logging");
 }
 
 void App::Shutdown() {

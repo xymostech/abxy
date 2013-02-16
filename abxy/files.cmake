@@ -45,6 +45,7 @@ set(ABXY_SOURCES
 
     "util/Path.cpp"
     "util/Split.cpp"
+    "util/Logger.cpp"
 
     "messages/Message.cpp"
 
