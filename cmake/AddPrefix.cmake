@@ -1,0 +1,6 @@
+function(ADD_PREFIX set_variable prefix)
+    foreach(curr ${ARGN})
+        set(${set_variable}_TMP ${${set_variable}_TMP} "${prefix}/${curr}")
+    endforeach(curr)
+    set(${set_variable} ${${set_variable}_TMP} PARENT_SCOPE)
+endfunction(ADD_PREFIX)

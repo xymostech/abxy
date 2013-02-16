@@ -12,7 +12,34 @@ include_directories("${EXTERNAL_INCLUDE_DIRS}")
 
 add_definitions(-g -std=c++11 -Wall -stdlib=libc++)
 
-file(GLOB_RECURSE ABXY_SOURCES "*.cpp")
+set(ABXY_SOURCES
+    "Primitive.cpp"           "Texture.cpp"
+    "util/Split.cpp"          "Mouse.cpp"
+    "TextEntity.cpp"          "Stage.cpp"
+    "WorldStage.cpp"          "Matrix.cpp"
+    "GL/GLVertexArrayRef.cpp" "GL/GLUniformBlockRef.cpp"
+    "GL/GLUniformRef.cpp"     "GL/GLProgram.cpp"
+    "GL/GLShader.cpp"         "GL/GLShaderRef.cpp"
+    "GL/GLAttribRef.cpp"      "GL/GLProgramRef.cpp"
+    "GL/GLSamplerRef.cpp"     "audio/Sound.cpp"
+    "ProjectionOrtho2d.cpp"   "Sprite.cpp"
+    "Projection.cpp"          "SquarePrimitive.cpp"
+    "Game.cpp"                "TextureLoader.cpp"
+    "ProgramLoader.cpp"       "Vector.cpp"
+    "PngLoader.cpp"           "SoundLoader.cpp"
+    "Exceptions.cpp"          "Entity.cpp"
+    "SpriteAnimation.cpp"     "Formatter.cpp"
+    "Key.cpp"                 "FontLoader.cpp"
+    "FormattedTextEntity.cpp" "FormattedTextEntity2d.cpp"
+    "messages/Message.cpp"    "TexturePrimitive.cpp"
+    "Font.cpp"                "FileLoader.cpp"
+    "App.cpp"                 "File.cpp"
+    "ImageDataLoader.cpp"     "Entity2d.cpp"
+    "World.cpp"
+)
+
+include("AddPrefix")
+ADD_PREFIX(ABXY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}" ${ABXY_SOURCES})
 
 add_library(abxy SHARED
     ${ABXY_SOURCES})
