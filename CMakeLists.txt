@@ -1,16 +1,12 @@
 cmake_minimum_required(VERSION 2.8.10)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # TODO: conditionally set variables depending on compiler
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/defines.cmake")
+include("CompilerSetup")
 
 project(abxy)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
-add_subdirectory(res)
-
 add_subdirectory(external)
-
-add_subdirectory(examples)
-
 add_subdirectory(abxy)
+add_subdirectory(res)
+add_subdirectory(examples)
