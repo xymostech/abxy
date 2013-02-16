@@ -10,6 +10,7 @@
 
 namespace Util {
 
+	std::string GetExecutablePath();
 	std::string GetCWD();
 	bool SetCWD(std::string path);
 
