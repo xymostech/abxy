@@ -148,7 +148,7 @@ void Font::InnerDraw() const {
 }
 
 Font::Font(std::string file)
-: Primitive("font")
+: Primitive("res/font")
 {
 	Load(file);
 }

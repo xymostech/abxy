@@ -24,7 +24,7 @@ public:
 	, Entity2d(0, Vector2(0, y), Vector2(1, 0), 0, 0)
 	, direction(1)
 	, flip_cooldown(10)
-	, sprite("test.png")
+	, sprite("res/test.png")
 	{
 	}
 
@@ -85,7 +85,7 @@ public:
 		GetWorld()->Add<MyPlayer>(-20);
 		GetWorld()->Add<MyPlayer>(20);
 
-		auto text = std::make_shared<FormattedTextEntity>(3, "LiberationMono-Regular.ttf");
+		auto text = std::make_shared<FormattedTextEntity>(3, "res/LiberationMono-Regular.ttf");
 
 		text->Format() << "Hello, World!";
 

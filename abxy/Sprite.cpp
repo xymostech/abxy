@@ -1,9 +1,9 @@
 #include <abxy/Sprite.hpp>
 
 Sprite::Sprite(std::string texture_name)
-: Primitive("standard")
-, TexturePrimitive("standard", texture_name)
-, SquarePrimitive("standard")
+: Primitive("res/standard")
+, TexturePrimitive("res/standard", texture_name)
+, SquarePrimitive("res/standard")
 {
 	float varray[] = {
 		0.0, 1.0,

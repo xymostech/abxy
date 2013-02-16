@@ -24,7 +24,7 @@ public:
 	: MessageReceiver("paddle")
 	, Entity(2)
 	, Entity2d(Vector2(left ? -39 : 39, 0), Vector2(), 0, 0)
-	, sprite("white.png")
+	, sprite("res/white.png")
 	, left(left)
 	{
 		
@@ -73,13 +73,13 @@ public:
 	: MessageReceiver("ball")
 	, Entity(1)
 	, Entity2d(Vector2(0, 0), Vector2(1, 1))
-	, sprite("white.png")
+	, sprite("res/white.png")
 	{
 		
 	}
 
 	virtual void Register(World *world) {
-		sound = world->GetParentStage()->GetSoundLoader()->Load("hit.ogg");
+		sound = world->GetParentStage()->GetSoundLoader()->Load("res/hit.ogg");
 
 		sprite.Register(world);
 		Entity2d::Register(world);
@@ -165,7 +165,7 @@ public:
 	Score()
 	: MessageReceiver("score")
 	, Entity(3)
-	, FormattedTextEntity2d("LiberationMono-Regular.ttf", Vector2(-5, 20))
+	, FormattedTextEntity2d("res/LiberationMono-Regular.ttf", Vector2(-5, 20))
 	, left_score(0)
 	, right_score(0)
 	{
