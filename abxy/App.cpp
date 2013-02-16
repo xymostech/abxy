@@ -42,12 +42,9 @@ void App::Startup() {
 
 	Util::SetCWD(Util::GetExecutablePath());
 
-	std::cout
-		<< "Logging to: "
-		<< Util::Logger::Setup("/tmp/logger.log")
-		<< std::endl;
-	
+	std::string logger_path = Util::Logger::Setup("/tmp/logger.log");
 	Util::Logger::Debug("Started logging");
+	std::cout << "Logging to: " << logger_path << std::endl;
 }
 
 void App::Shutdown() {
