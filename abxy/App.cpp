@@ -1,4 +1,6 @@
 #include <abxy/App.hpp>
+#include <abxy/util/Path.hpp>
+
 #include <ao/ao.h>
 
 #ifdef __APPLE__
@@ -34,6 +36,8 @@ void App::Startup() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	ao_initialize();
+
+	Util::SetCWD(Util::GetExecutablePath());
 }
 
 void App::Shutdown() {
