@@ -17,7 +17,6 @@ set(ABXY_SOURCES
     "PngLoader.cpp"
     "SoundLoader.cpp"
     "Exceptions.cpp"
-    "Entity.cpp"
     "SpriteAnimation.cpp"
     "Formatter.cpp"
     "Key.cpp"
@@ -49,6 +48,9 @@ set(ABXY_SOURCES
     "messages/Message.cpp"
 
     "audio/Sound.cpp"
+
+    "entity/Entity.cpp"
+    "entity/PassthroughEntity.cpp"
 )
 
 set(ABXY_LINUX_SOURCES
