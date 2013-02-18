@@ -117,6 +117,12 @@ protected:
 	void AddChild(MessageReceiver *child);
 
 	/**
+	 * Removes a child object
+	 * @param child the child object
+	 */
+	void RemoveChild(MessageReceiver *child);
+
+	/**
 	 * wraps t in a Message and calls SendMessage(name, id, Message(t))
 	 * @param path the path of the objects
 	 * @param id the message id

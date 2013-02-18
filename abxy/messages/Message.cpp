@@ -43,6 +43,21 @@ void MessageReceiver::AddChild(MessageReceiver *child) {
 	child->SetParent(this);
 }
 
+void MessageReceiver::RemoveChild(MessageReceiver *child) {
+	auto range = children.equal_range(child->name);
+
+	auto it = std::get<0>(range);
+	auto end = std::get<1>(range);
+
+	for(; it != end; ++it) {
+		if (it->second == child) {
+			children.erase(it);
+			it->second->SetParent(nullptr);
+			break;
+		}
+	}
+}
+
 void MessageReceiver::Find(std::vector<std::string>::const_iterator it,
                            std::vector<std::string>::const_iterator end,
                            std::set<MessageReceiver*> &found) {
@@ -54,7 +69,11 @@ void MessageReceiver::Find(std::vector<std::string>::const_iterator it,
 	const std::string &s = *it;
 
 	if (s == "..") {
-		parent->Find(it + 1, end, found);
+		if (parent != nullptr) {
+			parent->Find(it + 1, end, found);
+		} else {
+			Find(it + 1, end, found);
+		}
 	} else {
 		auto range = children.equal_range(s);
 
