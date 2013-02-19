@@ -33,6 +33,7 @@ void BranchEntity::Update() {
 void BranchEntity::AddChild(const std::shared_ptr<Entity> &entity) {
 	children.push_back(entity);
 	entity->OnLoad(this);
+	MessageReceiver::AddChild(entity.get());
 }
 
 void BranchEntity::RemoveChild(const std::shared_ptr<Entity> &entity) {
@@ -47,8 +48,10 @@ void BranchEntity::RemoveChild(Entity *entity) {
 	auto it = children.begin(), end = children.end();
 	for (; it != end; ++it) {
 		if (it->get() == entity) {
-			children.erase(it);
+			// Only do this stuff if the entity is found
 			(*it)->OnUnload();
+			MessageReceiver::RemoveChild((*it).get());
+			children.erase(it);
 		}
 	}
 }
