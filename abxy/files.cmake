@@ -51,6 +51,7 @@ set(ABXY_SOURCES
 
     "entity/Entity.cpp"
     "entity/PassthroughEntity.cpp"
+    "entity/BranchEntity.cpp"
 )
 
 set(ABXY_LINUX_SOURCES
