@@ -31,19 +31,3 @@ std::shared_ptr<Projection> WorldStage::GetProjection() {
 	return projection;
 }
 
-TextureLoader *WorldStage::GetTextureLoader() {
-	return &texture_loader;
-}
-
-ProgramLoader *WorldStage::GetProgramLoader() {
-	return &program_loader;
-}
-
-FontLoader *WorldStage::GetFontLoader() {
-	return &font_loader;
-}
-
-SoundLoader *WorldStage::GetSoundLoader() {
-	return &sound_loader;
-}
-
