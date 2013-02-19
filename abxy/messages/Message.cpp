@@ -4,6 +4,16 @@
 
 MessageReceiver::MessageReceiver(std::string name)
 : name(name)
+, makes_level(true)
+, real_child(nullptr)
+{
+
+}
+
+MessageReceiver::MessageReceiver(MessageReceiver *real_child)
+: name("passthrough")
+, makes_level(false)
+, real_child(real_child)
 {
 
 }
@@ -39,6 +49,12 @@ void MessageReceiver::SetParent(MessageReceiver *p) {
 }
 
 void MessageReceiver::AddChild(MessageReceiver *child) {
+	// Find the nearest child that should actually be a level
+	while (!child->MakesLevel()) {
+		child = child->GetRealChild();
+	}
+
+	// If this child makes a level, use it as the real child
 	children.insert(std::make_pair(child->name, child));
 	child->SetParent(this);
 }

@@ -84,6 +84,18 @@ public:
 
 class MessageReceiver {
 	std::string name; /**< The name of the receiver */
+	/**
+	 * Whether or not a receiver should be added as a child node, or if it
+	 * should be skipped over. This allows for in-between nodes that can be
+	 * put in chains but are ignored from a message standpoint.
+	 */
+	bool makes_level;
+	/**
+	 * If a receiver should not be added as a child node, this pointer is
+	 * set to the message receiver that should be added when AddChild is
+	 * called on it.
+	 */
+	MessageReceiver *real_child;
 
 	/**
 	 * A map of children names to children
@@ -140,11 +152,33 @@ protected:
 	 * @param m the message to send
 	 */
 	void SendMessage(std::string path, std::string id, Message m);
+
+	/**
+	 * Checks whether a message receiver should make a level
+	 */
+	bool MakesLevel() const { return makes_level; }
+
+	/**
+	 * If the message receiver shouldn't make a level, this returns a
+	 * pointer to the message receiver that should be added as a child
+	 * instead. By default, it just returns this message receiver.
+	 */
+	MessageReceiver *GetRealChild() { return real_child; }
 public:
 	/**
-	 * Each receiver must specify a name upon creation
+	 * When passed in a name, the message receiver will act as a normal
+	 * receiver, and make_level will be set to true
+	 * @param name The name of this message receiver
 	 */
 	MessageReceiver(std::string name);
+
+	/**
+	 * When passed in a pointer to another receiver, the receiver will set
+	 * make_level to false and act as a passthrough
+	 * @param real_child The passthrough child of this message receiver
+	 */
+	MessageReceiver(MessageReceiver *real_child);
+
 	virtual ~MessageReceiver();
 
 	/**
