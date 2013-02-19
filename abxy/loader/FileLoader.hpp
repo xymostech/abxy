@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include <abxy/BinaryDataLoader.hpp>
+#include <abxy/loader/BinaryDataLoader.hpp>
 
 class FileLoader : public BinaryDataLoader<char> {
 	void Load(std::string file);

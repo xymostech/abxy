@@ -8,7 +8,7 @@
 #include <libpng15/png.h>
 
 #include <abxy/Exceptions.hpp>
-#include <abxy/ImageDataLoader.hpp>
+#include <abxy/loader/ImageDataLoader.hpp>
 
 class PngLoader : public ImageDataLoader {
 	static void ReadData(png_structp pngPtr, png_bytep data, png_size_t length);

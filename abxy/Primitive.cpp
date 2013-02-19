@@ -1,6 +1,6 @@
 #include <abxy/Primitive.hpp>
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 #include <abxy/WorldStage.hpp>
 
 void Primitive::SetupArrays() {

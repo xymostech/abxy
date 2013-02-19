@@ -11,7 +11,7 @@ public:
 	const std::vector<data_type> &GetData() const;
 };
 
-#include <abxy/BinaryDataLoader.inl>
+#include <abxy/loader/BinaryDataLoader.inl>
 
 #endif /* BINARYDATALOADER_HPP */
 

@@ -1,7 +1,7 @@
 #ifndef SOUNDLOADER_HPP
 #define SOUNDLOADER_HPP
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 
 #include <abxy/audio/Sound.hpp>
 

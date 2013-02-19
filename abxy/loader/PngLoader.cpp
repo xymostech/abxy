@@ -1,4 +1,4 @@
-#include <abxy/PngLoader.hpp>
+#include <abxy/loader/PngLoader.hpp>
 
 void PngLoader::ReadData(png_structp pngPtr, png_bytep data, png_size_t length) {
 	png_voidp in = png_get_io_ptr(pngPtr);

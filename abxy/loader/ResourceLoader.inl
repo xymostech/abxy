@@ -1,7 +1,7 @@
 #ifndef RESOURCELOADER_INL
 #define RESOURCELOADER_INL
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 
 template <class T>
 std::shared_ptr<T> ResourceLoader<T>::Load(std::string name) {

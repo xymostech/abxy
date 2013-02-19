@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 
 #include <abxy/GL/GLProgram.hpp>
 #include <abxy/Projection.hpp>

@@ -7,7 +7,7 @@
 #include <abxy/GL/GLSamplerRef.hpp>
 #include <abxy/GL/GLTextureRef.hpp>
 #include <abxy/GL/GLUniformRef.hpp>
-#include <abxy/PngLoader.hpp>
+#include <abxy/loader/PngLoader.hpp>
 
 class Texture {
 	GLTextureRef<GL_TEXTURE_2D> tex;

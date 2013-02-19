@@ -1,4 +1,4 @@
-#include <abxy/ProgramLoader.hpp>
+#include <abxy/loader/ProgramLoader.hpp>
 
 GLProgram *ProgramLoader::GetResource(std::string name) {
 	GLProgram *p = new GLProgram(

@@ -7,10 +7,10 @@
 #include <abxy/World.hpp>
 #include <abxy/Projection.hpp>
 
-#include <abxy/TextureLoader.hpp>
-#include <abxy/ProgramLoader.hpp>
-#include <abxy/FontLoader.hpp>
-#include <abxy/SoundLoader.hpp>
+#include <abxy/loader/TextureLoader.hpp>
+#include <abxy/loader/ProgramLoader.hpp>
+#include <abxy/loader/FontLoader.hpp>
+#include <abxy/loader/SoundLoader.hpp>
 
 class WorldStage : public Stage {
 	World world;

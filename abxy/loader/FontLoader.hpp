@@ -1,7 +1,7 @@
 #ifndef FONTLOADER_HPP
 #define FONTLOADER_HPP
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 #include <abxy/Font.hpp>
 
 class FontLoader : public ResourceLoader<Font> {

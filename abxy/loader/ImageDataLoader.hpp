@@ -1,7 +1,7 @@
 #ifndef IMAGEDATALOADER_HPP
 #define IMAGEDATALOADER_HPP
 
-#include <abxy/BinaryDataLoader.hpp>
+#include <abxy/loader/BinaryDataLoader.hpp>
 
 class ImageDataLoader : public BinaryDataLoader<unsigned char> {
 	int w, h;

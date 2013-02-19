@@ -1,7 +1,7 @@
 #ifndef TEXTURELOADER_HPP
 #define TEXTURELOADER_HPP
 
-#include <abxy/ResourceLoader.hpp>
+#include <abxy/loader/ResourceLoader.hpp>
 
 #include <abxy/Texture.hpp>
 

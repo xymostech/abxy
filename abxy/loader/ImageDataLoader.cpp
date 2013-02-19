@@ -1,4 +1,4 @@
-#include <abxy/ImageDataLoader.hpp>
+#include <abxy/loader/ImageDataLoader.hpp>
 
 void ImageDataLoader::SetSize(int neww, int newh) {
 	if (w < 0) {

@@ -14,7 +14,7 @@ public:
 	std::shared_ptr<T> Load(std::string name);
 };
 
-#include <abxy/ResourceLoader.inl>
+#include <abxy/loader/ResourceLoader.inl>
 
 #endif /* RESOURCELOADER_HPP */
 
