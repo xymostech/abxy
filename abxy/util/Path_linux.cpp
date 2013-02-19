@@ -47,9 +47,7 @@ namespace Util {
 			return "";
 		} else {
 			char_path[ret] = '\0';
-			std::string path(char_path);
-			std::string::size_type t = path.find_last_of('/');
-			return path.substr(0, t);
+			return GetDirectory(char_path);
 		}
 	}
 
@@ -63,6 +61,11 @@ namespace Util {
 
 	bool SetCWD(std::string path) {
 		return chdir(path.c_str()) == 0;
+	}
+
+	std::string GetDirectory(const std::string &file) {
+		std::string::size_type t = file.find_last_of('/');
+		return file.substr(0, t);
 	}
 
 }

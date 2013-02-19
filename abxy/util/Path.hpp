@@ -24,6 +24,9 @@ namespace Util {
 	/* Sets the current working directory. Returns false on failure */
 	bool SetCWD(std::string path);
 
+	/* Gets the directory part of a given file */
+	std::string GetDirectory(std::string file);
+
 }
 
 #endif /* PATH_HPP */
