@@ -1,7 +1,7 @@
 #include <abxy/entity/PassthroughEntity.hpp>
 
 PassthroughEntity::PassthroughEntity(Entity &child)
-: MessageReceiver("passthrough")
+: MessageReceiver(&child)
 , child(child)
 {
 	
