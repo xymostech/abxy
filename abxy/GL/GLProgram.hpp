@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <memory>
+#include <vector>
 
 #include <abxy/GL/GLProgramRef.hpp>
 #include <abxy/GL/GLShader.hpp>
@@ -15,7 +16,7 @@ class GLProgram {
 
 	GLUniformBlockRef global_matrix_uniform;
 public:
-	GLProgram(std::string vertex_shader, std::string fragment_shader);
+	GLProgram(const std::vector<std::shared_ptr<GLShader>> &shaders);
 
 	GLAttribRef GetAttribLocation(std::string name) const;
 	GLUniformRef GetUniformLocation(std::string name) const;

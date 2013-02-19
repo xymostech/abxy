@@ -1,11 +1,9 @@
 #include <abxy/GL/GLProgram.hpp>
 
-GLProgram::GLProgram(std::string vertex_shader, std::string fragment_shader) {
-	GLShader vertex(vertex_shader, GL_VERTEX_SHADER);
-	GLShader fragment(fragment_shader, GL_FRAGMENT_SHADER);
-
-	program.Attach(vertex.GetRef());
-	program.Attach(fragment.GetRef());
+GLProgram::GLProgram(const std::vector<std::shared_ptr<GLShader>> &shaders) {
+	for (auto &shader : shaders) {
+		program.Attach(shader->GetRef());
+	}
 
 	program.Link();
 
@@ -19,8 +17,9 @@ GLProgram::GLProgram(std::string vertex_shader, std::string fragment_shader) {
 
 	global_matrix_uniform = GetUniformBlockIndex("matrices");
 
-	program.Detach(vertex.GetRef());
-	program.Detach(fragment.GetRef());
+	for (auto &shader : shaders) {
+		program.Detach(shader->GetRef());
+	}
 }
 
 GLAttribRef GLProgram::GetAttribLocation(std::string name) const {
