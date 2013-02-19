@@ -19,10 +19,10 @@ public:
 	ProgramLoader *GetProgramLoader() { return program_loader; }
 	FontLoader *GetFontLoader() { return font_loader; }
 	SoundLoader *GetSoundLoader() { return sound_loader; }
-	ShaderLoader<GL_VERTEX_SHADER> *GetVertexShader() {
+	ShaderLoader<GL_VERTEX_SHADER> *GetVertexShaderLoader() {
 		return vertex_shader_loader;
 	}
-	ShaderLoader<GL_FRAGMENT_SHADER> *GetFragmentShader() {
+	ShaderLoader<GL_FRAGMENT_SHADER> *GetFragmentShaderLoader() {
 		return fragment_shader_loader;
 	}
 };

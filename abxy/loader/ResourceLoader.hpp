@@ -12,7 +12,8 @@ protected:
 	virtual T *GetResource(std::string name) = 0;
 public:
 	std::shared_ptr<T> Load(std::string name);
-	std::shared_ptr<T> Load(std::string name, ResourceLoader<T> *cache);
+
+	bool HasLoaded(std::string name);
 };
 
 #include <abxy/loader/ResourceLoader.inl>
