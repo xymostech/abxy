@@ -12,14 +12,6 @@ bool LoaderCache::HasTextureLoaded(std::string name) {
 	}
 }
 
-bool LoaderCache::HasProgramLoaded(std::string name) {
-	if (cache && cache->HasProgramLoaded(name)) {
-		return true;
-	} else {
-		return loader.GetProgramLoader()->HasLoaded(name);
-	}
-}
-
 bool LoaderCache::HasFontLoaded(std::string name) {
 	if (cache && cache->HasFontLoaded(name)) {
 		return true;
@@ -57,14 +49,6 @@ std::shared_ptr<Texture> LoaderCache::LoadTexture(std::string name) {
 		return cache->LoadTexture(name);
 	} else {
 		return loader.GetTextureLoader()->Load(name);
-	}
-}
-
-std::shared_ptr<GLProgram> LoaderCache::LoadProgram(std::string name) {
-	if (cache && cache->HasProgramLoaded(name)) {
-		return cache->LoadProgram(name);
-	} else {
-		return loader.GetProgramLoader()->Load(name);
 	}
 }
 

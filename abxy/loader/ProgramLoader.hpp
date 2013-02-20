@@ -4,16 +4,16 @@
 #include <memory>
 
 #include <abxy/loader/ResourceLoader.hpp>
+#include <abxy/loader/LoaderCache.hpp>
 
 #include <abxy/GL/GLProgram.hpp>
-#include <abxy/Projection.hpp>
 
 class ProgramLoader : public ResourceLoader<GLProgram> {
-	std::shared_ptr<Projection> projection;
+	LoaderCache *loader_cache;
 
 	virtual GLProgram *GetResource(std::string name);
 public:
-	ProgramLoader(std::shared_ptr<Projection> projection);
+	virtual void SetLoader(LoaderCache *loader);
 };
 
 #endif /* PROGRAMLOADER_HPP */
