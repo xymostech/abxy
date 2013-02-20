@@ -2,20 +2,27 @@
 
 BranchEntity::BranchEntity()
 : MessageReceiver("brach")
+, is_loaded(false)
+, store_data(nullptr, nullptr, nullptr)
 {
 	
 }
 
-void BranchEntity::OnLoad(Entity *parent) {
+void BranchEntity::OnLoad(LoadData &data) {
 	for (auto &child : children) {
-		child->OnLoad(this);
+		child->OnLoad(data);
 	}
+
+	is_loaded = true;
+	store_data = data;
 }
 
 void BranchEntity::OnUnload() {
 	for (auto &child : children) {
 		child->OnUnload();
 	}
+
+	is_loaded = false;
 }
 
 void BranchEntity::Draw(Matrix4 model_matrix) const {
@@ -32,7 +39,9 @@ void BranchEntity::Update() {
 
 void BranchEntity::AddChild(const std::shared_ptr<Entity> &entity) {
 	children.push_back(entity);
-	entity->OnLoad(this);
+	if (is_loaded) {
+		entity->OnLoad(store_data);
+	}
 	MessageReceiver::AddChild(entity.get());
 }
 

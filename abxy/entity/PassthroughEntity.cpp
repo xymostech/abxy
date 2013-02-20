@@ -7,8 +7,8 @@ PassthroughEntity::PassthroughEntity(Entity &child)
 	
 }
 
-void PassthroughEntity::OnLoad(Entity *parent) {
-	child.OnLoad(parent);
+void PassthroughEntity::OnLoad(LoadData &data) {
+	child.OnLoad(data);
 }
 
 void PassthroughEntity::OnUnload() {

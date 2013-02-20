@@ -17,6 +17,18 @@
 class BranchEntity : public Entity {
 protected:
 	/**
+	 * stores whether or not we are loaded, so we can do interesting things
+	 * with the loading of children
+	 */
+	bool is_loaded;
+
+	/**
+	 * stores the data we were used to load with, so that if an entity is
+	 * added after we are already loaded in, we can load them as well.
+	 */
+	LoadData store_data;
+
+	/**
 	 * Stores the list of children that this entity contains.
 	 * TODO: figure out what data structure would be best here
 	 */
@@ -32,7 +44,7 @@ public:
 	 * entity as the new parent.
 	 * @param parent The parent entity, currently unused
 	 */
-	virtual void OnLoad(Entity *parent);
+	virtual void OnLoad(LoadData &data);
 	/**
 	 * When called, re-calls OnUnload on all of its children.
 	 */

@@ -3,6 +3,30 @@
 
 #include <abxy/Matrix.hpp>
 #include <abxy/messages/Message.hpp>
+#include <abxy/loader/LoaderCache.hpp>
+#include <abxy/loader/ProgramLoaderCache.hpp>>
+#include <abxy/Projection.hpp>
+
+class Entity;
+
+class LoadData {
+	LoaderCache *loader;
+	ProgramLoaderCache *program_loader;
+	Projection *projection;
+public:
+	LoadData(
+		LoaderCache *loader,
+		ProgramLoaderCache *program_loader,
+		Projection *projection
+	)
+	: loader(loader)
+	, program_loader(program_loader)
+	, projection(projection) {}
+
+	LoaderCache *GetLoader() { return loader; }
+	ProgramLoaderCache *GetProgramLoader() { return program_loader; }
+	Projection *GetProjection() { return projection; }
+};
 
 /**
  * Entity class
@@ -24,7 +48,7 @@ public:
 	 * Called when an entity is added to the scene
 	 * @param parent The parent entity which is loading this entity
 	 */
-	virtual void OnLoad(Entity *parent) = 0;
+	virtual void OnLoad(LoadData &data) = 0;
 	/**
 	 * Called when an entity is removed from the scene
 	 */

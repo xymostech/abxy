@@ -26,7 +26,7 @@ public:
 	/**
 	 * Passes OnLoad calls to the child
 	 */
-	virtual void OnLoad(Entity *parent);
+	virtual void OnLoad(LoadData &data);
 	/**
 	 * Passes OnUnload calls to the child
 	 */
