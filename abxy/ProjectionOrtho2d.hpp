@@ -4,8 +4,6 @@
 #include <abxy/Projection.hpp>
 #include <abxy/GL/GL.hpp>
 
-#include <iostream>
-
 class ProjectionOrtho2d : public Projection {
 	Matrix4 camera_clip_matrix, world_camera_matrix;
 public:
