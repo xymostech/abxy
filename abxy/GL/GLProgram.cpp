@@ -42,8 +42,8 @@ void GLProgram::Unuse() const {
 	program.Unuse();
 }
 
-void GLProgram::Setup(std::shared_ptr<Projection> projection) {
-	BindUniformBlock(projection->GetUniformBindingIndex());
+void GLProgram::Setup(Projection &projection) {
+	BindUniformBlock(projection.GetUniformBindingIndex());
 }
 
 void GLProgram::BindUniformBlock(GLuint binding_block) {

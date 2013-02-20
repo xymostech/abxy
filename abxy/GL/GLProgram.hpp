@@ -25,7 +25,7 @@ public:
 	void Use() const;
 	void Unuse() const;
 
-	void Setup(std::shared_ptr<Projection> projection);
+	void Setup(Projection &projection);
 
 	void BindUniformBlock(GLuint binding_block);
 
