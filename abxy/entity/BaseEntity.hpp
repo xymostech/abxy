@@ -1,0 +1,28 @@
+#ifndef BASEENTITY_HPP
+#define BASEENTITY_HPP
+
+#include <abxy/entity/Entity.hpp>
+
+#include <abxy/ProjectionIdentity.hpp>
+
+class BaseEntity : public Entity {
+	ProjectionIdentity projection;
+	ProgramLoaderCache program_loader;
+	LoaderCache loader;
+
+	Entity *child;
+public:
+	BaseEntity();
+
+	virtual void OnLoad(LoadData &data) {};
+	virtual void OnUnload() {};
+	virtual void Draw(Matrix4 model_matrix) const {};
+
+	virtual void Draw() const;
+	virtual void Update();
+
+	virtual void SetChild(Entity *new_child);
+};
+
+#endif /* BASEENTITY_HPP */
+
