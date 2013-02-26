@@ -18,7 +18,6 @@ set(ABXY_SOURCES
     #"WorldStage.cpp"
     #"FormattedTextEntity.cpp"
     #"FormattedTextEntity2d.cpp"
-    #"World.cpp"
     #"Entity2d.cpp"
 
     #"Sprite.cpp"
@@ -47,6 +46,7 @@ set(ABXY_SOURCES
     "entity/Entity.cpp"
     "entity/PassthroughEntity.cpp"
     "entity/BranchEntity.cpp"
+    "entity/WorldEntity.cpp"
 
     "loader/TextureLoader.cpp"
     "loader/ProgramLoader.cpp"
