@@ -33,7 +33,7 @@ public:
 	void DrawChar(char c, float size, Matrix4 model_matrix) const;
 	void DrawString(const std::string &s, float size, Matrix4 model_matrix) const;
 
-	void Register(World *world);
+	//void Register(World *world);
 };
 
 #endif /* FONT_HPP */

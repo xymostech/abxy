@@ -2,7 +2,7 @@
 #define ENTITY2D_HPP
 
 #include <abxy/Vector.hpp>
-#include <abxy/Entity.hpp>
+#include <abxy/entity/Entity.hpp>
 
 class Entity2d : virtual public Entity {
 	Vector2 position;

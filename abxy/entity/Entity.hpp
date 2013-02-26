@@ -4,7 +4,7 @@
 #include <abxy/Matrix.hpp>
 #include <abxy/messages/Message.hpp>
 #include <abxy/loader/LoaderCache.hpp>
-#include <abxy/loader/ProgramLoaderCache.hpp>>
+#include <abxy/loader/ProgramLoaderCache.hpp>
 #include <abxy/Projection.hpp>
 
 class Entity;

@@ -7,7 +7,6 @@
 #include <abxy/GL/GLProgram.hpp>
 #include <abxy/GL/GLBufferRef.hpp>
 #include <abxy/GL/GLVertexArrayRef.hpp>
-#include <abxy/World.hpp>
 
 struct AttribData {
 	std::string name;
@@ -47,7 +46,7 @@ public:
 	               const std::vector<float> &data);
 	void AddIndices(const std::vector<unsigned int> &indices);
 
-	virtual void Register(World *world);
+	//virtual void Register(World *world);
 
 	virtual void DrawAll(const Matrix4 &model_matrix) const;
 	virtual void DrawIndices(const Matrix4 &model_matrix,

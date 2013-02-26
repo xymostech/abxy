@@ -13,14 +13,14 @@ class Loader {
 	ShaderLoader<GL_VERTEX_SHADER> vertex_shader_loader;
 	ShaderLoader<GL_FRAGMENT_SHADER> fragment_shader_loader;
 public:
-	TextureLoader *GetTextureLoader() { return texture_loader; }
-	FontLoader *GetFontLoader() { return font_loader; }
-	SoundLoader *GetSoundLoader() { return sound_loader; }
+	TextureLoader *GetTextureLoader() { return &texture_loader; }
+	FontLoader *GetFontLoader() { return &font_loader; }
+	SoundLoader *GetSoundLoader() { return &sound_loader; }
 	ShaderLoader<GL_VERTEX_SHADER> *GetVertexShaderLoader() {
-		return vertex_shader_loader;
+		return &vertex_shader_loader;
 	}
 	ShaderLoader<GL_FRAGMENT_SHADER> *GetFragmentShaderLoader() {
-		return fragment_shader_loader;
+		return &fragment_shader_loader;
 	}
 };
 
