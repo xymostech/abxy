@@ -5,22 +5,18 @@
 #include <iostream>
 
 #include <abxy/App.hpp>
-#include <abxy/Stage.hpp>
+#include <abxy/entity/BaseEntity.hpp>
 
-#include <abxy/messages/Message.hpp>
-
-class Game : public App, virtual public MessageReceiver {
+class Game : public App {
 	float sleep_time;
-	Stage *current_stage;
+	BaseEntity base;
 public:
 	Game(float fps);
-	virtual ~Game() = 0;
 
 	virtual void Update();
-	virtual void Draw();
+	virtual void Draw() const;
 
-	virtual void SetStage(Stage *new_stage);
-	virtual Stage *GetStage();
+	BaseEntity *GetBase() { return &base; }
 };
 
 #endif /* GAME_HPP */
