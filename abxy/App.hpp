@@ -13,7 +13,7 @@ public:
 	virtual bool IsOpen();
 
 	virtual void Update();
-	virtual void Draw();
+	virtual void Draw() const;
 };
 
 #endif /* APP_HPP */

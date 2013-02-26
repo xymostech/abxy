@@ -62,7 +62,7 @@ void App::Update() {
 
 }
 
-void App::Draw() {
+void App::Draw() const {
 
 }
 

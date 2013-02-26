@@ -1,7 +1,7 @@
 #include <abxy/Game.hpp>
 
 Game::Game(float fps)
-, App()
+: App()
 , sleep_time(1 / fps)
 {
 	
