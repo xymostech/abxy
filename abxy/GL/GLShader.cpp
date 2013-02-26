@@ -2,10 +2,12 @@
 
 #include <stdexcept>
 
+#include <abxy/util/File.hpp>
+
 GLShader::GLShader(std::string file, GLenum shader_type)
 : shader(shader_type)
 {
-	std::string file_data = File::Read(file);
+	std::string file_data = Util::Read(file);
 
 	shader.SetSource(file_data);
 	shader.Compile();

@@ -11,7 +11,6 @@ set(ABXY_SOURCES
     "Key.cpp"
     #"Font.cpp"
     "App.cpp"
-    "File.cpp"
 
     #"TextEntity.cpp"
     #"Stage.cpp"
@@ -38,6 +37,8 @@ set(ABXY_SOURCES
 
     "util/Split.cpp"
     "util/Logger.cpp"
+    "util/File.cpp"
+    # "util/Path_{OS}.cpp"
 
     "messages/Message.cpp"
 

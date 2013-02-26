@@ -4,7 +4,6 @@
 #include <string>
 
 #include <abxy/GL/GLShaderRef.hpp>
-#include <abxy/File.hpp>
 
 class GLShader {
 	GLShaderRef shader;

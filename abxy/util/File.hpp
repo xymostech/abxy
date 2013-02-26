@@ -4,8 +4,10 @@
 #include <iostream>
 #include <string>
 
-namespace File {
+namespace Util {
+
 	std::string Read(std::string filename);
+
 }
 
 #endif /* FILE_HPP */

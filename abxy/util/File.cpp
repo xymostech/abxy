@@ -1,10 +1,11 @@
-#include <abxy/File.hpp>
+#include <abxy/util/File.hpp>
 
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
 
-namespace File {
+namespace Util {
+
 	std::string Read(std::string filename) {
 		std::ifstream f(filename.c_str(), std::ios::binary);
 
@@ -16,5 +17,6 @@ namespace File {
 		buffer << f.rdbuf();
 		return buffer.str();
 	}
+
 }
 
