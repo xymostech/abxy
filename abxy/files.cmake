@@ -6,7 +6,6 @@ set(ABXY_SOURCES
     "Projection.cpp"
     "Game.cpp"
     "Vector.cpp"
-    "Exceptions.cpp"
     "Formatter.cpp"
     "Key.cpp"
     #"Font.cpp"

@@ -7,7 +7,6 @@
 
 #include <libpng15/png.h>
 
-#include <abxy/Exceptions.hpp>
 #include <abxy/loader/ImageDataLoader.hpp>
 
 class PngLoader : public ImageDataLoader {

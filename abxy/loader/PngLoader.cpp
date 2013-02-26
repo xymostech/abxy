@@ -1,5 +1,7 @@
 #include <abxy/loader/PngLoader.hpp>
 
+#include <stdexcept>
+
 void PngLoader::ReadData(png_structp pngPtr, png_bytep data, png_size_t length) {
 	png_voidp in = png_get_io_ptr(pngPtr);
 	((std::istream*)in)->read((char *)data, length);
@@ -94,10 +96,10 @@ void PngLoader::Load(std::string filename) {
 		try {
 			Load(f);
 		} catch (std::exception &ex) {
-			throw FileLoadError(filename);
+			throw std::runtime_error("Error loading: " + filename);
 		}
 	} else {
-		throw FileLoadError(filename);
+		throw std::runtime_error("Error loading: " + filename);
 	}
 }
 

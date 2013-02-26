@@ -1,6 +1,6 @@
 #include <abxy/Font.hpp>
 
-#include <abxy/Exceptions.hpp>
+#include <stdexcept>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -17,12 +17,14 @@ void Font::Load(std::string file) {
 
 	error = FT_New_Face(library, file.c_str(), 0, &face);
 	if (error) {
-		throw FileLoadError(std::string("Error reading font: ") + file);
+		throw std::runtime_error(
+			"Error reading font from file: " + file
+		);
 	}
 
 	error = FT_Set_Pixel_Sizes(face, 0, 64);
 	if (error) {
-		throw FileLoadError(
+		throw std::runtime_error(
 			"Error setting font sizes for: " + file
 		);
 	}
@@ -45,8 +47,8 @@ void Font::Load(std::string file) {
 
 		error = FT_Load_Glyph(face, index, FT_LOAD_RENDER);
 		if (error) {
-			throw FileLoadError(
-				std::string("Error loading character '") +
+			throw std::runtime_error(
+				"Error loading character '" +
 				c + "' from file: " + file
 			);
 		}
