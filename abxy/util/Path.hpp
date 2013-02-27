@@ -25,7 +25,7 @@ namespace Util {
 	bool SetCWD(std::string path);
 
 	/* Gets the directory part of a given file */
-	std::string GetDirectory(std::string file);
+	std::string GetDirectory(const std::string &file);
 
 }
 

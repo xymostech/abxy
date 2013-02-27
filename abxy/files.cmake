@@ -1,13 +1,17 @@
 set(ABXY_SOURCES
-    "Texture.cpp"
-    "Mouse.cpp"
-    "ProjectionOrtho2d.cpp"
-    "Projection.cpp"
+    "App.cpp"
     "Game.cpp"
     "Formatter.cpp"
+
+    "ProjectionIdentity.cpp"
+    "ProjectionOrtho2d.cpp"
+    "Projection.cpp"
+
     "Font.cpp"
+    "Texture.cpp"
+
+    "Mouse.cpp"
     "Key.cpp"
-    "App.cpp"
 
     #"TextEntity.cpp"
     #"Stage.cpp"
@@ -44,6 +48,7 @@ set(ABXY_SOURCES
     "entity/Entity.cpp"
     "entity/PassthroughEntity.cpp"
     "entity/BranchEntity.cpp"
+    "entity/BaseEntity.cpp"
     "entity/WorldEntity.cpp"
 
     "loader/TextureLoader.cpp"
@@ -53,6 +58,8 @@ set(ABXY_SOURCES
     "loader/FontLoader.cpp"
     "loader/FileLoader.cpp"
     "loader/ImageDataLoader.cpp"
+    "loader/LoaderCache.cpp"
+    "loader/ProgramLoaderCache.cpp"
 
     "math/Vector2.cpp"
     "math/Vector3.cpp"
