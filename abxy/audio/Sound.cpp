@@ -96,8 +96,9 @@ namespace {
 
 				int16_t *samples = reinterpret_cast<int16_t*>(&buffer[0]);
 
-				for (int i = 0; i < ret / sizeof(*samples); ++i) {
-					*samples++ = (((*samples) * volume + 128) >> 8);
+				for (unsigned int i = 0; i < ret / sizeof(*samples); ++i) {
+					*samples = (((*samples) * volume + 128) >> 8);
+					samples++;
 				}
 
 				ao_play(device, buffer, ret);

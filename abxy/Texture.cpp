@@ -12,7 +12,7 @@ void Texture::LoadFromFile(std::string filename) {
 	LoadFromData(data, w, h, GL_RGBA);
 }
 
-void Texture::LoadFromData(const unsigned char const *data, int w, int h, GLenum format) {
+void Texture::LoadFromData(const unsigned char *data, int w, int h, GLenum format) {
 	tex.Bind();
 
 	tex.SetData2D(0, GL_RGBA, w, h, format, GL_UNSIGNED_BYTE, data);
@@ -35,7 +35,7 @@ Texture::Texture(std::string filename) {
 	Load(filename);
 }
 
-Texture::Texture(const unsigned char const *data, int w, int h, GLenum format) {
+Texture::Texture(const unsigned char *data, int w, int h, GLenum format) {
 	Load(data, w, h, format);
 }
 
@@ -44,7 +44,7 @@ void Texture::Load(std::string filename) {
 	SetupSampler();
 }
 
-void Texture::Load(const unsigned char const *data, int w, int h, GLenum format) {
+void Texture::Load(const unsigned char *data, int w, int h, GLenum format) {
 	LoadFromData(data, w, h, format);
 	SetupSampler();
 }

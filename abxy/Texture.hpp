@@ -15,16 +15,16 @@ class Texture {
 
 	template <typename data_loader>
 	void LoadFromFile(std::string filename);
-	void LoadFromData(const unsigned char * const data, int w, int h, GLenum format);
+	void LoadFromData(const unsigned char *data, int w, int h, GLenum format);
 
 	void SetupSampler();
 public:
 	Texture();
 	Texture(std::string filename);
-	Texture(const unsigned char * const data, int w, int h, GLenum format);
+	Texture(const unsigned char *data, int w, int h, GLenum format);
 
 	void Load(std::string filename);
-	void Load(const unsigned char * const data, int w, int h, GLenum format);
+	void Load(const unsigned char *data, int w, int h, GLenum format);
 
 	void Parameterf(GLenum parameter, GLfloat value);
 	void Parameteri(GLenum parameter, GLint value);

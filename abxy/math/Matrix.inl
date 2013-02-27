@@ -35,8 +35,8 @@ T &Column<T, m>::w() {
 
 template <typename T, unsigned m, unsigned n>
 Matrix<T, m, n>::Matrix() {
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (unsigned int i = 0; i < n; ++i) {
+		for (unsigned int j = 0; j < m; ++j) {
 			mat[i][j] = 0.0;
 		}
 	}
@@ -44,8 +44,8 @@ Matrix<T, m, n>::Matrix() {
 
 template <typename T, unsigned m, unsigned n>
 Matrix<T, m, n>::Matrix(float diag) {
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (unsigned int i = 0; i < n; ++i) {
+		for (unsigned int j = 0; j < m; ++j) {
 			mat[i][j] = (i == j) ? diag : 0.0;
 		}
 	}
@@ -76,8 +76,8 @@ template <typename T, unsigned m, unsigned n>
 Matrix<T, m, n> Matrix<T, m, n>::operator+(const Matrix<T, m, n> &add) const {
 	Matrix<T, m, n> ret;
 
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (unsigned int i = 0; i < n; ++i) {
+		for (unsigned int j = 0; j < m; ++j) {
 			ret.mat[i][j] = mat[i][j] + add.mat[i][j];
 		}
 	}
@@ -96,10 +96,10 @@ template <unsigned o>
 Matrix<T, m, o> Matrix<T, m, n>::operator*(const Matrix<T, n, o> &mult) const {
 	Matrix<T, m, o> ret;
 
-	for (int i = 0; i < m; ++i) {
-		for (int j = 0; j < o; ++j) {
+	for (unsigned int i = 0; i < m; ++i) {
+		for (unsigned int j = 0; j < o; ++j) {
 			ret[j][i] = 0;
-			for (int k = 0; k < n; ++k) {
+			for (unsigned int k = 0; k < n; ++k) {
 				ret[j][i] += mat[k][i] * mult[j][k];
 			}
 		}
@@ -112,8 +112,8 @@ template <typename T, unsigned m, unsigned n>
 Matrix<T, m, n> Matrix<T, m, n>::operator*(const T &mult) const {
 	Matrix<T, m, n> ret;
 
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (unsigned int i = 0; i < n; ++i) {
+		for (unsigned int j = 0; j < m; ++j) {
 			ret[i][j] = mat[i][j] * mult;
 		}
 	}

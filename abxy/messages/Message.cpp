@@ -37,7 +37,8 @@ void MessageReceiver::SendMessage(std::string path, std::string id, Message m) {
 }
 
 void MessageReceiver::ReceiveMessage(std::string id, Message m) {
-
+	(void)id;
+	(void)m;
 }
 
 const std::string &MessageReceiver::GetName() {

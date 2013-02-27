@@ -10,7 +10,7 @@ set(version_SO_VERSION "${version_MAJOR}.${version_MINOR}.${version_MICRO}")
 include_directories("${CMAKE_SOURCE_DIR}")
 include_directories("${EXTERNAL_INCLUDE_DIRS}")
 
-add_definitions(-g -std=c++11 -Wall -stdlib=libc++)
+add_definitions(-g -std=c++11 -Wall -Wextra -Werror -stdlib=libc++)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/files.cmake")
 

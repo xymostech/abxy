@@ -14,9 +14,9 @@ class BaseEntity : public Entity {
 public:
 	BaseEntity();
 
-	virtual void OnLoad(LoadData &data) {};
+	virtual void OnLoad(LoadData &data) { (void)data; };
 	virtual void OnUnload() {};
-	virtual void Draw(Matrix4 model_matrix) const {};
+	virtual void Draw(Matrix4 model_matrix) const { (void)model_matrix; };
 
 	virtual void Draw() const;
 	virtual void Update();
