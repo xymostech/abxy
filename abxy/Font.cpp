@@ -41,14 +41,14 @@ void Font::Load(std::string file) {
 		'?', '`', '~', '\'', '\\', ' ',
 	};
 
-	int max_width = 0, max_height = 0;
+	unsigned int max_width = 0, max_height = 0;
 	for (char c : chars) {
 		FT_UInt index = FT_Get_Char_Index(face, c);
 
 		error = FT_Load_Glyph(face, index, FT_LOAD_RENDER);
 		if (error) {
 			throw std::runtime_error(
-				"Error loading character '" +
+				std::string("Error loading character '") +
 				c + "' from file: " + file
 			);
 		}
@@ -189,18 +189,18 @@ void Font::DrawString(const std::string &s, float size, Matrix4 model_matrix) co
 	}
 }
 
-void Font::Register(World *world) {
-	Primitive::Register(world);
+//void Font::Register(World *world) {
+	//Primitive::Register(world);
 
-	GLUniformRef sampler_ref = program->GetUniformLocation("textureSampler");
-	tex.BindSampler(sampler_ref);
+	//GLUniformRef sampler_ref = program->GetUniformLocation("textureSampler");
+	//tex.BindSampler(sampler_ref);
 
-	tex_size_loc = program->GetUniformLocation("texture_size");
+	//tex_size_loc = program->GetUniformLocation("texture_size");
 
-	program->Use();
-	tex_size_loc.Set2i(buffer_width, buffer_height);
-	program->Unuse();
+	//program->Use();
+	//tex_size_loc.Set2i(buffer_width, buffer_height);
+	//program->Unuse();
 
-	tex_offset_loc = program->GetUniformLocation("texture_offset");
-}
+	//tex_offset_loc = program->GetUniformLocation("texture_offset");
+//}
 

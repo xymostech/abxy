@@ -17,8 +17,8 @@ struct CharData {
 class Font : protected Primitive {
 	std::map<char, CharData> char_data;
 
-	int char_height, char_width;
-	int buffer_height, buffer_width;
+	unsigned int char_height, char_width;
+	unsigned int buffer_height, buffer_width;
 
 	GLUniformRef tex_size_loc, tex_offset_loc;
 

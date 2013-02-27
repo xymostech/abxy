@@ -5,8 +5,8 @@ set(ABXY_SOURCES
     "Projection.cpp"
     "Game.cpp"
     "Formatter.cpp"
+    "Font.cpp"
     "Key.cpp"
-    #"Font.cpp"
     "App.cpp"
 
     #"TextEntity.cpp"
@@ -16,8 +16,8 @@ set(ABXY_SOURCES
     #"FormattedTextEntity2d.cpp"
     #"Entity2d.cpp"
 
+    "Primitive.cpp"
     #"Sprite.cpp"
-    #"Primitive.cpp"
     #"SquarePrimitive.cpp"
     #"TexturePrimitive.cpp"
     #"SpriteAnimation.cpp"
