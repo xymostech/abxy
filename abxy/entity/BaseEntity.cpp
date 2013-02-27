@@ -1,20 +1,23 @@
 #include <abxy/entity/BaseEntity.hpp>
 
 BaseEntity::BaseEntity()
-: child(nullptr)
+: MessageReceiver("base")
+, program_loader(projection)
+, child(nullptr)
 {
 	
 }
 
 void BaseEntity::Draw() const {
 	if (child) {
-		child->Draw();
+		Matrix4 matrix(1.0);
+		child->Draw(matrix);
 	}
 }
 
 void BaseEntity::Update() {
 	if (child) {
-		child->Draw();
+		child->Update();
 	}
 }
 
@@ -29,9 +32,8 @@ void BaseEntity::SetChild(Entity *new_child) {
 
 	if (new_child) {
 		try {
-			new_child->OnLoad(
-				LoadData(&loader, &program_loader, &projection)
-			);
+			LoadData data(&loader, &program_loader, &projection);
+			new_child->OnLoad(data);
 		} catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 			exit(1);
