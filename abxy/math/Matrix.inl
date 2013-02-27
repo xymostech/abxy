@@ -4,12 +4,12 @@
 #include "Matrix.hpp"
 
 template <typename T, unsigned m>
-T &Column<T, m>::operator[](const int &row) {
+T &Column<T, m>::operator[](int row) {
 	return col[row];
 }
 
 template <typename T, unsigned m>
-const T &Column<T, m>::operator[](const int &row) const {
+const T &Column<T, m>::operator[](int row) const {
 	return col[row];
 }
 
@@ -63,12 +63,12 @@ Matrix<T, m, n> &Matrix<T, m, n>::operator=(const Matrix<T, m, n> &copy) {
 }
 
 template <typename T, unsigned m, unsigned n>
-Column<T, m> &Matrix<T, m, n>::operator[](const int &col) {
+Column<T, m> &Matrix<T, m, n>::operator[](int col) {
 	return mat[col];
 }
 
 template <typename T, unsigned m, unsigned n>
-const Column<T, m> &Matrix<T, m, n>::operator[](const int &col) const {
+const Column<T, m> &Matrix<T, m, n>::operator[](int col) const {
 	return mat[col];
 }
 

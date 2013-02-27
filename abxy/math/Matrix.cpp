@@ -1,7 +1,9 @@
 #include "Matrix.hpp"
 
+#include <cmath>
+
 template <>
-void Matrix4::Translate(const Vector3 &trans) {
+Matrix4 &Matrix4::Translate(const Vector3 &trans) {
 	Matrix4 mult(1.0);
 
 	mult[3][0] = trans.x;
@@ -9,10 +11,12 @@ void Matrix4::Translate(const Vector3 &trans) {
 	mult[3][2] = trans.z;
 
 	*this = *this * mult;
+
+	return *this;
 }
 
 template <>
-void Matrix4::Scale(const Vector3 &scale) {
+Matrix4 &Matrix4::Scale(const Vector3 &scale) {
 	Matrix4 mult(1.0);
 
 	mult[0][0] = scale.x;
@@ -20,10 +24,12 @@ void Matrix4::Scale(const Vector3 &scale) {
 	mult[2][2] = scale.z;
 
 	*this = *this * mult;
+
+	return *this;
 }
 
 template <>
-void Matrix4::Rotate(const Vector3 &axis, float angle) {
+Matrix4 &Matrix4::Rotate(const Vector3 &axis, float angle) {
 	Matrix4 mult(1.0);
 
 	float x = axis.x;
@@ -47,4 +53,6 @@ void Matrix4::Rotate(const Vector3 &axis, float angle) {
 	mult[2][2] = z*z + (1 - z*z) * c;
 
 	*this = *this * mult;
+
+	return *this;
 }
