@@ -50,6 +50,7 @@ set(ABXY_SOURCES
     "entity/BranchEntity.cpp"
     "entity/BaseEntity.cpp"
     "entity/WorldEntity.cpp"
+    "entity/Entity3d.cpp"
 
     "loader/TextureLoader.cpp"
     "loader/ProgramLoader.cpp"
