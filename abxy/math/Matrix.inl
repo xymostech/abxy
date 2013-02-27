@@ -1,7 +1,7 @@
 #ifndef MATRIX_INL
 #define MATRIX_INL
 
-#include <abxy/Matrix.hpp>
+#include "Matrix.hpp"
 
 template <typename T, unsigned m>
 T &Column<T, m>::operator[](const int &row) {

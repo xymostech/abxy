@@ -1,8 +1,6 @@
 #ifndef VECTOR2_HPP
 #define VECTOR2_HPP
 
-#include <cmath>
-
 class Vector2 {
 public:
 	float x, y;
@@ -27,20 +25,6 @@ public:
 	float SqNorm() const;
 	float Norm() const;
 	Vector2 &Normalize();
-};
-
-class Vector3 {
-public:
-	float x, y, z;
-
-	Vector3(float x, float y, float z);
-};
-
-class Vector4 {
-public:
-	float x, y, z, w;
-
-	Vector4(float x, float y, float z, float w);
 };
 
 #endif /* VECTOR2_HPP */

@@ -4,7 +4,7 @@
 #include <cstring>
 #include <cmath>
 
-#include <abxy/Vector.hpp>
+#include <abxy/math/Vector3.hpp>
 
 template <typename T, unsigned m>
 class Column {
@@ -53,7 +53,7 @@ public:
 
 typedef Matrix<float, 4, 4> Matrix4;
 
-#include <abxy/Matrix.inl>
+#include "Matrix.inl"
 
 #endif /* MATRIX_HPP */
 

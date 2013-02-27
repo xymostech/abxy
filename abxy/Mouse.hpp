@@ -1,7 +1,7 @@
 #ifndef MOUSE_HPP
 #define MOUSE_HPP
 
-#include <abxy/Vector.hpp>
+#include <abxy/math/Vector2.hpp>
 
 namespace Mouse {
 	Vector2 Position();

@@ -1,7 +1,7 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include <abxy/Matrix.hpp>
+#include <abxy/math/Matrix.hpp>
 #include <abxy/messages/Message.hpp>
 #include <abxy/loader/LoaderCache.hpp>
 #include <abxy/loader/ProgramLoaderCache.hpp>

@@ -1,4 +1,6 @@
-#include <abxy/Vector.hpp>
+#include "Vector2.hpp"
+
+#include <cmath>
 
 Vector2::Vector2()
 : x(0)
@@ -83,21 +85,3 @@ Vector2 &Vector2::Normalize() {
 	*this /= Norm();
 	return *this;
 }
-
-Vector3::Vector3(float x, float y, float z)
-: x(x)
-, y(y)
-, z(z)
-{
-	
-}
-
-Vector4::Vector4(float x, float y, float z, float w)
-: x(x)
-, y(y)
-, z(z)
-, w(w)
-{
-	
-}
-

@@ -1,11 +1,9 @@
 set(ABXY_SOURCES
     "Texture.cpp"
     "Mouse.cpp"
-    "Matrix.cpp"
     "ProjectionOrtho2d.cpp"
     "Projection.cpp"
     "Game.cpp"
-    "Vector.cpp"
     "Formatter.cpp"
     "Key.cpp"
     #"Font.cpp"
@@ -55,6 +53,11 @@ set(ABXY_SOURCES
     "loader/FontLoader.cpp"
     "loader/FileLoader.cpp"
     "loader/ImageDataLoader.cpp"
+
+    "math/Vector2.cpp"
+    "math/Vector3.cpp"
+    "math/Vector4.cpp"
+    "math/Matrix.cpp"
 )
 
 set(ABXY_LINUX_SOURCES

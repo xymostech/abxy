@@ -6,7 +6,7 @@
 
 #include <abxy/GL/GL.hpp>
 #include <abxy/GL/GLBufferRef.hpp>
-#include <abxy/Matrix.hpp>
+#include <abxy/math/Matrix.hpp>
 
 class Projection {
 	static std::vector<Projection*> active_projections;
