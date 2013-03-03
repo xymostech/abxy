@@ -14,13 +14,31 @@
 #define MIN_GL_MINOR 1
 #endif
 
+App::App() {
+	glfwInit();
+
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, MIN_GL_MAJOR);
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, MIN_GL_MINOR);
+	glfwOpenWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+	glfwOpenWindow(1, 1, 8, 8, 8, 8, 16, 0, GLFW_WINDOW);
+
+#ifndef __APPLE__
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (err != GLEW_OK) {
+		printf("Error loading GLEW: %s\n", glewGetErrorString(err));
+	}
+#endif
+
+	glfwCloseWindow();
+}
+
 App::~App() {
 	Shutdown();
 }
 
 void App::Startup() {
-	glfwInit();
-
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, MIN_GL_MAJOR);
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, MIN_GL_MINOR);
 	glfwOpenWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);

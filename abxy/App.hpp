@@ -5,10 +5,11 @@
 
 class App {
 public:
+	App();
 	virtual ~App();
 
 	virtual void Startup();
-	virtual void Shutdown();
+	void Shutdown();
 
 	virtual bool IsOpen();
 
