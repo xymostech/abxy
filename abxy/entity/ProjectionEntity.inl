@@ -2,7 +2,8 @@
 
 template <class ProjectionClass>
 ProjectionEntity<ProjectionClass>::ProjectionEntity(Entity &entity)
-: PassthroughEntity(entity)
+: MessageReceiver("projection")
+, PassthroughEntity(entity)
 , loader(projection)
 {
 	

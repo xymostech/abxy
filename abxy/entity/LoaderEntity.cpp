@@ -1,7 +1,8 @@
 #include <abxy/entity/LoaderEntity.hpp>
 
 LoaderEntity::LoaderEntity(Entity &entity)
-: PassthroughEntity(entity)
+: MessageReceiver("loader")
+, PassthroughEntity(entity)
 {
 	
 }

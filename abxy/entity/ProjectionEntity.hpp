@@ -4,12 +4,12 @@
 #include <abxy/entity/PassthroughEntity.hpp>
 
 #include <abxy/Projection.hpp>
-#include <abxy/loader/ProgramLoader.hpp>
+#include <abxy/loader/ProgramLoaderCache.hpp>
 
 template <class ProjectionClass>
 class ProjectionEntity : public PassthroughEntity {
 	ProjectionClass projection;
-	ProgramLoader loader;
+	ProgramLoaderCache loader;
 public:
 	ProjectionEntity(Entity &entity);
 

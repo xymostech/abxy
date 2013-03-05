@@ -5,7 +5,7 @@
 
 #include <abxy/loader/LoaderCache.hpp>
 
-class LoaderEntity {
+class LoaderEntity : public PassthroughEntity {
 	LoaderCache cache;
 public:
 	LoaderEntity(Entity &entity);
