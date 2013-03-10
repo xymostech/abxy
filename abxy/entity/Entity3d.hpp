@@ -11,10 +11,15 @@ public:
 	Entity3d();
 	Entity3d(const Vector3 &position);
 
+	virtual void OnLoad(LoadData &data) override { (void)data; }
+	virtual void OnUnload() override {}
+
 	Vector3 &Position() { return position; }
 	const Vector3 &Position() const { return position; }
 
-	Matrix4 GetTransform() const;
+	virtual void Update() override {}
+
+	virtual Matrix4 GetTransform() const;
 };
 
 #endif /* ENTITY3D_HPP */
