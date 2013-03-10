@@ -1,13 +1,13 @@
 #include "Entity3d.hpp"
 
-Entity3d::Entity3d(const std::string &name)
-: MessageReceiver(name)
+Entity3d::Entity3d()
+: MessageReceiver("entity3d")
 , position()
 {
 }
 
-Entity3d::Entity3d(const std::string &name, const Vector3 &position)
-: MessageReceiver(name)
+Entity3d::Entity3d(const Vector3 &position)
+: MessageReceiver("entity3d")
 , position(position)
 {
 }

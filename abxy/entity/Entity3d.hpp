@@ -8,8 +8,8 @@
 class Entity3d : public Entity {
 	Vector3 position;
 public:
-	Entity3d(const std::string &name);
-	Entity3d(const std::string &name, const Vector3 &position);
+	Entity3d();
+	Entity3d(const Vector3 &position);
 
 	Vector3 &Position() { return position; }
 	const Vector3 &Position() const { return position; }
