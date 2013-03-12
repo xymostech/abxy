@@ -2,12 +2,10 @@
 
 in vec4 position;
 in vec4 color;
-in vec2 texcoord;
 
 uniform mat4 model_to_world_matrix;
 
 smooth out vec4 theColor;
-smooth out vec2 theTexCoord;
 
 layout(std140) uniform matrices
 {
@@ -18,6 +16,6 @@ layout(std140) uniform matrices
 void main()
 {
 	gl_Position = camera_to_clip_matrix * world_to_camera_matrix * model_to_world_matrix * position;
+
 	theColor = color;
-	theTexCoord = texcoord;
 }

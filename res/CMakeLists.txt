@@ -8,6 +8,7 @@ set(FILES
     LiberationMono-Regular.ttf
     standard.fragment.shader
     standard.vertex.shader
+    standard.program
     test.png
     white.png)
 

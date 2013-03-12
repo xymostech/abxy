@@ -1,0 +1,2 @@
+vertex standard.vertex.shader
+fragment standard.fragment.shader
