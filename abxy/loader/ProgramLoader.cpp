@@ -5,6 +5,11 @@
 
 #include <abxy/util/Path.hpp>
 
+ProgramLoader::ProgramLoader()
+: loader_cache(nullptr)
+{
+}
+
 GLProgram *ProgramLoader::GetResource(std::string name) {
 	std::ifstream program_file(name);
 	std::string line;

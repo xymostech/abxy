@@ -13,6 +13,8 @@ class ProgramLoader : public ResourceLoader<GLProgram> {
 
 	virtual GLProgram *GetResource(std::string name);
 public:
+	ProgramLoader();
+
 	virtual void SetLoader(LoaderCache *loader);
 };
 

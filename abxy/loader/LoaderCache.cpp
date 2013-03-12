@@ -1,5 +1,11 @@
 #include <abxy/loader/LoaderCache.hpp>
 
+LoaderCache::LoaderCache()
+: cache(nullptr)
+{
+	
+}
+
 void LoaderCache::SetCache(LoaderCache *set_cache) {
 	cache = set_cache;
 }

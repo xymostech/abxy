@@ -14,6 +14,8 @@ class LoaderCache {
 	bool HasVertexShaderLoaded(std::string name);
 	bool HasFragmentShaderLoaded(std::string name);
 public:
+	LoaderCache();
+
 	void SetCache(LoaderCache *set_cache);
 
 	std::shared_ptr<Texture> LoadTexture(std::string name);
