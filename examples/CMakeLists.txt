@@ -12,5 +12,6 @@ set_target_properties(Test
     PROPERTIES
         LINK_FLAGS "-stdlib=libc++ -lc++abi -ldl")
 
-file(COPY ${ABXY_RESOURCE_FILES}
-    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/res/")
+add_custom_target(example_resources ALL
+    COMMAND mkdir -p "${CMAKE_CURRENT_BINARY_DIR}/res"
+    COMMAND cp ${ABXY_RESOURCE_FILES} "${CMAKE_CURRENT_BINARY_DIR}/res/")
