@@ -3,7 +3,7 @@
 
 #include <abxy/entity/PassthroughEntity.hpp>
 
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 #include <abxy/loader/ProgramLoaderCache.hpp>
 
 template <class ProjectionClass>

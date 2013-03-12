@@ -2,7 +2,7 @@
 #define PROGRAMLOADERCACHE_HPP
 
 #include <abxy/loader/ProgramLoader.hpp>
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 
 class ProgramLoaderCache {
 	Projection &projection;

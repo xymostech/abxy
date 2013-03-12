@@ -1,4 +1,4 @@
-#include <abxy/ProjectionOrtho2d.hpp>
+#include <abxy/projection/ProjectionOrtho2d.hpp>
 
 ProjectionOrtho2d::ProjectionOrtho2d()
 : camera_clip_matrix(1.0)

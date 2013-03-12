@@ -3,9 +3,9 @@ set(ABXY_SOURCES
     "Game.cpp"
     "Formatter.cpp"
 
-    "ProjectionIdentity.cpp"
-    "ProjectionOrtho2d.cpp"
-    "Projection.cpp"
+    "projection/ProjectionIdentity.cpp"
+    "projection/ProjectionOrtho2d.cpp"
+    "projection/Projection.cpp"
 
     "Font.cpp"
     "Texture.cpp"

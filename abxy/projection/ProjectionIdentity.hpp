@@ -1,7 +1,7 @@
 #ifndef PROJECTIONIDENTITY_HPP
 #define PROJECTIONIDENTITY_HPP
 
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 
 class ProjectionIdentity : public Projection {
 	Matrix4 camera_clip_matrix, world_camera_matrix;

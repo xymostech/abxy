@@ -3,7 +3,7 @@
 
 #include <abxy/loader/LoaderCache.hpp>
 #include <abxy/loader/ProgramLoaderCache.hpp>
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 
 class LoadData {
 	LoaderCache *loader;

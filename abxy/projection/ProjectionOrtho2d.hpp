@@ -1,7 +1,7 @@
 #ifndef PROJECTIONORTHO2D_HPP
 #define PROJECTIONORTHO2D_HPP
 
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 #include <abxy/GL/GL.hpp>
 
 class ProjectionOrtho2d : public Projection {

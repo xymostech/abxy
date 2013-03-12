@@ -3,7 +3,7 @@
 
 #include <abxy/entity/Entity.hpp>
 
-#include <abxy/ProjectionIdentity.hpp>
+#include <abxy/projection/ProjectionIdentity.hpp>
 
 class BaseEntity : public Entity {
 	ProjectionIdentity projection;

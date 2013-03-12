@@ -9,7 +9,7 @@
 #include <abxy/GL/GLProgramRef.hpp>
 #include <abxy/GL/GLShader.hpp>
 #include <abxy/GL/GLUniformBlockRef.hpp>
-#include <abxy/Projection.hpp>
+#include <abxy/projection/Projection.hpp>
 
 class GLProgram {
 	GLProgramRef program;
