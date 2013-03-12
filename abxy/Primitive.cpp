@@ -1,6 +1,7 @@
 #include <abxy/Primitive.hpp>
 
 #include <abxy/loader/ResourceLoader.hpp>
+#include <abxy/loader/LoadData.hpp>
 
 void Primitive::SetupArrays() {
 	vertex_buffer.Bind();
@@ -85,14 +86,18 @@ void Primitive::AddIndices(const std::vector<unsigned int> &indices) {
 	);
 }
 
-//void Primitive::Register(World *world) {
-	//program = world->GetParentStage()->GetProgramLoader()->Load(program_name);
+void Primitive::OnLoad(LoadData &data) {
+	program = data.GetProgramLoader()->LoadProgram(program_name);
 
-	//SetupVertexArray();
-	//SetupArrays();
+	SetupVertexArray();
+	SetupArrays();
 
-	//model_matrix_loc = program->GetUniformLocation("model_to_world_matrix");
-//}
+	model_matrix_loc = program->GetUniformLocation("model_to_world_matrix");
+}
+
+void Primitive::OnUnload() {
+	program.reset();
+}
 
 void Primitive::DrawAll(const Matrix4 &model_matrix) const {
 	DrawAllBase(model_matrix, 0);

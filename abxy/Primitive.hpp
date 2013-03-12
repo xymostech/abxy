@@ -8,15 +8,17 @@
 #include <abxy/GL/GLBufferRef.hpp>
 #include <abxy/GL/GLVertexArrayRef.hpp>
 
-struct AttribData {
-	std::string name;
-	size_t size;
-	size_t pos;
-};
+class LoadData;
 
 class Primitive {
 	// Data to describe the primitive
 	std::string program_name;
+
+	struct AttribData {
+		std::string name;
+		size_t size;
+		size_t pos;
+	};
 
 	std::vector<AttribData> attribs;
 	std::vector<float> vertex_data;
@@ -46,7 +48,8 @@ public:
 	               const std::vector<float> &data);
 	void AddIndices(const std::vector<unsigned int> &indices);
 
-	//virtual void Register(World *world);
+	virtual void OnLoad(LoadData &data);
+	virtual void OnUnload();
 
 	virtual void DrawAll(const Matrix4 &model_matrix) const;
 	virtual void DrawIndices(const Matrix4 &model_matrix,
