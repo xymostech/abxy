@@ -2,7 +2,7 @@
 
 #include <abxy/Game.hpp>
 #include <abxy/entity/ProjectionEntity.hpp>
-#include <abxy/projection/ProjectionIdentity.hpp>
+#include <abxy/projection/ProjectionFrustum.hpp>
 #include <abxy/entity/LoaderEntity.hpp>
 #include <abxy/entity/WorldEntity.hpp>
 #include <abxy/entity/Entity3d.hpp>
@@ -55,7 +55,7 @@ int main() {
 	test_game.Startup();
 
 	WorldEntity world;
-	ProjectionEntity<ProjectionIdentity> proj(world);
+	ProjectionEntity<ProjectionFrustum> proj(world);
 	LoaderEntity loader(proj);
 
 	world.Add<MyEntity>();
