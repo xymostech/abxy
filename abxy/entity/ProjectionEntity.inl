@@ -11,6 +11,8 @@ ProjectionEntity<ProjectionClass>::ProjectionEntity(Entity &entity)
 
 template <class ProjectionClass>
 void ProjectionEntity<ProjectionClass>::OnLoad(LoadData &data) {
+	loader.SetLoader(data.GetLoader());
+
 	LoadData new_data = LoadData(data.GetLoader(), &loader, &projection);
 
 	PassthroughEntity::OnLoad(new_data);

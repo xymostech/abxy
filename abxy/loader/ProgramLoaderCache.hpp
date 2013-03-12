@@ -10,6 +10,8 @@ class ProgramLoaderCache {
 public:
 	ProgramLoaderCache(Projection &projection);
 
+	virtual void SetLoader(LoaderCache *loader_cache);
+
 	std::shared_ptr<GLProgram> LoadProgram(std::string file);
 };
 
