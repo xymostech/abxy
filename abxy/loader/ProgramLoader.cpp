@@ -4,6 +4,7 @@
 #include <string>
 
 #include <abxy/util/Path.hpp>
+#include <abxy/util/Logger.hpp>
 
 ProgramLoader::ProgramLoader()
 : loader_cache(nullptr)
@@ -12,9 +13,14 @@ ProgramLoader::ProgramLoader()
 
 GLProgram *ProgramLoader::GetResource(std::string name) {
 	std::ifstream program_file(name);
+
+	if (!program_file.good()) {
+		throw std::runtime_error("Couldn't open program file");
+	}
+
 	std::string line;
 
-	std::string base_path = Util::GetDirectory(name);
+	std::string base_path = Util::GetDirectory(name) + "/";
 
 	std::vector<std::shared_ptr<GLShader>> shaders;
 
@@ -23,6 +29,8 @@ GLProgram *ProgramLoader::GetResource(std::string name) {
 
 		std::string shader_type = line.substr(0, pos);
 		std::string shader_file = line.substr(pos + 1);
+
+		Util::Logger::Debug("Loading shader file " + shader_file + " of type " + shader_type);
 
 		if (shader_file[0] != '/' && shader_file[0] != '\\') {
 			shader_file = base_path + shader_file;
