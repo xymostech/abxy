@@ -39,8 +39,10 @@ protected:
 	std::shared_ptr<GLProgram> program;
 
 	virtual void InnerDraw() const;
+	Primitive(Primitive &p) = delete;
 public:
 	Primitive(std::string program_name);
+	Primitive(Primitive &&p);
 	virtual ~Primitive();
 
 	void AddAttrib(const std::string &name,

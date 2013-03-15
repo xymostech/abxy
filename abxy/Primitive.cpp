@@ -52,7 +52,14 @@ void Primitive::InnerDraw() const {
 Primitive::Primitive(std::string program_name)
 : program_name(program_name)
 {
-	
+}
+
+Primitive::Primitive(Primitive &&p)
+: program_name(p.program_name)
+, attribs(p.attribs)
+, vertex_data(p.vertex_data)
+, index_data(p.index_data)
+{
 }
 
 Primitive::~Primitive() {
