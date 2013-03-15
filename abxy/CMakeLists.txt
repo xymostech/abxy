@@ -7,7 +7,7 @@ set(version_MICRO 1)
 set(version_SO_MAJOR "${version_MAJOR}.${version_MINOR}")
 set(version_SO_VERSION "${version_MAJOR}.${version_MINOR}.${version_MICRO}")
 
-include_directories("${CMAKE_SOURCE_DIR}")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/..")
 include_directories("${EXTERNAL_INCLUDE_DIRS}")
 
 add_definitions(-g -std=c++11 -Wall -Wextra -Werror -stdlib=libc++)
