@@ -14,6 +14,8 @@ set(ABXY_SOURCES
     "Mouse.cpp"
     "Key.cpp"
 
+    "Model.cpp"
+
     #"TextEntity.cpp"
     #"Stage.cpp"
     #"WorldStage.cpp"

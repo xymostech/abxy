@@ -7,46 +7,36 @@
 #include <abxy/entity/WorldEntity.hpp>
 #include <abxy/entity/Entity3d.hpp>
 #include <abxy/Primitive.hpp>
+#include <abxy/Model.hpp>
 
 class MyEntity : public Entity3d {
-	Primitive prim;
+	Model model;
+	float time;
 public:
 	MyEntity()
 	: MessageReceiver("myentity")
-	, prim("res/standard.program")
+	, model("res/test.model")
+	, time(0)
 	{
-		prim.AddAttrib("position", 4, {
-			-0.75, -0.75, 0, 1.0,
-			-0.75,  0.75, 0, 1.0,
-			 0.75, -0.75, 0, 1.0,
-			 0.75,  0.75, 0, 1.0,
-		});
-
-		prim.AddAttrib("color", 4, {
-			1, 1, 1, 1,
-			1, 1, 1, 1,
-			1, 1, 1, 1,
-			1, 1, 1, 1,
-		});
-
-		prim.AddIndices({
-			0, 1, 2,
-			2, 1, 3,
-		});
 	}
 
 	virtual void OnLoad(LoadData &data) override {
-		prim.OnLoad(data);
+		model.OnLoad(data);
 	}
 
 	virtual void OnUnload() override {
-		prim.OnUnload();
+		model.OnUnload();
+	}
+
+	virtual void Update() override {
+		time += 0.03;
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const override {
-		model_matrix.Translate(Vector3(-0.15, 0, 0));
+		model_matrix.Rotate(Vector3(0, 1, 0), time);
+		model_matrix.Translate(Vector3(1.5, 0, -5.0));
 
-		prim.DrawAll(model_matrix);
+		model.Draw(model_matrix);
 	}
 };
 

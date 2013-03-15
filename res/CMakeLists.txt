@@ -9,6 +9,7 @@ set(FILES
     standard.fragment.shader
     standard.vertex.shader
     standard.program
+    test.model
     test.png
     white.png)
 
