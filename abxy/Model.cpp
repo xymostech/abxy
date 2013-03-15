@@ -49,8 +49,8 @@ Primitive Model::MakePrimitive(const Object &o) {
 }
 
 Model::Object Model::ReadObject(token_iterator &it) {
-	if (*it != "o") {
-		throw std::runtime_error("Error reading object, expected 'o'");
+	if (*it != "object") {
+		throw std::runtime_error("Error reading object, expected 'object'");
 	}
 
 	Object o;
