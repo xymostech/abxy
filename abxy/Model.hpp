@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 
 class Model {
 	typedef std::vector<std::string>::const_iterator token_iterator;

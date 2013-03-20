@@ -1,7 +1,7 @@
 #ifndef SQUAREPRIMITIVE_HPP
 #define SQUAREPRIMITIVE_HPP
 
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 
 class SquarePrimitive : public virtual Primitive {
 public:

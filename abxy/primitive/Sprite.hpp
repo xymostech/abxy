@@ -1,8 +1,8 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
-#include <abxy/TexturePrimitive.hpp>
-#include <abxy/SquarePrimitive.hpp>
+#include <abxy/primitive/TexturePrimitive.hpp>
+#include <abxy/primitive/SquarePrimitive.hpp>
 
 class Sprite : public TexturePrimitive, public SquarePrimitive {
 public:

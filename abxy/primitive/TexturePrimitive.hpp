@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 #include <abxy/Texture.hpp>
 
 class TexturePrimitive : public virtual Primitive {

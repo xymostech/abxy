@@ -1,4 +1,4 @@
-#include <abxy/SpriteAnimation.hpp>
+#include <abxy/primitive/SpriteAnimation.hpp>
 
 SpriteAnimation::SpriteAnimation(const std::vector<std::string> &v) {
 	for (auto &s : v) {

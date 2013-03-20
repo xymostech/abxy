@@ -1,4 +1,4 @@
-#include <abxy/TexturePrimitive.hpp>
+#include <abxy/primitive/TexturePrimitive.hpp>
 
 #include <abxy/WorldStage.hpp>
 

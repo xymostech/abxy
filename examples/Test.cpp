@@ -6,7 +6,7 @@
 #include <abxy/entity/LoaderEntity.hpp>
 #include <abxy/entity/WorldEntity.hpp>
 #include <abxy/entity/Entity3d.hpp>
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 #include <abxy/Model.hpp>
 
 class MyEntity : public Entity3d {

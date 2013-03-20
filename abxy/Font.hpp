@@ -2,7 +2,7 @@
 #define FONT_HPP
 
 #include <abxy/GL/GLTextureRef.hpp>
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 #include <abxy/Texture.hpp>
 
 #include <map>

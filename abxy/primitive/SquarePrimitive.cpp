@@ -1,4 +1,4 @@
-#include <abxy/SquarePrimitive.hpp>
+#include <abxy/primitive/SquarePrimitive.hpp>
 
 SquarePrimitive::SquarePrimitive(std::string program_name)
 : Primitive(program_name)

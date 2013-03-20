@@ -23,11 +23,11 @@ set(ABXY_SOURCES
     #"FormattedTextEntity2d.cpp"
     #"Entity2d.cpp"
 
-    "Primitive.cpp"
-    #"Sprite.cpp"
-    #"SquarePrimitive.cpp"
-    #"TexturePrimitive.cpp"
-    #"SpriteAnimation.cpp"
+    "primitive/Primitive.cpp"
+    #"primitive/SquarePrimitive.cpp"
+    #"primitive/TexturePrimitive.cpp"
+    #"primitive/Sprite.cpp"
+    #"primitive/SpriteAnimation.cpp"
 
     "GL/GLVertexArrayRef.cpp"
     "GL/GLUniformBlockRef.cpp"

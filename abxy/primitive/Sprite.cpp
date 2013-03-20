@@ -1,4 +1,4 @@
-#include <abxy/Sprite.hpp>
+#include <abxy/primitive/Sprite.hpp>
 
 Sprite::Sprite(std::string texture_name)
 : Primitive("res/standard")

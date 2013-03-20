@@ -1,4 +1,4 @@
-#include <abxy/Primitive.hpp>
+#include <abxy/primitive/Primitive.hpp>
 
 #include <abxy/loader/ResourceLoader.hpp>
 #include <abxy/loader/LoadData.hpp>

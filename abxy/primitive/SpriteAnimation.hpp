@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <abxy/Sprite.hpp>
+#include <abxy/primitive/Sprite.hpp>
 
 class SpriteAnimation {
 	std::vector<std::shared_ptr<Sprite>> sprites;
