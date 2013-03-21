@@ -10,13 +10,19 @@
 
 class BoundPrimitive {
 	GLVertexArrayRef vertex_array;
+	std::shared_ptr<GLBufferRef<GL_ARRAY_BUFFER>> vertex_buffer;
+	std::shared_ptr<GLBufferRef<GL_ELEMENT_ARRAY_BUFFER>> index_buffer;
 	GLsizei num_indices;
 protected:
 	void InnerDraw() const {}
 
 	GLVertexArrayRef &GetVertexArray() { return vertex_array; }
 public:
-	BoundPrimitive(GLsizei num_indices);
+	BoundPrimitive(
+		GLsizei num_indices,
+		std::shared_ptr<GLBufferRef<GL_ARRAY_BUFFER>> vertex_buffer,
+		std::shared_ptr<GLBufferRef<GL_ELEMENT_ARRAY_BUFFER>> index_buffer
+	);
 	BoundPrimitive(BoundPrimitive &&move);
 
 	virtual void DrawAll() const;

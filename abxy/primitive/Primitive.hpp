@@ -16,8 +16,8 @@ class LoadData;
 class Primitive {
 	std::vector<PrimitiveData::AttribData> attribs;
 
-	GLBufferRef<GL_ARRAY_BUFFER> vertex_buffer;
-	GLBufferRef<GL_ELEMENT_ARRAY_BUFFER> index_buffer;
+	std::shared_ptr<GLBufferRef<GL_ARRAY_BUFFER>> vertex_buffer;
+	std::shared_ptr<GLBufferRef<GL_ELEMENT_ARRAY_BUFFER>> index_buffer;
 	int num_indices;
 
 	void SetupVertexArray(
@@ -35,7 +35,9 @@ public:
 	std::shared_ptr<BoundPrimitive> Bind(
 		std::shared_ptr<GLProgram> program
 	) {
-		std::shared_ptr<T> bound_prim = std::make_shared<T>(num_indices);
+		std::shared_ptr<T> bound_prim = std::make_shared<T>(
+			num_indices, vertex_buffer, index_buffer
+		);
 
 		SetupVertexArray(bound_prim->GetVertexArray(), program);
 

@@ -4,23 +4,23 @@
 #include <abxy/loader/LoadData.hpp>
 
 void Primitive::SetupArrays(const PrimitiveData &data) {
-	vertex_buffer.Bind();
-	vertex_buffer.SetData(
+	vertex_buffer->Bind();
+	vertex_buffer->SetData(
 		data.attrib_data.size() * sizeof(float),
 		data.attrib_data.data(),
 		GL_STATIC_DRAW
 	);
-	vertex_buffer.Unbind();
+	vertex_buffer->Unbind();
 
 	num_indices = data.index_data.size();
 
-	index_buffer.Bind();
-	index_buffer.SetData(
+	index_buffer->Bind();
+	index_buffer->SetData(
 		data.index_data.size() * sizeof(float),
 		data.index_data.data(),
 		GL_STATIC_DRAW
 	);
-	index_buffer.Unbind();
+	index_buffer->Unbind();
 }
 
 void Primitive::SetupVertexArray(
@@ -28,7 +28,7 @@ void Primitive::SetupVertexArray(
 	std::shared_ptr<GLProgram> program
 ) {
 	vertex_array.Bind();
-	vertex_buffer.Bind();
+	vertex_buffer->Bind();
 
 	for (auto &attrib_data : attribs) {
 		GLAttribRef attrib =
@@ -41,12 +41,14 @@ void Primitive::SetupVertexArray(
 		);
 	}
 
-	index_buffer.Bind();
+	index_buffer->Bind();
 	vertex_array.Unbind();
 }
 
 Primitive::Primitive(const PrimitiveData &data)
 : attribs(data.attribs)
+, vertex_buffer(std::make_shared<GLBufferRef<GL_ARRAY_BUFFER>>())
+, index_buffer(std::make_shared<GLBufferRef<GL_ELEMENT_ARRAY_BUFFER>>())
 {
 	SetupArrays(data);
 }
