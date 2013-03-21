@@ -33,8 +33,8 @@ public:
 	}
 
 	virtual void Draw(Matrix4 model_matrix) const override {
-		model_matrix.Rotate(Vector3(0, 1, 0), time);
 		model_matrix.Translate(Vector3(1.5, 0, -5.0));
+		model_matrix.Rotate(Vector3(0, 1, 0), time);
 
 		model.Draw(model_matrix);
 	}
