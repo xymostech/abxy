@@ -13,7 +13,7 @@ void ProgramLoaderCache::SetLoader(LoaderCache *loader_cache) {
 std::shared_ptr<GLProgram> ProgramLoaderCache::LoadProgram(std::string file) {
 	std::shared_ptr<GLProgram> program = loader.Load(file);
 
-	program->Setup(projection);
+	program->SetProjection(projection);
 
 	return program;
 }

@@ -15,8 +15,6 @@ GLProgram::GLProgram(const std::vector<std::shared_ptr<GLShader>> &shaders) {
 		);
 	}
 
-	global_matrix_uniform = GetUniformBlockIndex("matrices");
-
 	for (auto &shader : shaders) {
 		program.Detach(shader->GetRef());
 	}
@@ -42,14 +40,13 @@ void GLProgram::Unuse() const {
 	program.Unuse();
 }
 
-void GLProgram::Setup(Projection &projection) {
-	BindUniformBlock(projection.GetUniformBindingIndex());
-}
+void GLProgram::SetProjection(Projection &projection) {
+	GLUniformBlockRef global_matrix_uniform =
+		program.GetUniformBlockIndex("matrices");
 
-void GLProgram::BindUniformBlock(GLuint binding_block) {
 	program.BindUniformBlock(
 		global_matrix_uniform,
-		binding_block
+		projection.GetUniformBindingIndex()
 	);
 }
 

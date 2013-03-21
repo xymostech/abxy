@@ -13,8 +13,6 @@
 
 class GLProgram {
 	GLProgramRef program;
-
-	GLUniformBlockRef global_matrix_uniform;
 public:
 	GLProgram(const std::vector<std::shared_ptr<GLShader>> &shaders);
 
@@ -25,9 +23,7 @@ public:
 	void Use() const;
 	void Unuse() const;
 
-	void Setup(Projection &projection);
-
-	void BindUniformBlock(GLuint binding_block);
+	void SetProjection(Projection &projection);
 
 	GLProgramRef &GetRef();
 };
