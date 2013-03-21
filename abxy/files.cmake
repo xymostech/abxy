@@ -8,7 +8,7 @@ set(ABXY_SOURCES
     "projection/ProjectionOrtho2d.cpp"
     "projection/ProjectionFrustum.cpp"
 
-    "Font.cpp"
+    #"Font.cpp"
     "Texture.cpp"
 
     "Mouse.cpp"
@@ -60,7 +60,7 @@ set(ABXY_SOURCES
     "loader/ProgramLoader.cpp"
     "loader/PngLoader.cpp"
     "loader/SoundLoader.cpp"
-    "loader/FontLoader.cpp"
+    #"loader/FontLoader.cpp"
     "loader/FileLoader.cpp"
     "loader/ImageDataLoader.cpp"
     "loader/LoaderCache.cpp"

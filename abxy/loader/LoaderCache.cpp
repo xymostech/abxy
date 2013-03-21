@@ -18,13 +18,13 @@ bool LoaderCache::HasTextureLoaded(std::string name) {
 	}
 }
 
-bool LoaderCache::HasFontLoaded(std::string name) {
-	if (cache && cache->HasFontLoaded(name)) {
-		return true;
-	} else {
-		return loader.GetFontLoader()->HasLoaded(name);
-	}
-}
+//bool LoaderCache::HasFontLoaded(std::string name) {
+	//if (cache && cache->HasFontLoaded(name)) {
+		//return true;
+	//} else {
+		//return loader.GetFontLoader()->HasLoaded(name);
+	//}
+//}
 
 bool LoaderCache::HasSoundLoaded(std::string name) {
 	if (cache && cache->HasSoundLoaded(name)) {
@@ -58,13 +58,13 @@ std::shared_ptr<Texture> LoaderCache::LoadTexture(std::string name) {
 	}
 }
 
-std::shared_ptr<Font> LoaderCache::LoadFont(std::string name) {
-	if (cache && cache->HasFontLoaded(name)) {
-		return cache->LoadFont(name);
-	} else {
-		return loader.GetFontLoader()->Load(name);
-	}
-}
+//std::shared_ptr<Font> LoaderCache::LoadFont(std::string name) {
+	//if (cache && cache->HasFontLoaded(name)) {
+		//return cache->LoadFont(name);
+	//} else {
+		//return loader.GetFontLoader()->Load(name);
+	//}
+//}
 
 std::shared_ptr<Sound> LoaderCache::LoadSound(std::string name) {
 	if (cache && cache->HasSoundLoaded(name)) {
