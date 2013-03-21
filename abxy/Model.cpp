@@ -16,38 +16,6 @@ namespace {
 	}
 }
 
-Model::Model(std::string model_file) {
-	std::vector<std::string> tokens = GetTokens(model_file);
-
-	token_iterator it = tokens.cbegin(), end = tokens.cend();
-
-	try {
-		while (it != end) {
-			objects.push_back(ReadObject(it));
-		}
-	} catch (std::exception &e) {
-		throw std::runtime_error(
-			"Error loading file: " + model_file +
-			": " + e.what()
-		);
-	}
-
-	for (const Object &o : objects) {
-		prims.emplace_back(MakePrimitive(o));
-	}
-}
-
-Primitive Model::MakePrimitive(const Object &o) {
-	Primitive prim("res/standard.program");
-
-	prim.AddAttrib("position", 4, o.verts);
-	prim.AddAttrib("color", 4, o.colors);
-
-	prim.AddIndices(o.indices);
-
-	return prim;
-}
-
 Model::Object Model::ReadObject(token_iterator &it) {
 	if (*it != "object") {
 		throw std::runtime_error("Error reading object, expected 'object'");
@@ -164,20 +132,61 @@ std::vector<std::string> Model::GetTokens(std::string file) {
 	return tokens;
 }
 
-void Model::OnLoad(LoadData &data) {
-	for (Primitive &prim : prims) {
-		prim.OnLoad(data);
+Model::Model(std::string model_file) {
+	std::vector<std::string> tokens = GetTokens(model_file);
+
+	token_iterator it = tokens.cbegin(), end = tokens.cend();
+
+	try {
+		while (it != end) {
+			objects.push_back(ReadObject(it));
+		}
+	} catch (std::exception &e) {
+		throw std::runtime_error(
+			"Error loading file: " + model_file +
+			": " + e.what()
+		);
+	}
+
+	for (const Object &o : objects) {
+		prims.emplace_back(SetupPrimitive(o));
 	}
 }
 
-void Model::OnUnload() {
-	for (Primitive &prim : prims) {
-		prim.OnUnload();
+PrimitiveData Model::SetupPrimitive(const Object &o) {
+	PrimitiveData prim_data;
+
+	for (auto &attrib : o.attribs) {
+		prim_data.AddFloatAttrib(attrib.name, attrib.size, attrib.data);
 	}
+
+	prim_data.AddIndices(o.indices);
+
+	return prim_data;
 }
+
+
+void Model::OnLoad(LoadData &data) {
+	program = data.GetProgramLoader()->LoadProgram("res/lighting.program");
+
+	for (Primitive &prim : prims) {
+		bound_prims.emplace_back(prim.Bind(program));
+	}
+
+	model_to_world_matrix_ref =
+		program->GetUniformLocation("model_to_world_matrix");
+}
+
+void Model::OnUnload() { }
 
 void Model::Draw(Matrix4 model_matrix) const {
-	for (const Primitive &prim : prims) {
-		prim.DrawAll(model_matrix);
+	program->Use();
+	model_to_world_matrix_ref.SetMatrix4fv(
+		1, GL_FALSE, model_matrix.GetData()
+	);
+	for (auto &bound_prim : bound_prims) {
+		bound_prim->DrawAll();
 	}
+	program->Unuse();
 }
+

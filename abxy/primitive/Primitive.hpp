@@ -8,58 +8,39 @@
 #include <abxy/GL/GLBufferRef.hpp>
 #include <abxy/GL/GLVertexArrayRef.hpp>
 
+#include <abxy/primitive/PrimitiveData.hpp>
+#include <abxy/primitive/BoundPrimitive.hpp>
+
 class LoadData;
 
 class Primitive {
-	// Data to describe the primitive
-	std::string program_name;
+	std::vector<PrimitiveData::AttribData> attribs;
 
-	struct AttribData {
-		std::string name;
-		size_t size;
-		size_t pos;
-	};
-
-	std::vector<AttribData> attribs;
-	std::vector<float> vertex_data;
-	std::vector<unsigned int> index_data;
-
-	// Stored OpenGL data
 	GLBufferRef<GL_ARRAY_BUFFER> vertex_buffer;
 	GLBufferRef<GL_ELEMENT_ARRAY_BUFFER> index_buffer;
-	GLVertexArrayRef vertex_array;
-
-	GLUniformRef model_matrix_loc;
-
 	int num_indices;
 
-	void SetupVertexArray();
-	void SetupArrays();
-protected:
-	std::shared_ptr<GLProgram> program;
-
-	virtual void InnerDraw() const;
-	Primitive(Primitive &p) = delete;
+	void SetupVertexArray(
+		GLVertexArrayRef &vertex_array,
+		std::shared_ptr<GLProgram> program
+	);
+	void SetupArrays(const PrimitiveData &data);
 public:
-	Primitive(std::string program_name);
-	Primitive(Primitive &&p);
-	virtual ~Primitive();
+	Primitive(const PrimitiveData &data);
+	Primitive(Primitive &p) = delete;
+	Primitive(Primitive &&move);
+	virtual ~Primitive() {}
 
-	void AddAttrib(const std::string &name,
-	               int size,
-	               const std::vector<float> &data);
-	void AddIndices(const std::vector<unsigned int> &indices);
+	template <typename T = BoundPrimitive>
+	std::shared_ptr<BoundPrimitive> Bind(
+		std::shared_ptr<GLProgram> program
+	) {
+		std::shared_ptr<T> bound_prim = std::make_shared<T>(num_indices);
 
-	virtual void OnLoad(LoadData &data);
-	virtual void OnUnload();
+		SetupVertexArray(bound_prim->GetVertexArray(), program);
 
-	virtual void DrawAll(const Matrix4 &model_matrix) const;
-	virtual void DrawIndices(const Matrix4 &model_matrix,
-	                         GLsizei start, GLsizei count) const;
-	virtual void DrawAllBase(const Matrix4 &model_matrix, int base) const;
-	virtual void DrawIndicesBase(const Matrix4 &model_matrix,
-	                             GLsizei start, GLsizei count,
-	                             GLint base) const;
+		return std::dynamic_pointer_cast<BoundPrimitive>(bound_prim);
+	}
 };
 
 #endif /* PRIMITIVE_HPP */

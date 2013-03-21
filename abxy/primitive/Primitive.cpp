@@ -3,41 +3,41 @@
 #include <abxy/loader/ResourceLoader.hpp>
 #include <abxy/loader/LoadData.hpp>
 
-void Primitive::SetupArrays() {
+void Primitive::SetupArrays(const PrimitiveData &data) {
 	vertex_buffer.Bind();
 	vertex_buffer.SetData(
-		vertex_data.size() * sizeof(float),
-		vertex_data.data(),
+		data.attrib_data.size() * sizeof(float),
+		data.attrib_data.data(),
 		GL_STATIC_DRAW
 	);
 	vertex_buffer.Unbind();
 
-	vertex_data.clear();
-
-	num_indices = index_data.size();
+	num_indices = data.index_data.size();
 
 	index_buffer.Bind();
 	index_buffer.SetData(
-		index_data.size() * sizeof(float),
-		index_data.data(),
+		data.index_data.size() * sizeof(float),
+		data.index_data.data(),
 		GL_STATIC_DRAW
 	);
 	index_buffer.Unbind();
-
-	index_data.clear();
 }
 
-void Primitive::SetupVertexArray() {
+void Primitive::SetupVertexArray(
+	GLVertexArrayRef &vertex_array,
+	std::shared_ptr<GLProgram> program
+) {
 	vertex_array.Bind();
 	vertex_buffer.Bind();
 
-	auto end = attribs.end();
-	for (auto it = attribs.begin(); it != end; ++it) {
-		GLAttribRef attrib = program->GetAttribLocation(it->name);
+	for (auto &attrib_data : attribs) {
+		GLAttribRef attrib =
+			program->GetAttribLocation(attrib_data.name);
 		attrib.Enable();
 		attrib.SetPointer(
-			it->size, GL_FLOAT, GL_FALSE, 0,
-			(void*)(it->pos * sizeof(float))
+			attrib_data.size, attrib_data.type,
+			attrib_data.normalized, 0,
+			reinterpret_cast<void*>(attrib_data.pos)
 		);
 	}
 
@@ -45,96 +45,18 @@ void Primitive::SetupVertexArray() {
 	vertex_array.Unbind();
 }
 
-void Primitive::InnerDraw() const {
+Primitive::Primitive(const PrimitiveData &data)
+: attribs(data.attribs)
+{
+	SetupArrays(data);
+}
+
+Primitive::Primitive(Primitive &&move)
+: attribs(std::move(move.attribs))
+, vertex_buffer(std::move(move.vertex_buffer))
+, index_buffer(std::move(move.index_buffer))
+, num_indices(move.num_indices)
+{
 	
-}
-
-Primitive::Primitive(std::string program_name)
-: program_name(program_name)
-{
-}
-
-Primitive::Primitive(Primitive &&p)
-: program_name(p.program_name)
-, attribs(p.attribs)
-, vertex_data(p.vertex_data)
-, index_data(p.index_data)
-{
-}
-
-Primitive::~Primitive() {
-	
-}
-
-void Primitive::AddAttrib(const std::string &name,
-                          int size,
-                          const std::vector<float> &data)
-{
-	AttribData attrib;
-
-	attrib.name = name;
-	attrib.pos = vertex_data.size();
-	attrib.size = size;
-
-	attribs.push_back(attrib);
-
-	vertex_data.insert(
-		vertex_data.end(),
-		data.begin(),
-		data.end()
-	);
-}
-
-void Primitive::AddIndices(const std::vector<unsigned int> &indices) {
-	index_data.insert(
-		index_data.end(),
-		indices.begin(),
-		indices.end()
-	);
-}
-
-void Primitive::OnLoad(LoadData &data) {
-	program = data.GetProgramLoader()->LoadProgram(program_name);
-
-	SetupVertexArray();
-	SetupArrays();
-
-	model_matrix_loc = program->GetUniformLocation("model_to_world_matrix");
-}
-
-void Primitive::OnUnload() {
-	program.reset();
-}
-
-void Primitive::DrawAll(const Matrix4 &model_matrix) const {
-	DrawAllBase(model_matrix, 0);
-}
-
-void Primitive::DrawIndices(const Matrix4 &model_matrix,
-                            GLsizei start, GLsizei count) const {
-	DrawIndicesBase(model_matrix, start, count, 0);
-}
-
-void Primitive::DrawAllBase(const Matrix4 &model_matrix, int base) const {
-	DrawIndicesBase(model_matrix, 0, num_indices, base);
-}
-
-void Primitive::DrawIndicesBase(const Matrix4 &model_matrix,
-                             GLsizei start, GLsizei count,
-                             GLint base) const {
-	program->Use();
-	vertex_array.Bind();
-
-	InnerDraw();
-
-	model_matrix_loc.SetMatrix4fv(1, GL_FALSE, model_matrix.GetData());
-
-	glDrawElementsBaseVertex(
-		GL_TRIANGLES, count, GL_UNSIGNED_INT,
-		reinterpret_cast<void*>(start), base
-	);
-
-	vertex_array.Unbind();
-	program->Unuse();
 }
 

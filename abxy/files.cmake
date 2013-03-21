@@ -24,6 +24,8 @@ set(ABXY_SOURCES
     #"Entity2d.cpp"
 
     "primitive/Primitive.cpp"
+    "primitive/BoundPrimitive.cpp"
+    "primitive/PrimitiveData.cpp"
     #"primitive/SquarePrimitive.cpp"
     #"primitive/TexturePrimitive.cpp"
     #"primitive/Sprite.cpp"
