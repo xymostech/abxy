@@ -11,8 +11,15 @@ class Model {
 
 	class Object {
 	public:
+		class AttribData {
+		public:
+			std::string name;
+			std::vector<float> data;
+			int size;
+		};
+
 		std::string name;
-		std::vector<float> verts, colors;
+		std::vector<AttribData> attribs;
 		std::vector<unsigned int> indices;
 	};
 
@@ -20,8 +27,7 @@ class Model {
 	std::vector<Primitive> prims;
 
 	static Object ReadObject(token_iterator &it);
-	static std::vector<float> ReadColors(token_iterator &it);
-	static std::vector<float> ReadVerts(token_iterator &it);
+	static Object::AttribData ReadAttrib(token_iterator &it);
 	static std::vector<unsigned int> ReadIndices(token_iterator &it);
 
 	static Primitive MakePrimitive(const Object &o);

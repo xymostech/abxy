@@ -65,10 +65,8 @@ Model::Object Model::ReadObject(token_iterator &it) {
 	it++;
 
 	while (*it != "}") {
-		if (*it == "verts") {
-			o.verts = ReadVerts(it);
-		} else if (*it == "colors") {
-			o.colors = ReadColors(it);
+		if (*it == "attrib") {
+			o.attribs.push_back(ReadAttrib(it));
 		} else if (*it == "indices") {
 			o.indices = ReadIndices(it);
 		} else {
@@ -80,60 +78,37 @@ Model::Object Model::ReadObject(token_iterator &it) {
 	return o;
 }
 
-std::vector<float> Model::ReadColors(token_iterator &it) {
-	if (*it != "colors") {
-		throw std::runtime_error("Error reading colors, expected 'colors'");
-	}
-	it++;
-	if (*it != "{") {
-		throw std::runtime_error("Error reading colors, expected '{'");
+Model::Object::AttribData Model::ReadAttrib(token_iterator &it) {
+	if (*it != "attrib") {
+		throw std::runtime_error("Error reading attrib, expected 'attrib'");
 	}
 	it++;
 
-	std::vector<float> colors;
+	Object::AttribData attrib;
+	attrib.name = *it;
+	it++;
+
+	if (!FromString<int>(*it, attrib.size)) {
+		throw std::runtime_error("Error reading attrib '" + attrib.name + "', expected integral size");
+	}
+	it++;
+
+	if (*it != "{") {
+		throw std::runtime_error("Error reading attrib '" + attrib.name + "', expected '{'");
+	}
+	it++;
 
 	while (*it != "}") {
 		float f;
 		if (!FromString<float>(*it, f)) {
-			throw std::runtime_error("Error reading float in color");
+			throw std::runtime_error("Error reading float in attrib '" + attrib.name + "'");
 		}
-		colors.push_back(f);
-		if ((*it).back() == ';') {
-			colors.push_back(1.0);
-		}
+		attrib.data.push_back(f);
 		it++;
 	}
 	it++;
 
-	return colors;
-}
-
-std::vector<float> Model::ReadVerts(token_iterator &it) {
-	if (*it != "verts") {
-		throw std::runtime_error("Error reading verts, expected 'verts'");
-	}
-	it++;
-	if (*it != "{") {
-		throw std::runtime_error("Error reading verts, expected '{'");
-	}
-	it++;
-
-	std::vector<float> verts;
-
-	while (*it != "}") {
-		float f;
-		if (!FromString<float>(*it, f)) {
-			throw std::runtime_error("Error reading float in verts");
-		}
-		verts.push_back(f);
-		if ((*it).back() == ';') {
-			verts.push_back(1.0);
-		}
-		it++;
-	}
-	it++;
-
-	return verts;
+	return attrib;
 }
 
 std::vector<unsigned int> Model::ReadIndices(token_iterator &it) {
