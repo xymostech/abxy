@@ -167,7 +167,7 @@ PrimitiveData Model::SetupPrimitive(const Object &o) {
 
 
 void Model::OnLoad(LoadData &data) {
-	program = data.GetProgramLoader()->LoadProgram("res/lighting.program");
+	program = data.GetProgramLoader()->LoadProgram("res/standard.program");
 
 	for (Primitive &prim : prims) {
 		bound_prims.emplace_back(prim.Bind(program));
