@@ -2,12 +2,15 @@
 #define GLSAMPLERREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCreateRef.hpp>
 
-class GLSamplerRef {
-	GLuint sampler;
+class GLSamplerRef : public GLCreateRef<GLuint> {
 public:
 	GLSamplerRef();
+	GLSamplerRef(GLSamplerRef &&move);
 	~GLSamplerRef();
+
+	GLSamplerRef &operator=(GLSamplerRef &&move);
 
 	void SetParameteri(GLenum pname, GLint param);
 	void SetParameterf(GLenum pname, GLfloat param);

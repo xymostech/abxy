@@ -2,20 +2,23 @@
 #define GLPROGRAMREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCreateRef.hpp>
 
 #include <abxy/GL/GLShaderRef.hpp>
 #include <abxy/GL/GLUniformRef.hpp>
 #include <abxy/GL/GLAttribRef.hpp>
 #include <abxy/GL/GLUniformBlockRef.hpp>
 
-class GLProgramRef {
-	GLuint program;
+class GLProgramRef : public GLCreateRef<GLuint> {
 public:
 	GLProgramRef();
+	GLProgramRef(GLProgramRef &&move);
 	virtual ~GLProgramRef();
 
-	void Attach(GLShaderRef shader);
-	void Detach(GLShaderRef shader);
+	GLProgramRef &operator=(GLProgramRef &&move);
+
+	void Attach(GLShaderRef &shader);
+	void Detach(GLShaderRef &shader);
 	void Link();
 
 	GLint GetParam(GLenum pname) const;

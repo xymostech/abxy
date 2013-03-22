@@ -5,23 +5,26 @@
 
 template <GLenum type>
 GLTextureRef<type>::GLTextureRef() {
+	GLuint texture;
 	glGenTextures(1, &texture);
+	SetRef(texture);
 }
 
 template <GLenum type>
 GLTextureRef<type>::~GLTextureRef() {
-	glDeleteTextures(1, &texture);
+	glDeleteTextures(1, &GetRef());
 }
 
 template <GLenum type>
 void GLTextureRef<type>::Bind() const {
-	glBindTexture(type, texture);
+	glBindTexture(type, GetRef());
 }
 
 template <GLenum type>
-void GLTextureRef<type>::SetData2D(GLint level, GLint internal_format, GLsizei width,
-	       GLsizei height, GLenum format, GLenum data_type,
-	       const GLvoid *data) {
+void GLTextureRef<type>::SetData2D(
+	GLint level, GLint internal_format, GLsizei width, GLsizei height,
+	GLenum format, GLenum data_type, const GLvoid *data
+) {
 	glTexImage2D(
 		type, level, internal_format, width, height, 0, format,
 		data_type, data

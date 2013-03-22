@@ -2,12 +2,15 @@
 #define GLVERTEXARRAYREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCreateRef.hpp>
 
-class GLVertexArrayRef {
-	GLuint vertex_array;
+class GLVertexArrayRef : public GLCreateRef<GLuint> {
 public:
 	GLVertexArrayRef();
+	GLVertexArrayRef(GLVertexArrayRef &&move);
 	~GLVertexArrayRef();
+
+	GLVertexArrayRef &operator=(GLVertexArrayRef &&move);
 
 	void Bind() const;
 	void Unbind() const;

@@ -3,11 +3,23 @@
 GLShaderRef::GLShaderRef(GLenum type)
 : type(type)
 {
-	shader = glCreateShader(type);
+	SetRef(glCreateShader(type));
 }
 
+GLShaderRef::GLShaderRef(GLShaderRef &&move)
+: GLCreateRef<GLuint>(std::move(move))
+{ }
+
 GLShaderRef::~GLShaderRef() {
-	glDeleteShader(shader);
+	if (IsCreated()) {
+		glDeleteShader(GetRef());
+	}
+}
+
+GLShaderRef &GLShaderRef::operator=(GLShaderRef &&move) {
+	GLCreateRef<GLuint>::operator=(std::move(move));
+
+	return *this;
 }
 
 GLenum GLShaderRef::GetType() {
@@ -15,25 +27,25 @@ GLenum GLShaderRef::GetType() {
 }
 
 void GLShaderRef::AttachTo(GLuint program) {
-	glAttachShader(program, shader);
+	glAttachShader(program, GetRef());
 }
 
 void GLShaderRef::DetachFrom(GLuint program) {
-	glDetachShader(program, shader);
+	glDetachShader(program, GetRef());
 }
 
 void GLShaderRef::SetSource(std::string source) {
 	const GLchar *source_data = source.c_str();
-	glShaderSource(shader, 1, (const GLchar **)&source_data, NULL);
+	glShaderSource(GetRef(), 1, (const GLchar **)&source_data, NULL);
 }
 
 void GLShaderRef::Compile() {
-	glCompileShader(shader);
+	glCompileShader(GetRef());
 }
 
 GLint GLShaderRef::GetParam(GLenum pname) const {
 	GLint param;
-	glGetShaderiv(shader, pname, &param);
+	glGetShaderiv(GetRef(), pname, &param);
 	return param;
 }
 
@@ -43,7 +55,7 @@ std::string GLShaderRef::GetInfoLog() const {
 	size_t log_length = GetParam(GL_INFO_LOG_LENGTH);
 	GLchar log[log_length];
 
-	glGetShaderInfoLog(shader, log_length, NULL, log);
+	glGetShaderInfoLog(GetRef(), log_length, NULL, log);
 
 	return std::string(log, log_length);
 }

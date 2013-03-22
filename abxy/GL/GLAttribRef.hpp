@@ -2,14 +2,20 @@
 #define GLATTRIBREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCopyRef.hpp>
 
-class GLAttribRef {
-	GLint attrib;
+class GLAttribRef : public GLCopyRef<GLint> {
 public:
 	GLAttribRef();
 	GLAttribRef(GLint attrib);
+	GLAttribRef(GLAttribRef &copy);
+	GLAttribRef(GLAttribRef &&move);
+
+	GLAttribRef &operator=(const GLAttribRef &copy);
+	GLAttribRef &operator=(GLAttribRef &&move);
 
 	void Enable() const;
+	void Disable() const;
 
 	void SetPointer(GLint size, GLenum type, GLboolean normalized,
 	                GLsizei stride, const GLvoid *pointer);

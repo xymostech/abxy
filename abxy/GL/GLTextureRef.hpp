@@ -2,10 +2,10 @@
 #define GLTEXTUREREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCreateRef.hpp>
 
 template <GLenum type>
-class GLTextureRef {
-	GLuint texture;
+class GLTextureRef : public GLCreateRef<GLuint> {
 public:
 	GLTextureRef();
 	~GLTextureRef();

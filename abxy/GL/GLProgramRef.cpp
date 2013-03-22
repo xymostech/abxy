@@ -1,29 +1,41 @@
 #include <abxy/GL/GLProgramRef.hpp>
 
 GLProgramRef::GLProgramRef() {
-	program = glCreateProgram();
+	SetRef(glCreateProgram());
 }
+
+GLProgramRef::GLProgramRef(GLProgramRef &&move)
+: GLCreateRef<GLuint>(std::move(move))
+{ }
 
 GLProgramRef::~GLProgramRef() {
-	glDeleteProgram(program);
+	if (IsCreated()) {
+		glDeleteProgram(GetRef());
+	}
 }
 
-void GLProgramRef::Attach(GLShaderRef shader) {
-	shader.AttachTo(program);
+GLProgramRef &GLProgramRef::operator=(GLProgramRef &&move) {
+	GLCreateRef<GLuint>::operator=(std::move(move));
+
+	return *this;
 }
 
-void GLProgramRef::Detach(GLShaderRef shader) {
-	shader.DetachFrom(program);
+void GLProgramRef::Attach(GLShaderRef &shader) {
+	shader.AttachTo(GetRef());
+}
+
+void GLProgramRef::Detach(GLShaderRef &shader) {
+	shader.DetachFrom(GetRef());
 }
 
 void GLProgramRef::Link() {
-	glLinkProgram(program);
+	glLinkProgram(GetRef());
 }
 
 GLint GLProgramRef::GetParam(GLenum pname) const {
 	GLint param;
 
-	glGetProgramiv(program, pname, &param);
+	glGetProgramiv(GetRef(), pname, &param);
 
 	return param;
 }
@@ -34,17 +46,17 @@ std::string GLProgramRef::GetInfoLog() const {
 	size_t log_length = GetParam(GL_INFO_LOG_LENGTH);
 	GLchar log[log_length];
 
-	glGetProgramInfoLog(program, log_length, NULL, log);
+	glGetProgramInfoLog(GetRef(), log_length, NULL, log);
 
 	return std::string(log, log_length);
 }
 
 void GLProgramRef::BindUniformBlock(GLUniformBlockRef block_index, GLuint block_binding) {
-	block_index.BindToBlock(program, block_binding);
+	block_index.BindToBlock(GetRef(), block_binding);
 }
 
 void GLProgramRef::Use() const {
-	glUseProgram(program);
+	glUseProgram(GetRef());
 }
 
 void GLProgramRef::Unuse() const {
@@ -52,14 +64,14 @@ void GLProgramRef::Unuse() const {
 }
 
 GLAttribRef GLProgramRef::GetAttribLocation(std::string name) const {
-	return GLAttribRef(glGetAttribLocation(program, name.c_str()));
+	return GLAttribRef(glGetAttribLocation(GetRef(), name.c_str()));
 }
 
 GLUniformRef GLProgramRef::GetUniformLocation(std::string name) const {
-	return GLUniformRef(glGetUniformLocation(program, name.c_str()));
+	return GLUniformRef(glGetUniformLocation(GetRef(), name.c_str()));
 }
 
 GLUniformBlockRef GLProgramRef::GetUniformBlockIndex(std::string name) const {
-	return GLUniformBlockRef(glGetUniformBlockIndex(program, name.c_str()));
+	return GLUniformBlockRef(glGetUniformBlockIndex(GetRef(), name.c_str()));
 }
 

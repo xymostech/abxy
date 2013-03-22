@@ -2,13 +2,16 @@
 #define GLBUFFERREF_HPP
 
 #include <abxy/GL/GL.hpp>
+#include <abxy/GL/GLCreateRef.hpp>
 
 template <GLenum type>
-class GLBufferRef {
-	GLuint buffer;
+class GLBufferRef : public GLCreateRef<GLuint> {
 public:
 	GLBufferRef();
+	GLBufferRef(GLBufferRef<type> &&move);
 	~GLBufferRef();
+
+	GLBufferRef<type> &operator=(GLBufferRef<type> &&move);
 
 	void SetData(GLsizeiptr size, const GLvoid *data, GLenum usage);
 	void SetSubData(GLintptr offset, GLsizeiptr size, const GLvoid *data);
