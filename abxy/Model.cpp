@@ -180,13 +180,8 @@ void Model::OnLoad(LoadData &data) {
 void Model::OnUnload() { }
 
 void Model::Draw(Matrix4 model_matrix) const {
-	program->Use();
-	model_to_world_matrix_ref.SetMatrix4fv(
-		1, GL_FALSE, model_matrix.GetData()
-	);
 	for (auto &bound_prim : bound_prims) {
-		bound_prim->DrawAll();
+		bound_prim->DrawAll(model_matrix);
 	}
-	program->Unuse();
 }
 

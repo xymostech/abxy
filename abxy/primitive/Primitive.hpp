@@ -36,7 +36,7 @@ public:
 		std::shared_ptr<GLProgram> program
 	) {
 		std::shared_ptr<T> bound_prim = std::make_shared<T>(
-			num_indices, vertex_buffer, index_buffer
+			program, num_indices, vertex_buffer, index_buffer
 		);
 
 		SetupVertexArray(bound_prim->GetVertexArray(), program);
