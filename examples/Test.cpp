@@ -27,6 +27,13 @@ public:
 			data.GetProgramLoader()->
 				LoadProgram("res/lighting.program");
 
+		program->Use();
+
+		program->GetUniformLocation("light_dir").Set3f(-1, 0, 1);
+		program->GetUniformLocation("light_intensity").Set4f(1, 0, 1, 1);
+
+		program->Unuse();
+
 		model.Bind(program);
 	}
 

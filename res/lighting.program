@@ -1,0 +1,2 @@
+vertex lighting.vertex.shader
+fragment lighting.fragment.shader
