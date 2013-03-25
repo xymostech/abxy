@@ -165,19 +165,13 @@ PrimitiveData Model::SetupPrimitive(const Object &o) {
 	return prim_data;
 }
 
-
-void Model::OnLoad(LoadData &data) {
-	program = data.GetProgramLoader()->LoadProgram("res/standard.program");
+void Model::Bind(std::shared_ptr<GLProgram> program) {
+	bound_prims.empty();
 
 	for (Primitive &prim : prims) {
 		bound_prims.emplace_back(prim.Bind(program));
 	}
-
-	model_to_world_matrix_ref =
-		program->GetUniformLocation("model_to_world_matrix");
 }
-
-void Model::OnUnload() { }
 
 void Model::Draw(Matrix4 model_matrix) const {
 	for (auto &bound_prim : bound_prims) {

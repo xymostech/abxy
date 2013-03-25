@@ -31,8 +31,6 @@ class Model {
 
 	std::shared_ptr<GLProgram> program;
 
-	GLUniformRef model_to_world_matrix_ref;
-
 	static Object ReadObject(token_iterator &it);
 	static Object::AttribData ReadAttrib(token_iterator &it);
 	static std::vector<unsigned int> ReadIndices(token_iterator &it);
@@ -42,8 +40,7 @@ class Model {
 public:
 	Model(std::string model_file);
 
-	void OnLoad(LoadData &data);
-	void OnUnload();
+	void Bind(std::shared_ptr<GLProgram> program);
 
 	void Draw(Matrix4 model_matrix) const;
 };

@@ -12,6 +12,8 @@
 class MyEntity : public Entity3d {
 	Model model;
 	float time;
+
+	std::shared_ptr<GLProgram> program;
 public:
 	MyEntity()
 	: MessageReceiver("myentity")
@@ -21,11 +23,11 @@ public:
 	}
 
 	virtual void OnLoad(LoadData &data) override {
-		model.OnLoad(data);
-	}
+		program =
+			data.GetProgramLoader()->
+				LoadProgram("res/lighting.program");
 
-	virtual void OnUnload() override {
-		model.OnUnload();
+		model.Bind(program);
 	}
 
 	virtual void Update() override {
